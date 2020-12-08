@@ -1,5 +1,5 @@
 import {Action, Module, Mutation, VuexModule} from "vuex-module-decorators";
-import store from "@/store";
+import store from "@/store/store";
 import Session from "@/models/Session";
 import CryptoTool from "@/services/tool/CryptoTool";
 import ConstantTool from "@/services/tool/ConstantTool";
