@@ -15,7 +15,11 @@ export default class StringTool {
         text = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         search = search.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         let splitFilter: boolean = true
-        search.split(" ").forEach(w => { if (!text.includes(w)) { splitFilter = false } })
+        search.split(" ").forEach(w => {
+            if (!text.includes(w)) {
+                splitFilter = false
+            }
+        })
         return splitFilter
     }
 

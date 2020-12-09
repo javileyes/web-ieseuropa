@@ -1,5 +1,5 @@
 import VueAxios from "vue-axios";
-import axios, { AxiosError } from "axios";
+import axios, {AxiosError} from "axios";
 import {Vue} from "vue-property-decorator";
 import SessionModule from "@/store/SessionModule";
 import {getModule} from "vuex-module-decorators";

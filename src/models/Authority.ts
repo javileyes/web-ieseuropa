@@ -12,6 +12,7 @@ class NameConverter implements JsonCustomConvert<AuthorityName> {
     deserialize(data: any): AuthorityName {
         return (<any>AuthorityName)[data]
     }
+
     serialize(data: AuthorityName): any {
         return data.toString()
     }
