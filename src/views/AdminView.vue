@@ -33,10 +33,10 @@
                                     </v-list-item-content>
                                 </template>
 
-                                <v-list-item v-for="child in item.items" :key="child.title">
-                                    <v-icon>mdi-clipboard-text</v-icon>
+                                <v-list-item v-for="(resource, index) in item.resources" :key="index" >
+                                    <v-icon class="mr-3">mdi-clipboard-text</v-icon>
                                     <v-list-item-content>
-                                        <v-list-item-title v-text="child.title"></v-list-item-title>
+                                        <v-list-item-title v-text="resource.title"></v-list-item-title>
                                     </v-list-item-content>
                                 </v-list-item>
                             </v-list-group>
@@ -46,15 +46,60 @@
                 <v-col cols>
                     <v-card>
                         <v-toolbar color="secondary" dark>
-                            <v-toolbar-title>Categorias</v-toolbar-title>
+                            <v-toolbar-title>Crear Categorias</v-toolbar-title>
                         </v-toolbar>
+
+                        <v-form>
+                            <v-container>
+                                <v-row>
+                                    <v-col>
+                                        <v-text-field label="Nombre" filled clearable />
+                                        <v-btn block :loading="loading" :disabled="loading" color="success" @click="loader = 'loading'">
+                                            Crear
+                                            <template v-slot:loader>
+                                                <span>Loading...</span>
+                                            </template>
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-form>
                     </v-card>
                 </v-col>
                 <v-col cols>
                     <v-card>
                         <v-toolbar color="secondary" dark>
-                            <v-toolbar-title>Subir documentos</v-toolbar-title>
+                            <v-toolbar-title>Subir Documentos</v-toolbar-title>
                         </v-toolbar>
+
+                        <v-container>
+                            <v-row>
+                                <v-col>
+                                    <v-text-field label="Nombre" filled clearable />
+                                    <v-file-input filled v-model="file" placeholder="Suba su documento" label="Documento" append-icon="mdi-paperclip" prepend-icon="">
+                                        <template v-slot:selection="{ text }">
+                                            <v-chip small label color="primary">
+                                                {{ text }}
+                                            </v-chip>
+                                        </template>
+                                    </v-file-input>
+                                    <v-select :items="category" filled label="Categoria" dense>
+                                        <template v-slot:item="{item}">
+                                            {{item.title}}
+                                        </template>
+                                        <template v-slot:selection="{item}">
+                                            {{item.title}}
+                                        </template>
+                                    </v-select>
+                                    <v-btn block :loading="loading" :disabled="loading" color="success" @click="loader = 'loading'">
+                                        Guardar
+                                        <template v-slot:loader>
+                                            <span>Loading...</span>
+                                        </template>
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-container>
                     </v-card>
                 </v-col>
             </v-row>
@@ -68,6 +113,12 @@ import LoginService from "@/services/LoginService";
 
 @Component
 export default class AdminView extends Vue {
+
+    file = null
+    loader = null
+    loading = false
+
+
     logout() {
         LoginService.logout(this)
     }
@@ -75,32 +126,32 @@ export default class AdminView extends Vue {
     category = [
         {
             title: 'Category 1',
-            items: [
-                { title: 'List Item' }
+            resources: [
+                { title: 'Documento 1' }
             ],
         },
         {
             title: 'Category 2',
-            items: [
-                { title: 'Breakfast & brunch' },
-                { title: 'New American' },
-                { title: 'Sushi' },
+            resources: [
+                { title: 'Documento 2' },
+                { title: 'Documento 3' },
+                { title: 'Documento 4' },
             ],
         },
         {
             title: 'Category 3',
-            items: [
-                { title: 'Breakfast & brunch' },
-                { title: 'New American' },
-                { title: 'Sushi' },
+            resources: [
+                { title: 'Documento 5' },
+                { title: 'Documento 6' },
+                { title: 'Documento 7' },
             ],
         },
         {
             title: 'Category 4',
-            items: [
-                { title: 'Breakfast & brunch' },
-                { title: 'New American' },
-                { title: 'Sushi' },
+            resources: [
+                { title: 'Documento 8' },
+                { title: 'Documento 9' },
+                { title: 'Documento 10' },
             ],
         },
 
