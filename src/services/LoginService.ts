@@ -45,7 +45,7 @@ export default class LoginService {
         let sessionModule: SessionModule = getModule(SessionModule)
         sessionModule.session.token = ""
         sessionModule.saveSession()
-        component.$router.push("/login")
+        component.$router.push("/")
     }
 
 }

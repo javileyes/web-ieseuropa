@@ -31,8 +31,7 @@
                         </v-form>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn ref="loginButton" :key="loginButtonReset" block dark color="primary"
-                               @click.once="login()">Acceder
+                        <v-btn ref="loginButton" :key="loginButtonReset" block dark color="primary" @click.once="login()">Acceder
                         </v-btn>
                     </v-card-actions>
                 </v-card>
