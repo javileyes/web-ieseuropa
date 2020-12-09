@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-footer dark padless>
-      <v-card flat tile class="white--text text-center" color="brown">
+      <v-card flat tile class="white--text text-center" color="primary">
         <v-card-text>
           <v-btn v-for="icon in icons" :key="icon.url" class="mx-4 white--text" icon @click="redirect(icon.url)">
             <v-icon size="24px">{{ icon.icon }}</v-icon>

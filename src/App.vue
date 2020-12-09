@@ -19,7 +19,7 @@ import SnackbarComponent from "@/components/SnackbarComponent.vue";
 export default class App extends Vue {
 
   showMenu() {
-    return this.$route.name != null && this.$route.name != "Login"
+    return this.$route.name != null && this.$route.name != "Login" && this.$route.name != "Admin"
   }
 
 }

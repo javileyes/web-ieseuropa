@@ -27,7 +27,7 @@ export default class LoginService {
                 if (component.$route.query.redirect) {
                     component.$router.push({path: component.$route.query.redirect as string});
                 } else {
-                    component.$router.push({path: "/"})
+                    component.$router.push({path: "/admin"})
                 }
             })
             .catch(error => {

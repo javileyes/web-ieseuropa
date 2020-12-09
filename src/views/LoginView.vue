@@ -6,11 +6,12 @@
           <v-toolbar color="primary" dark flat>
             <v-toolbar-title>Iniciar sesión</v-toolbar-title>
           </v-toolbar>
-          <v-progress-linear :indeterminate="true" :active="progress"/>
+          <v-progress-linear :indeterminate="true" :active="progress" color="warning"/>
           <v-card-text>
             <v-form ref="form">
 
               <v-text-field
+                  color="secondary"
                   @keydown.enter="$refs.loginButton.$el.click()"
                   v-model="email" label="Email" name="email"
                   prepend-icon="mdi-email" type="email"
@@ -18,6 +19,7 @@
               />
 
               <v-text-field
+                  color="secondary"
                   @keydown.enter="$refs.loginButton.$el.click()"
                   v-model="password" label="Contraseña"
                   name="password" prepend-icon="mdi-lock"
@@ -29,7 +31,7 @@
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-btn ref="loginButton" :key="loginButtonReset" block color="primary" @click.once="login()">Acceder</v-btn>
+            <v-btn ref="loginButton" :key="loginButtonReset" block dark color="primary" @click.once="login()">Acceder</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
