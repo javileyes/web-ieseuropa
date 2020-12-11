@@ -25,6 +25,7 @@ export default class ResourceCategoryService {
     }
 
     static async postResourceCategory(component: AdminView, categoryTitle: string) {
+        // @ts-ignore
         component.resourceCategoryLoading = true
 
         let formData = new FormData()
@@ -37,6 +38,7 @@ export default class ResourceCategoryService {
             getModule(SnackbarModule).makeToast("Se ha creado la categoria correctamente!")
             // @ts-ignore
             component.resourceCategoryLoading = false
+            // @ts-ignore
             component.refresh()
         } catch(err) {
             getModule(SnackbarModule).makeToast("Error al crear la categoria")
@@ -47,6 +49,7 @@ export default class ResourceCategoryService {
     }
 
     static async patchResourceCategory(component: AdminView, categorySelect: ResourceCategory, patchCategoryTitle: string) {
+        // @ts-ignore
         component.patchResourceCategoryLoading = true
 
         let formData = new FormData()
@@ -57,28 +60,35 @@ export default class ResourceCategoryService {
                 formData, {
                     headers: {Authorization: getModule(SessionModule).session.token}
                 });
+            // @ts-ignore
             component.patchResourceCategoryLoading = false
+            // @ts-ignore
             component.refresh()
             getModule(SnackbarModule).makeToast("Se ha editado la categoria correctamente!")
         } catch (err) {
             console.log(err)
+            // @ts-ignore
             component.patchResourceCategoryLoading = false
             getModule(SnackbarModule).makeToast("Error al editar la categoria")
         }
     }
 
     static async deleteResourceCategory(component: AdminView, categorySelect: ResourceCategory) {
+        // @ts-ignore
         component.deleteResourceCategoryLoading = true
 
         try {
             const response = await component.axios.delete(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             });
+            // @ts-ignore
             component.deleteResourceCategoryLoading = false;
+            // @ts-ignore
             component.refresh();
             getModule(SnackbarModule).makeToast("Se ha eliminado la categoria de manera exitosa!")
         } catch (err) {
             console.log(err)
+            // @ts-ignore
             component.deleteResourceCategoryLoading = false
             getModule(SnackbarModule).makeToast("Error al eliminar una categoria")
         }

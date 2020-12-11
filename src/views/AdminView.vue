@@ -16,7 +16,6 @@
                 </v-list>
             </v-menu>
         </v-app-bar>
-
         <v-container>
             <v-row>
                 <v-col cols="5">
@@ -38,10 +37,10 @@
                                     <v-list-item-content>
                                         <v-list-item-title v-text="resource.title"></v-list-item-title>
                                     </v-list-item-content>
-                                    <v-btn class="ma-1" text icon color="green lighten-2">
+                                    <v-btn class="ma-1" text icon color="green lighten-2" @click="switchPatchResourceDialog(resource)">
                                         <v-icon>mdi-lead-pencil</v-icon>
                                     </v-btn>
-                                    <v-btn class="ma-1" text icon color="red lighten-2">
+                                    <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteResource(resource.id)">
                                         <v-icon>mdi-delete</v-icon>
                                     </v-btn>
                                 </v-list-item>
@@ -50,7 +49,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols>
-                    <v-card class="mb-4">
+                    <v-card class="mb-6">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Crear Categorias</v-toolbar-title>
                         </v-toolbar>
@@ -141,6 +140,7 @@
                         </v-form>
                     </v-card>
                 </v-col>
+                <PatchResourceDialogComponent :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switch="switchPatchResourceDialog"/>
             </v-row>
         </v-container>
     </div>
@@ -149,29 +149,37 @@
 <script lang="ts">
 import {Component, Vue, Ref} from "vue-property-decorator";
 import LoginService from "@/services/LoginService";
-// eslint-disable-next-line no-unused-vars
 import ResourceCategory from "@/models/ResourceCategory";
 import ResourceService from "@/services/ResourceService";
 import ResourceCategoryService from "@/services/ResourceCategoryService";
+import Dialog from "@/models/vue/Dialog";
+import DialogModule from "@/store/DialogModule";
+import {getModule} from "vuex-module-decorators";
+import Resource from "@/models/Resource";
+import PatchResourceDialogComponent from "@/components/PatchResourceDialogComponent.vue";
 
-@Component
+
+@Component({components: {PatchResourceDialogComponent}})
 export default class AdminView extends Vue {
     @Ref() readonly form!: HTMLFontElement
-    resourceFile: File | null = null
-    resourceCategory?: ResourceCategory | undefined
+    resourceFile!: File = null
+    resourceCategory: ResourceCategory = new ResourceCategory()
     resourceTitle: string = ""
     resourceDocumentLoading: boolean = false
 
     categoryTitle: string = ""
     resourceCategoryLoading: boolean = false
 
-    resourceCategorySelect?: ResourceCategory | undefined
+    resourceCategorySelect: ResourceCategory = new ResourceCategory()
     patchResourceCategoryTitle: string = ""
     patchResourceCategoryLoading: boolean = false
     deleteResourceCategoryLoading: boolean = false
 
     categories: ResourceCategory[] = []
     resourceCategoriesLoading: boolean = false
+
+    dialog: boolean = false
+    resourceDialog: Resource = new Resource()
 
     titleRules = [
         (v: string) => v && v.length > 0 ? true : "Nombre requerido"
@@ -186,22 +194,25 @@ export default class AdminView extends Vue {
         ResourceCategoryService.getResourceCategories(this, this.categories)
     }
 
+    postCategory() {
+        if (this.categoryTitle != "" && this.categoryTitle) {
+            ResourceCategoryService.postResourceCategory(this, this.categoryTitle)
+        }
+    }
+
     patchCategory() {
         if (this.resourceCategorySelect && this.patchResourceCategoryTitle && this.patchResourceCategoryTitle != "") {
             ResourceCategoryService.patchResourceCategory(this, this.resourceCategorySelect, this.patchResourceCategoryTitle);
         }
     }
 
-
     deleteCategory() {
         if (this.resourceCategorySelect) {
-            ResourceCategoryService.deleteResourceCategory(this, this.resourceCategorySelect)
-        }
-    }
-
-    postCategory() {
-        if (this.categoryTitle != "" && this.categoryTitle) {
-            ResourceCategoryService.postResourceCategory(this, this.categoryTitle)
+            getModule(DialogModule).showDialog(new Dialog(
+                "Aviso",
+                "¿Está seguro de eliminar esta categoria?",
+                () => ResourceCategoryService.deleteResourceCategory(this, this.resourceCategorySelect)
+            ))
         }
     }
 
@@ -209,6 +220,19 @@ export default class AdminView extends Vue {
         if (this.resourceCategory && this.resourceFile && this.resourceTitle != "") {
             ResourceService.postResource(this, this.resourceFile, this.resourceTitle, this.resourceCategory);
         }
+    }
+
+    deleteResource(id: string) {
+        getModule(DialogModule).showDialog(new Dialog(
+            "Aviso",
+            "¿Está seguro de eliminar este documento?",
+            () => ResourceService.deleteResource(this, id)
+        ))
+    }
+
+    switchPatchResourceDialog(resource: Resource) {
+        this.resourceDialog = resource
+        this.dialog ? this.dialog = false : this.dialog = true
     }
 
     logout() {

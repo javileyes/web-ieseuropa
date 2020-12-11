@@ -88,25 +88,12 @@ export default class LoginView extends Vue {
     }
 
     count: number = 0
-    rotation: number = 0
 
     developLogin() {
         this.count++
-        if (this.count % 3 == 0) {
-            switch (this.rotation) {
-                case 0:
-                    this.email = "admin@ieseuropa.com";
-                    break
-                case 1:
-                    this.email = "admin@ieseuropa.com";
-                    break
-                case 2:
-                    this.email = "admin3@ieseropa.com";
-                    break
-            }
-            this.password = "1234"
-            this.rotation++
-            if (this.rotation > 2) this.rotation = 0
+        if (this.count >= 3) {
+            this.email = "admin@ieseuropa.es"
+            this.count = 0
         }
     }
 }
