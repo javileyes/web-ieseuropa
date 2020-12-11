@@ -29,7 +29,7 @@
                             <v-list-group v-for="category in categories" :key="category.title" prepend-icon="mdi-folder" no-action>
                                 <template v-slot:activator>
                                     <v-list-item-content>
-                                        <v-list-item-title v-text="category.category"/>
+                                        <v-list-item-title v-text="category.title"/>
                                     </v-list-item-content>
                                 </template>
 
@@ -82,10 +82,10 @@
                                     <v-col>
                                         <v-select :items="categories" v-model="resourceCategorySelect" filled label="Categoria" dense>
                                             <template v-slot:item="{item}">
-                                                {{item.category}}
+                                                {{item.title}}
                                             </template>
                                             <template v-slot:selection="{item}">
-                                                {{item.category}}
+                                                {{item.title}}
                                             </template>
                                         </v-select>
                                         <v-text-field v-model="patchResourceCategoryTitle" label="Nuevo Titulo" filled clearable :rules="titleRules" />
@@ -122,10 +122,10 @@
 
                                         <v-select :items="categories" v-model="resourceCategory" filled label="Categoria" dense>
                                             <template v-slot:item="{item}">
-                                                {{item.category}}
+                                                {{item.title}}
                                             </template>
                                             <template v-slot:selection="{item}">
-                                                {{item.category}}
+                                                {{item.title}}
                                             </template>
                                         </v-select>
 

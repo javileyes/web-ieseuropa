@@ -28,7 +28,7 @@ export default class ResourceCategoryService {
         component.resourceCategoryLoading = true
 
         let formData = new FormData()
-        formData.set("name", categoryTitle)
+        formData.set("title", categoryTitle)
 
         try {
             const response = await component.axios.post(ConstantTool.BASE_URL + "/api/resource-category", formData, {
@@ -50,7 +50,7 @@ export default class ResourceCategoryService {
         component.patchResourceCategoryLoading = true
 
         let formData = new FormData()
-        formData.set("name", patchCategoryTitle)
+        formData.set("title", patchCategoryTitle)
 
         try {
             const response = await component.axios.patch(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id,

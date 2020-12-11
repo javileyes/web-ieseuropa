@@ -6,8 +6,8 @@ import Resource from "@/models/Resource";
 export default class ResourceCategory {
     @JsonProperty("id", Number, true)
     id?: number = undefined
-    @JsonProperty("category", String, true)
-    category?: string = undefined
+    @JsonProperty("title", String, true)
+    title?: string = undefined
     @JsonProperty("resources", [Resource], true)
     resources?: Resource[] = undefined
 }
