@@ -24,20 +24,26 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Secretaria Virtual</v-toolbar-title>
                         </v-toolbar>
-
+                        <v-progress-linear :indeterminate="true" :active="resourceCategoriesLoading" color="warning"/>
                         <v-list>
-                            <v-list-group v-for="item in category" :key="item.title" v-model="item.active" prepend-icon="mdi-folder" no-action>
+                            <v-list-group v-for="category in categories" :key="category.title" prepend-icon="mdi-folder" no-action>
                                 <template v-slot:activator>
                                     <v-list-item-content>
-                                        <v-list-item-title v-text="item.title"/>
+                                        <v-list-item-title v-text="category.category"/>
                                     </v-list-item-content>
                                 </template>
 
-                                <v-list-item v-for="(resource, index) in item.resources" :key="index" >
+                                <v-list-item v-for="(resource, index) in category.resources" :key="index" >
                                     <v-icon class="mr-3">mdi-clipboard-text</v-icon>
                                     <v-list-item-content>
                                         <v-list-item-title v-text="resource.title"></v-list-item-title>
                                     </v-list-item-content>
+                                    <v-btn class="ma-1" text icon color="green lighten-2">
+                                        <v-icon class="ml-3">mdi-lead-pencil</v-icon>
+                                    </v-btn>
+                                    <v-btn class="ma-1" text icon color="red lighten-2">
+                                        <v-icon>mdi-delete</v-icon>
+                                    </v-btn>
                                 </v-list-item>
                             </v-list-group>
                         </v-list>
@@ -48,13 +54,13 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Crear Categorias</v-toolbar-title>
                         </v-toolbar>
-
-                        <v-form>
+                        <v-progress-linear :indeterminate="true" :active="resourceCategoryLoading" color="warning"/>
+                        <v-form ref="form">
                             <v-container>
                                 <v-row>
                                     <v-col>
-                                        <v-text-field label="Nombre" filled clearable />
-                                        <v-btn block :loading="loading" :disabled="loading" color="success" @click="loader = 'loading'">
+                                        <v-text-field v-model="categoryTitle" label="Nombre" filled clearable :rules="titleRules" />
+                                        <v-btn block :loading="resourceCategoryLoading" :disabled="resourceCategoryLoading" color="success" @click="postCategory">
                                             Crear
                                             <template v-slot:loader>
                                                 <span>Loading...</span>
@@ -71,35 +77,33 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Subir Documentos</v-toolbar-title>
                         </v-toolbar>
+                        <v-progress-linear :indeterminate="true" :active="resourceDocumentLoading" color="warning"/>
+                        <v-form ref="form">
+                            <v-container>
+                                <v-row>
+                                    <v-col>
+                                        <v-text-field v-model="resourceTitle" label="Nombre" filled clearable />
+                                        <v-file-input filled v-model="resourceFile" placeholder="Suba su documento" label="Documento" append-icon="mdi-paperclip" prepend-icon="" />
 
-                        <v-container>
-                            <v-row>
-                                <v-col>
-                                    <v-text-field label="Nombre" filled clearable />
-                                    <v-file-input filled v-model="file" placeholder="Suba su documento" label="Documento" append-icon="mdi-paperclip" prepend-icon="">
-                                        <template v-slot:selection="{ text }">
-                                            <v-chip small label color="primary">
-                                                {{ text }}
-                                            </v-chip>
-                                        </template>
-                                    </v-file-input>
-                                    <v-select :items="category" filled label="Categoria" dense>
-                                        <template v-slot:item="{item}">
-                                            {{item.title}}
-                                        </template>
-                                        <template v-slot:selection="{item}">
-                                            {{item.title}}
-                                        </template>
-                                    </v-select>
-                                    <v-btn block :loading="loading" :disabled="loading" color="success" @click="loader = 'loading'">
-                                        Guardar
-                                        <template v-slot:loader>
-                                            <span>Loading...</span>
-                                        </template>
-                                    </v-btn>
-                                </v-col>
-                            </v-row>
-                        </v-container>
+                                        <v-select :items="categories" v-model="resourceCategory" filled label="Categoria" dense>
+                                            <template v-slot:item="{item}">
+                                                {{item.category}}
+                                            </template>
+                                            <template v-slot:selection="{item}">
+                                                {{item.category}}
+                                            </template>
+                                        </v-select>
+
+                                        <v-btn block :loading="resourceDocumentLoading" :disabled="resourceDocumentLoading" color="success" @click="postResource">
+                                            Guardar
+                                            <template v-slot:loader>
+                                                <span>Loading...</span>
+                                            </template>
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-form>
                     </v-card>
                 </v-col>
             </v-row>
@@ -108,53 +112,54 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Vue, Ref} from "vue-property-decorator";
 import LoginService from "@/services/LoginService";
+// eslint-disable-next-line no-unused-vars
+import ResourceCategory from "@/models/ResourceCategory";
+import ResourceService from "@/services/ResourceService";
+import ResourceCategoryService from "@/services/ResourceCategoryService";
 
 @Component
 export default class AdminView extends Vue {
+    @Ref() readonly form!: HTMLFontElement
+    resourceFile: File | null = null
+    resourceCategory?: ResourceCategory | undefined
+    resourceTitle: string = ""
 
-    file = null
-    loader = null
-    loading = false
+    titleRules = [
+        (v: string) => v && v.length > 0 ? true : "Nombre requerido"
+    ]
 
+    categoryTitle: string = ""
+
+    resourceCategoriesLoading: boolean = false
+    resourceCategoryLoading: boolean = false
+    resourceDocumentLoading: boolean = false
+    categories: ResourceCategory[] = []
+
+
+    created() {
+        this.refresh()
+    }
+
+    refresh() {
+        ResourceCategoryService.getResourceCategories(this, this.categories)
+    }
+
+    postCategory() {
+        if (this.categoryTitle != "" && this.categoryTitle) {
+            ResourceCategoryService.postCategory(this, this.categoryTitle)
+        }
+    }
+
+    postResource() {
+        if (this.resourceCategory && this.resourceFile && this.resourceTitle != "") {
+            ResourceService.postResource(this, this.resourceFile, this.resourceTitle, this.resourceCategory);
+        }
+    }
 
     logout() {
         LoginService.logout(this)
     }
-
-    category = [
-        {
-            title: 'Category 1',
-            resources: [
-                { title: 'Documento 1' }
-            ],
-        },
-        {
-            title: 'Category 2',
-            resources: [
-                { title: 'Documento 2' },
-                { title: 'Documento 3' },
-                { title: 'Documento 4' },
-            ],
-        },
-        {
-            title: 'Category 3',
-            resources: [
-                { title: 'Documento 5' },
-                { title: 'Documento 6' },
-                { title: 'Documento 7' },
-            ],
-        },
-        {
-            title: 'Category 4',
-            resources: [
-                { title: 'Documento 8' },
-                { title: 'Documento 9' },
-                { title: 'Documento 10' },
-            ],
-        },
-
-    ]
 }
 </script>
