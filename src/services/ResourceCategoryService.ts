@@ -24,7 +24,7 @@ export default class ResourceCategoryService {
 
     }
 
-    static async postCategory(component: AdminView, categoryTitle: string) {
+    static async postResourceCategory(component: AdminView, categoryTitle: string) {
         component.resourceCategoryLoading = true
 
         let formData = new FormData()
@@ -43,6 +43,44 @@ export default class ResourceCategoryService {
             // @ts-ignore
             component.resourceCategoryLoading = false
             console.log(err)
+        }
+    }
+
+    static async patchResourceCategory(component: AdminView, categorySelect: ResourceCategory, patchCategoryTitle: string) {
+        component.patchResourceCategoryLoading = true
+
+        let formData = new FormData()
+        formData.set("name", patchCategoryTitle)
+
+        try {
+            const response = await component.axios.patch(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id,
+                formData, {
+                    headers: {Authorization: getModule(SessionModule).session.token}
+                });
+            component.patchResourceCategoryLoading = false
+            component.refresh()
+            getModule(SnackbarModule).makeToast("Se ha editado la categoria correctamente!")
+        } catch (err) {
+            console.log(err)
+            component.patchResourceCategoryLoading = false
+            getModule(SnackbarModule).makeToast("Error al editar la categoria")
+        }
+    }
+
+    static async deleteResourceCategory(component: AdminView, categorySelect: ResourceCategory) {
+        component.deleteResourceCategoryLoading = true
+
+        try {
+            const response = await component.axios.delete(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id, {
+                headers: {Authorization: getModule(SessionModule).session.token}
+            });
+            component.deleteResourceCategoryLoading = false;
+            component.refresh();
+            getModule(SnackbarModule).makeToast("Se ha eliminado la categoria de manera exitosa!")
+        } catch (err) {
+            console.log(err)
+            component.deleteResourceCategoryLoading = false
+            getModule(SnackbarModule).makeToast("Error al eliminar una categoria")
         }
     }
 

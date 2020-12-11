@@ -39,7 +39,7 @@
                                         <v-list-item-title v-text="resource.title"></v-list-item-title>
                                     </v-list-item-content>
                                     <v-btn class="ma-1" text icon color="green lighten-2">
-                                        <v-icon class="ml-3">mdi-lead-pencil</v-icon>
+                                        <v-icon>mdi-lead-pencil</v-icon>
                                     </v-btn>
                                     <v-btn class="ma-1" text icon color="red lighten-2">
                                         <v-icon>mdi-delete</v-icon>
@@ -50,7 +50,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols>
-                    <v-card>
+                    <v-card class="mb-4">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Crear Categorias</v-toolbar-title>
                         </v-toolbar>
@@ -59,9 +59,44 @@
                             <v-container>
                                 <v-row>
                                     <v-col>
-                                        <v-text-field v-model="categoryTitle" label="Nombre" filled clearable :rules="titleRules" />
+                                        <v-text-field v-model="categoryTitle" label="Titulo" filled clearable :rules="titleRules" />
                                         <v-btn block :loading="resourceCategoryLoading" :disabled="resourceCategoryLoading" color="success" @click="postCategory">
                                             Crear
+                                            <template v-slot:loader>
+                                                <span>Loading...</span>
+                                            </template>
+                                        </v-btn>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+                        </v-form>
+                    </v-card>
+                    <v-card>
+                        <v-toolbar color="secondary" dark>
+                            <v-toolbar-title>Editar Categorias</v-toolbar-title>
+                        </v-toolbar>
+                        <v-progress-linear :indeterminate="true" :active="patchResourceCategoryLoading" color="warning"/>
+                        <v-form ref="form">
+                            <v-container>
+                                <v-row>
+                                    <v-col>
+                                        <v-select :items="categories" v-model="resourceCategorySelect" filled label="Categoria" dense>
+                                            <template v-slot:item="{item}">
+                                                {{item.category}}
+                                            </template>
+                                            <template v-slot:selection="{item}">
+                                                {{item.category}}
+                                            </template>
+                                        </v-select>
+                                        <v-text-field v-model="patchResourceCategoryTitle" label="Nuevo Titulo" filled clearable :rules="titleRules" />
+                                        <v-btn width="40%" class="mr-1" :loading="deleteResourceCategoryLoading" :disabled="deleteResourceCategoryLoading" color="error" @click="deleteCategory">
+                                            Eliminar
+                                            <template v-slot:loader>
+                                                <span>Loading...</span>
+                                            </template>
+                                        </v-btn>
+                                        <v-btn width="58%" :loading="patchResourceCategoryLoading" :disabled="patchResourceCategoryLoading" color="success" @click="patchCategory">
+                                            Editar
                                             <template v-slot:loader>
                                                 <span>Loading...</span>
                                             </template>
@@ -125,17 +160,22 @@ export default class AdminView extends Vue {
     resourceFile: File | null = null
     resourceCategory?: ResourceCategory | undefined
     resourceTitle: string = ""
+    resourceDocumentLoading: boolean = false
+
+    categoryTitle: string = ""
+    resourceCategoryLoading: boolean = false
+
+    resourceCategorySelect?: ResourceCategory | undefined
+    patchResourceCategoryTitle: string = ""
+    patchResourceCategoryLoading: boolean = false
+    deleteResourceCategoryLoading: boolean = false
+
+    categories: ResourceCategory[] = []
+    resourceCategoriesLoading: boolean = false
 
     titleRules = [
         (v: string) => v && v.length > 0 ? true : "Nombre requerido"
     ]
-
-    categoryTitle: string = ""
-
-    resourceCategoriesLoading: boolean = false
-    resourceCategoryLoading: boolean = false
-    resourceDocumentLoading: boolean = false
-    categories: ResourceCategory[] = []
 
 
     created() {
@@ -146,9 +186,22 @@ export default class AdminView extends Vue {
         ResourceCategoryService.getResourceCategories(this, this.categories)
     }
 
+    patchCategory() {
+        if (this.resourceCategorySelect && this.patchResourceCategoryTitle && this.patchResourceCategoryTitle != "") {
+            ResourceCategoryService.patchResourceCategory(this, this.resourceCategorySelect, this.patchResourceCategoryTitle);
+        }
+    }
+
+
+    deleteCategory() {
+        if (this.resourceCategorySelect) {
+            ResourceCategoryService.deleteResourceCategory(this, this.resourceCategorySelect)
+        }
+    }
+
     postCategory() {
         if (this.categoryTitle != "" && this.categoryTitle) {
-            ResourceCategoryService.postCategory(this, this.categoryTitle)
+            ResourceCategoryService.postResourceCategory(this, this.categoryTitle)
         }
     }
 
