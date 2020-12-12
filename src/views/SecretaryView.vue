@@ -29,7 +29,7 @@
                 <v-col cols="4">
                     <v-card :loading="loading" class="ma-4">
                         <template slot="progress">
-                            <v-progress-linear color="deep-purple" height="10" indeterminate/>
+                            <v-progress-linear :active="resourceCategoriesLoading" color="deep-purple" height="10" indeterminate/>
                         </template>
                         <v-img height="250" src="@/assets/secretaria-banner.jpg"/>
                         <v-card-title>Secretaria virtual</v-card-title>
@@ -40,6 +40,8 @@
                         <v-divider class="mx-4"/>
 
                         <v-img src="@/assets/posit.png" />
+
+                        <v-divider class="mx-4"/>
 
                         <v-card-title>Tonight's availability</v-card-title>
 
