@@ -116,7 +116,7 @@
                             <v-container>
                                 <v-row>
                                     <v-col>
-                                        <v-text-field v-model="resourceTitle" label="Nombre" filled clearable />
+                                        <v-text-field v-model="resourceTitle" label="Nombre" :rules="titleRules" filled clearable />
                                         <v-file-input filled v-model="resourceFile" placeholder="Suba su documento" label="Documento" append-icon="mdi-paperclip" prepend-icon="" />
 
                                         <v-select :items="categories" v-model="resourceCategory" filled label="Categoria" dense>
@@ -140,7 +140,7 @@
                         </v-form>
                     </v-card>
                 </v-col>
-                <PatchResourceDialogComponent :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switch="switchPatchResourceDialog"/>
+                <PatchResourceDialogComponent :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switchDialog="switchPatchResourceDialog"/>
             </v-row>
         </v-container>
     </div>
@@ -162,7 +162,7 @@ import PatchResourceDialogComponent from "@/components/PatchResourceDialogCompon
 @Component({components: {PatchResourceDialogComponent}})
 export default class AdminView extends Vue {
     @Ref() readonly form!: HTMLFontElement
-    resourceFile!: File = null
+    resourceFile: File | null = null
     resourceCategory: ResourceCategory = new ResourceCategory()
     resourceTitle: string = ""
     resourceDocumentLoading: boolean = false
@@ -173,7 +173,6 @@ export default class AdminView extends Vue {
     resourceCategorySelect: ResourceCategory = new ResourceCategory()
     patchResourceCategoryTitle: string = ""
     patchResourceCategoryLoading: boolean = false
-    deleteResourceCategoryLoading: boolean = false
 
     categories: ResourceCategory[] = []
     resourceCategoriesLoading: boolean = false

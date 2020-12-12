@@ -18,6 +18,11 @@ const routes: Array<RouteConfig> = [
         path: '/admin',
         name: 'Admin',
         component: () => import('../views/AdminView.vue')
+    },
+    {
+        path: '/secretaria',
+        name: 'Secretary',
+        component: () => import('../views/SecretaryView.vue')
     }
 ]
 

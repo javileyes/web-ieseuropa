@@ -39,7 +39,7 @@ export default class ResourceService {
 
     }
 
-    static async patchResource(component: PatchResourceDialogComponent, resource: Resource, resourceFile: File, resourceCategory: ResourceCategory, dialog: boolean) {
+    static async patchResource(component: PatchResourceDialogComponent, resource: Resource, resourceFile: File | null, resourceCategory: ResourceCategory, dialog: boolean) {
         // @ts-ignore
         component.loading = true
 
@@ -59,14 +59,14 @@ export default class ResourceService {
             // @ts-ignore
             component.refresh()
             // @ts-ignore
-            component.switch()
+            component.switchDialog()
             getModule(SnackbarModule).makeToast("Se ha editado la categoria correctamente!")
         } catch (err) {
             console.log(err)
             // @ts-ignore
             component.loading = false
             // @ts-ignore
-            component.switch()
+            component.switchDialog()
             getModule(SnackbarModule).makeToast("Error al editar la categoria")
         }
     }

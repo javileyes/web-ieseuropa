@@ -1,7 +1,12 @@
 <template>
     <v-dialog class="fill-height" v-model="dialog" persistent max-width="290">
         <v-card v-if="resource">
-            <v-card-title class="headline">Editar Documento</v-card-title>
+            <v-toolbar flat dark color="secondary">
+                <v-btn icon dark @click="close">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
+                <v-toolbar-title>Editar Documento</v-toolbar-title>
+            </v-toolbar>
             <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
             <v-form ref="form">
                 <v-container>
@@ -46,10 +51,10 @@ export default class PatchResourceDialogComponent extends Vue {
     @Prop() readonly categories!: ResourceCategory[]
     @Prop() readonly resource!: Resource
     @Prop() readonly refresh!: any
-    @Prop() readonly switch!: any
+    @Prop() readonly switchDialog!: any
     @Prop() dialog!: boolean
     loading: boolean = false
-    resourceFile!: File = null
+    resourceFile: File | null = null
     resourceCategory: ResourceCategory = new ResourceCategory()
     titleRules = [
         (v: string) => v && v.length > 0 ? true : "Nombre requerido"
@@ -60,6 +65,11 @@ export default class PatchResourceDialogComponent extends Vue {
         if (this.resource.title != "" || this.resourceFile || this.resourceCategory) {
             ResourceService.patchResource(this, this.resource, this.resourceFile, this.resourceCategory, this.dialog)
         }
+    }
+
+    close() {
+        this.refresh()
+        this.switchDialog()
     }
 }
 </script>

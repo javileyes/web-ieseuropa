@@ -75,14 +75,14 @@ export default class ResourceCategoryService {
 
     static async deleteResourceCategory(component: AdminView, categorySelect: ResourceCategory) {
         // @ts-ignore
-        component.deleteResourceCategoryLoading = true
+        component.patchResourceCategoryLoading = true
 
         try {
             const response = await component.axios.delete(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             });
             // @ts-ignore
-            component.deleteResourceCategoryLoading = false;
+            component.patchResourceCategoryLoading = false;
             // @ts-ignore
             component.refresh();
             getModule(SnackbarModule).makeToast("Se ha eliminado la categoria de manera exitosa!")

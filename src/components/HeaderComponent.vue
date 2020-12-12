@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar color="#fcb69f" dark height="200px" src="http://web.murciaeduca.es/30001230/wp-content/uploads/sites/20/2020/07/prueba5.png">
+        <v-app-bar color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
             <template v-slot:img="{ props }">
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
