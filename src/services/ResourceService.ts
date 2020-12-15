@@ -16,7 +16,7 @@ export default class ResourceService {
 
         let formData = new FormData()
         if (resourceFile) {
-            formData.set("document", resourceFile)
+            formData.set("documentFile", resourceFile)
         }
         formData.set("title", resourceTitle)
         formData.set("resourceCategoryId", `${category.id}`)
@@ -46,7 +46,7 @@ export default class ResourceService {
         let formData = new FormData()
 
         if (resource.title) formData.set("title", resource.title)
-        if (resourceFile) formData.set("document", resourceFile)
+        if (resourceFile) formData.set("documentFile", resourceFile)
         if (resourceCategory) formData.set("resourceCategoryId", `${resourceCategory.id}`)
 
         try {
