@@ -31,7 +31,7 @@
                         <v-img height="250" src="@/assets/departments-banner.jpg"/>
                         <v-card-title>Departamentos</v-card-title>
                         <v-card-text>
-                            <div>Descárgate tus documentos y agiliza tus gestiones</div>
+                            <div>Encuentra información sobre los distintos departamentos</div>
                         </v-card-text>
 
                         <v-divider class="mx-4"/>

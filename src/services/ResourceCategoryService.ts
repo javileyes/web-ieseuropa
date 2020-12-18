@@ -2,15 +2,17 @@ import Vue from "vue-property-decorator";
 import ResourceCategory from "@/models/ResourceCategory";
 import ConstantTool from "@/services/tool/ConstantTool";
 import JsonTool from "@/services/tool/JsonTool";
-import AdminView from "@/views/AdminView.vue";
 import {getModule} from "vuex-module-decorators";
 import SessionModule from "@/store/SessionModule";
 import SnackbarModule from "@/store/SnackbarModule";
+import SecretaryAdminTab from "@/components/tabs/SecretaryAdminTab.vue";
+
 
 export default class ResourceCategoryService {
 
     static async getResourceCategories(component: Vue, resourceCategories: ResourceCategory[]) {
         (<any>component).resourceCategoriesLoading = true
+
         try {
             const response = await component.axios.get(ConstantTool.BASE_URL + "/public/resource-category")
             let list = JsonTool.jsonConvert.deserializeArray(response.data, ResourceCategory)
@@ -24,15 +26,15 @@ export default class ResourceCategoryService {
 
     }
 
-    static async postResourceCategory(component: AdminView, categoryTitle: string) {
+    static async postResourceCategory(component: SecretaryAdminTab, title: string) {
         // @ts-ignore
         component.resourceCategoryLoading = true
 
         let formData = new FormData()
-        formData.set("title", categoryTitle)
+        formData.set("title", title)
 
         try {
-            const response = await component.axios.post(ConstantTool.BASE_URL + "/api/resource-category", formData, {
+            await component.axios.post(ConstantTool.BASE_URL + "/api/resource-category", formData, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             getModule(SnackbarModule).makeToast("Se ha creado la categoria correctamente!")
@@ -48,18 +50,18 @@ export default class ResourceCategoryService {
         }
     }
 
-    static async patchResourceCategory(component: AdminView, categorySelect: ResourceCategory, patchCategoryTitle: string) {
+    static async patchResourceCategory(component: SecretaryAdminTab, title: string, id: number) {
         // @ts-ignore
         component.patchResourceCategoryLoading = true
 
         let formData = new FormData()
-        formData.set("title", patchCategoryTitle)
+        formData.set("title", title)
 
         try {
-            const response = await component.axios.patch(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id,
+            await component.axios.patch(ConstantTool.BASE_URL + "/api/resource-category/" + id,
                 formData, {
                     headers: {Authorization: getModule(SessionModule).session.token}
-                });
+                })
             // @ts-ignore
             component.patchResourceCategoryLoading = false
             // @ts-ignore
@@ -73,14 +75,14 @@ export default class ResourceCategoryService {
         }
     }
 
-    static async deleteResourceCategory(component: AdminView, categorySelect: ResourceCategory) {
+    static async deleteResourceCategory(component: SecretaryAdminTab, id: number) {
         // @ts-ignore
         component.patchResourceCategoryLoading = true
 
         try {
-            const response = await component.axios.delete(ConstantTool.BASE_URL + "/api/resource-category/" + categorySelect.id, {
+            await component.axios.delete(ConstantTool.BASE_URL + "/api/resource-category/" + id, {
                 headers: {Authorization: getModule(SessionModule).session.token}
-            });
+            })
             // @ts-ignore
             component.patchResourceCategoryLoading = false;
             // @ts-ignore

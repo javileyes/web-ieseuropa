@@ -62,8 +62,8 @@ export default class PatchResourceDialogComponent extends Vue {
 
 
     patchResource() {
-        if (this.resource.title != "" || this.resourceFile || this.resourceCategory) {
-            ResourceService.patchResource(this, this.resource, this.resourceFile, this.resourceCategory, this.dialog)
+        if (this.resource.title != "") {
+            ResourceService.patchResource(this, this.resource, this.resourceFile, this.resourceCategory.id)
         }
     }
 

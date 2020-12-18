@@ -46,7 +46,7 @@ export default class HeaderComponent extends Vue {
             icon: "mdi-music-note",
             url: "/departamentos",
             submenus: [
-                {title: 'Click Me', url: "#"},
+                {title: 'Departamento', url: "/departamento"},
                 {title: 'Click Me', url: "#"}
             ]
         },

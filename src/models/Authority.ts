@@ -1,9 +1,7 @@
 import {JsonConverter, JsonCustomConvert, JsonObject, JsonProperty} from "json2typescript";
 
 export enum AuthorityName {
-    ROLE_SUPERADMIN = "ROLE_SUPERADMIN",
     ROLE_ADMIN = "ROLE_ADMIN",
-    ROLE_USER = "ROLE_USER",
     ROLE_SWAGGER = "ROLE_SWAGGER"
 }
 
