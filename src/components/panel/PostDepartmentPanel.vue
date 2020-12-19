@@ -8,8 +8,16 @@
             <v-container>
                 <v-row>
                     <v-col>
-                        <v-text-field v-model="title" label="Nombre" :rules="titleRules" filled clearable />
-                        <v-file-input filled v-model="imageFile" placeholder="Suba una imagen" label="image" append-icon="mdi-file-image" prepend-icon="" />
+                        <v-text-field
+                            v-model="title" label="Nombre"
+                            :rules="titleRules" filled clearable
+                        />
+                        <v-file-input
+                            filled v-model="imageFile"
+                            placeholder="Suba una imagen"
+                            label="image" append-icon="mdi-file-image"
+                            prepend-icon="" :rules="imageRules"
+                        />
                         <v-btn block :loading="loading" :disabled="loading" color="success" @click="postDepartment">
                             Crear
                             <template v-slot:loader>
@@ -29,16 +37,19 @@ import DepartmentService from "@/services/DepartmentService";
 
 @Component
 export default class PostDepartmentPanel extends Vue {
-    @Ref() readonly form!: HTMLFontElement
+    @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
     loading: boolean = false
     title: string = ""
     imageFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
+    imageRules = [(v: File) => v ? true : "Seleccione una Imagen"]
 
 
     postDepartment() {
-        DepartmentService.postDepartment(this, this.title, this.imageFile)
+        if (this.form.validate()) {
+            DepartmentService.postDepartment(this, this.title, this.imageFile)
+        }
     }
 }
 </script>

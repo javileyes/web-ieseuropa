@@ -12,8 +12,15 @@
                 <v-container>
                     <v-row>
                         <v-col>
-                            <v-text-field v-model="resource.title" :rules="titleRules" label="Nombre" filled clearable />
-                            <v-file-input filled v-model="resourceFile" placeholder="Suba su documento" label="Documento" append-icon="mdi-paperclip" prepend-icon="" />
+                            <v-text-field v-model="resource.title" :rules="titleRules" label="Titulo" filled clearable />
+                            <v-file-input
+                                filled v-model="resourceFile"
+                                placeholder="Suba su documento"
+                                label="Documento"
+                                append-icon="mdi-paperclip"
+                                prepend-icon=""
+                                :rules="documentRules"
+                            />
 
                             <v-select :items="categories" v-model="resourceCategory" filled label="Categoria" dense>
                                 <template v-slot:item="{item}">
@@ -46,7 +53,7 @@ import ResourceService from "@/services/ResourceService";
 
 @Component
 export default class PatchResourceDialogPanel extends Vue {
-    @Ref() readonly form!: HTMLFontElement
+    @Ref() readonly form!: HTMLFormElement
     @Prop() readonly categories!: ResourceCategory[]
     @Prop() readonly resource!: Resource
     @Prop() readonly refresh!: any
@@ -55,13 +62,12 @@ export default class PatchResourceDialogPanel extends Vue {
     loading: boolean = false
     resourceFile: File | null = null
     resourceCategory: ResourceCategory = new ResourceCategory()
-    titleRules = [
-        (v: string) => v && v.length > 0 ? true : "Nombre requerido"
-    ]
+    titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
+    documentRules = [(v: File) => v ? true : "Seleccione una Documento"]
 
 
     patchResource() {
-        if (this.resource.title != "") {
+        if (this.form.validate()) {
             ResourceService.patchResource(this, this.resource, this.resourceFile, this.resourceCategory.id)
         }
     }

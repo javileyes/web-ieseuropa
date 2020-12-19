@@ -1,21 +1,23 @@
+import Vue from "vue-property-decorator";
 import ConstantTool from "@/services/tool/ConstantTool";
 import {getModule} from "vuex-module-decorators";
 import SessionModule from "@/store/SessionModule";
 import SnackbarModule from "@/store/SnackbarModule";
 import PatchResourceDialogComponent from "@/components/panel/PatchResourceDialogPanel.vue";
 import Resource from "@/models/Resource";
-import SecretaryAdminTab from "@/components/tabs/SecretaryAdminTab.vue";
+import PostResourcePanel from "@/components/panel/PostResourcePanel.vue";
 
 
 export default class ResourceService {
-    static async postResource(component: SecretaryAdminTab, documentFile: File | null, title: string, categoryId: number) {
+    static async postResource(component: PostResourcePanel, documentFile: File | null, title: string, categoryId: number | undefined, departmentId: number | undefined) {
         // @ts-ignore
-        component.resourceDocumentLoading = true
+        component.loading = true
 
         let formData = new FormData()
         if (documentFile) formData.set("documentFile", documentFile)
+        if (categoryId) formData.set("resourceCategoryId", `${categoryId}`)
+        if (departmentId) formData.set("departmentId", `${departmentId}`)
         formData.set("title", title)
-        formData.set("resourceCategoryId", `${categoryId}`)
 
         try {
             await component.axios.post(ConstantTool.BASE_URL + "/api/resource", formData, {
@@ -23,14 +25,14 @@ export default class ResourceService {
             })
             getModule(SnackbarModule).makeToast("Se ha guardado el documento correctamente!")
             // @ts-ignore
-            component.resourceDocumentLoading = false
+            component.loading = false
             // @ts-ignore
             component.refresh()
         } catch(err) {
             console.log(err)
             getModule(SnackbarModule).makeToast("Error al guardar el documento")
             // @ts-ignore
-            component.resourceDocumentLoading = false
+            component.loading = false
         }
 
     }
@@ -67,23 +69,23 @@ export default class ResourceService {
         }
     }
 
-    static async deleteResource(component: SecretaryAdminTab, id: string) {
+    static async deleteResource(component: Vue, id: string) {
         // @ts-ignore
-        component.resourceCategoriesLoading = true
+        component.loading = true
 
         try {
             await component.axios.delete(ConstantTool.BASE_URL + "/api/resource/" + id, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             // @ts-ignore
-            component.resourceCategoriesLoading = false;
+            component.loading = false;
             // @ts-ignore
             component.refresh();
             getModule(SnackbarModule).makeToast("Se ha eliminado el documento de manera exitosa!")
         } catch (err) {
             console.log(err)
             // @ts-ignore
-            component.resourceCategoriesLoading = false
+            component.loading = false
             getModule(SnackbarModule).makeToast("Error al eliminar una documento")
         }
     }
