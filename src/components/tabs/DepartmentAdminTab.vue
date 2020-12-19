@@ -41,7 +41,6 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-// eslint-disable-next-line no-unused-vars
 import DepartmentContent from "@/models/DepartmentContent";
 import DepartmentService from "@/services/DepartmentService";
 import PostDepartmentPanel from "@/components/panel/PostDepartmentPanel.vue";

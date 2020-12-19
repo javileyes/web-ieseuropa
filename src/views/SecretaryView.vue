@@ -49,7 +49,6 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
-// eslint-disable-next-line no-unused-vars
 import ResourceCategory from "@/models/ResourceCategory";
 import ResourceCategoryService from "@/services/ResourceCategoryService";
 

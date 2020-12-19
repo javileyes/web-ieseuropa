@@ -7,6 +7,8 @@ import SessionModule from "@/store/SessionModule";
 import SnackbarModule from "@/store/SnackbarModule";
 import PostDepartmentPanel from "@/components/panel/PostDepartmentPanel.vue";
 import PatchDepartmentPanel from "@/components/panel/PatchDepartmentPanel.vue";
+import DepartmentsModule from "@/store/DepartmentsModule";
+import DepartmentView from "@/views/DepartmentView.vue";
 
 
 export default class DepartmentService {
@@ -17,13 +19,27 @@ export default class DepartmentService {
             const response = await component.axios.get(ConstantTool.BASE_URL + "/public/department")
             let list = JsonTool.jsonConvert.deserializeArray(response.data, DepartmentContent)
             departments.splice(0, departments.length)
-            list.forEach(v => departments.push(v));
+            list.forEach(v => departments.push(v))
+            getModule(DepartmentsModule).setDepartments(departments);
             (<any>component).loading = false
         } catch (err) {
             (<any>component).loading = false
             console.log(err)
         }
 
+    }
+
+    static async getDepartment(component: DepartmentView, id: number) {
+        (<any>component).loading = true
+        try {
+            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/department/" + id)
+            // @ts-ignore
+            component.department = JsonTool.jsonConvert.deserializeObject(response.data, DepartmentContent);
+            (<any>component).loading = false
+        } catch (err) {
+            (<any>component).loading = false
+            console.log(err)
+        }
     }
 
     static async postDepartment(component: PostDepartmentPanel, title: string, imageFile: File | null) {

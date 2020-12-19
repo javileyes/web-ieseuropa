@@ -2,7 +2,7 @@ import ConstantTool from "@/services/tool/ConstantTool";
 import {getModule} from "vuex-module-decorators";
 import SessionModule from "@/store/SessionModule";
 import SnackbarModule from "@/store/SnackbarModule";
-import PatchResourceDialogComponent from "@/components/PatchResourceDialogComponent.vue";
+import PatchResourceDialogComponent from "@/components/panel/PatchResourceDialogPanel.vue";
 import Resource from "@/models/Resource";
 import SecretaryAdminTab from "@/components/tabs/SecretaryAdminTab.vue";
 

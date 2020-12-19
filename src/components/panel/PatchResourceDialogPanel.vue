@@ -40,13 +40,12 @@
 
 <script lang="ts">
 import {Vue, Component, Prop, Ref} from "vue-property-decorator";
-// eslint-disable-next-line no-unused-vars
-import Resource from "../models/Resource";
-import ResourceCategory from "../models/ResourceCategory";
+import Resource from "../../models/Resource";
+import ResourceCategory from "../../models/ResourceCategory";
 import ResourceService from "@/services/ResourceService";
 
 @Component
-export default class PatchResourceDialogComponent extends Vue {
+export default class PatchResourceDialogPanel extends Vue {
     @Ref() readonly form!: HTMLFontElement
     @Prop() readonly categories!: ResourceCategory[]
     @Prop() readonly resource!: Resource

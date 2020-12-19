@@ -30,7 +30,7 @@ const routes: Array<RouteConfig> = [
         component: () => import('../views/DepartmentsView.vue')
     },
     {
-        path: '/departamento',
+        path: '/departamento/:id',
         name: 'Department',
         component: () => import('../views/DepartmentView.vue')
     }

@@ -123,7 +123,7 @@
                     </v-form>
                 </v-card>
             </v-col>
-            <PatchResourceDialogComponent :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switchDialog="switchPatchResourceDialog"/>
+            <PatchResourceDialogPanel :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switchDialog="switchPatchResourceDialog"/>
         </v-row>
     </v-container>
 </template>
@@ -137,9 +137,9 @@ import {getModule} from "vuex-module-decorators";
 import DialogModule from "@/store/DialogModule";
 import Dialog from "@/models/vue/Dialog";
 import ResourceService from "@/services/ResourceService";
-import PatchResourceDialogComponent from "@/components/PatchResourceDialogComponent.vue";
+import PatchResourceDialogPanel from "@/components/panel/PatchResourceDialogPanel.vue";
 
-@Component({components: {PatchResourceDialogComponent}})
+@Component({components: {PatchResourceDialogPanel}})
 export default class SecretaryAdminTab extends Vue {
     @Ref() readonly form!: HTMLFontElement
     resourceFile: File | null = null
