@@ -28,6 +28,7 @@ export default class ResourceService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.form.reset()
         } catch(err) {
             console.log(err)
             getModule(SnackbarModule).makeToast("Error al guardar el documento")
@@ -56,6 +57,7 @@ export default class ResourceService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.form.reset()
             // @ts-ignore
             component.switchDialog()
             getModule(SnackbarModule).makeToast("Se ha editado el documento correctamente!")

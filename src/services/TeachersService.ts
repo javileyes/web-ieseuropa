@@ -23,6 +23,7 @@ export default class TeachersService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.form.reset()
         } catch(err) {
             console.log(err)
             getModule(SnackbarModule).makeToast("Error al añadir el profesor")

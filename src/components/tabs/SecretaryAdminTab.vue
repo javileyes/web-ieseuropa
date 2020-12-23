@@ -16,7 +16,11 @@
                             </template>
 
                             <v-list-item v-for="(resource, index) in category.resources" :key="index" >
-                                <v-icon class="mr-3">mdi-clipboard-text</v-icon>
+                                <v-btn :href="resource.document.url" color="accent" icon link target="_blank" dark>
+                                    <v-icon left dark>
+                                        mdi-clipboard-text
+                                    </v-icon>
+                                </v-btn>
                                 <v-list-item-content>
                                     <v-list-item-title v-text="resource.title"></v-list-item-title>
                                 </v-list-item-content>

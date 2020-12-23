@@ -73,6 +73,7 @@ export default class DepartmentView extends Vue {
     ]
     department: DepartmentContent | undefined = new DepartmentContent()
 
+
     created() {
         if (this.departmentsModule.departments.length <= 0) {
             DepartmentService.getDepartment(this, parseInt(this.$route.params.id))

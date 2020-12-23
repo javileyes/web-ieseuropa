@@ -59,6 +59,7 @@ export default class DepartmentService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.form.reset()
         } catch(err) {
             console.log(err)
             getModule(SnackbarModule).makeToast("Error al crear el departamento")
@@ -85,6 +86,7 @@ export default class DepartmentService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.form.reset()
             getModule(SnackbarModule).makeToast("Se ha editado el departamento correctamente!")
         } catch (err) {
             console.log(err)
