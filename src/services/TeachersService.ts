@@ -8,6 +8,8 @@ import PostTeacherPanel from "@/components/panel/PostTeacherPanel.vue";
 
 
 export default class TeachersService {
+
+
     static async postTeacher(component: PostTeacherPanel, teacher: TeacherContent, departmentId: number) {
         // @ts-ignore
         component.loading = true

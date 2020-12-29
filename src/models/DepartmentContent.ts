@@ -1,7 +1,6 @@
 import {JsonObject, JsonProperty} from "json2typescript";
 import Document from "@/models/Document";
 import TeacherContent from "@/models/TeacherContent";
-import Resource from "@/models/Resource";
 
 @JsonObject("DepartmentContent")
 export default class DepartmentContent {

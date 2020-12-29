@@ -11,6 +11,7 @@ import PatchResourceCategoryPanel from "@/components/panel/PatchResourceCategory
 
 export default class ResourceCategoryService {
 
+
     static async getResourceCategories(component: Vue, resourceCategories: ResourceCategory[]) {
         (<any>component).loading = true
 
@@ -23,6 +24,7 @@ export default class ResourceCategoryService {
         } catch (err) {
             (<any>component).loading = false
             console.log(err)
+            getModule(SnackbarModule).makeToast("No se han podido obtener las categorias");
         }
 
     }

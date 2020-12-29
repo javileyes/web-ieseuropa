@@ -9,6 +9,8 @@ import PostResourcePanel from "@/components/panel/PostResourcePanel.vue";
 
 
 export default class ResourceService {
+
+
     static async postResource(component: PostResourcePanel, documentFile: File | null, title: string, categoryId: number) {
         // @ts-ignore
         component.loading = true
@@ -27,6 +29,7 @@ export default class ResourceService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            // @ts-ignore
             component.form.reset()
         } catch(err) {
             console.log(err)

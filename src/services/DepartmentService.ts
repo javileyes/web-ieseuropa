@@ -14,6 +14,7 @@ import InformationSheetsAdminTab from "@/components/tabs/InformationSheetsAdminT
 
 export default class DepartmentService {
 
+
     static async getDepartments(component: Vue, departments: DepartmentContent[]) {
         (<any>component).loading = true
         try {
@@ -26,6 +27,7 @@ export default class DepartmentService {
         } catch (err) {
             (<any>component).loading = false
             console.log(err)
+            getModule(SnackbarModule).makeToast("No se han podido obtener los departamentos");
         }
 
     }
@@ -40,6 +42,7 @@ export default class DepartmentService {
         } catch (err) {
             (<any>component).loading = false
             console.log(err)
+            getModule(SnackbarModule).makeToast("No se han podido obtener el departamento");
         }
     }
 
