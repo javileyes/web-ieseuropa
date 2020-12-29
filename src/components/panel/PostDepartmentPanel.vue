@@ -18,6 +18,12 @@
                             label="image" append-icon="mdi-file-image"
                             prepend-icon="" :rules="imageRules"
                         />
+                        <v-file-input
+                            filled v-model="bannerFile"
+                            placeholder="Suba una banner"
+                            label="banner" append-icon="mdi-file-image"
+                            prepend-icon="" :rules="imageRules"
+                        />
                         <v-btn block :loading="loading" :disabled="loading" color="success" @click="postDepartment">
                             Crear
                             <template v-slot:loader>
@@ -42,13 +48,14 @@ export default class PostDepartmentPanel extends Vue {
     loading: boolean = false
     title: string = ""
     imageFile: File | null = null
+    bannerFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     imageRules = [(v: File) => v ? true : "Seleccione una Imagen"]
 
 
     postDepartment() {
         if (this.form.validate()) {
-            DepartmentService.postDepartment(this, this.title, this.imageFile)
+            DepartmentService.postDepartment(this, this.title, this.imageFile, this.bannerFile)
         }
     }
 }

@@ -9,6 +9,7 @@ import PostDepartmentPanel from "@/components/panel/PostDepartmentPanel.vue";
 import PatchDepartmentPanel from "@/components/panel/PatchDepartmentPanel.vue";
 import DepartmentsModule from "@/store/DepartmentsModule";
 import DepartmentView from "@/views/DepartmentView.vue";
+import InformationSheetsAdminTab from "@/components/tabs/InformationSheetsAdminTab.vue";
 
 
 export default class DepartmentService {
@@ -42,13 +43,14 @@ export default class DepartmentService {
         }
     }
 
-    static async postDepartment(component: PostDepartmentPanel, title: string, imageFile: File | null) {
+    static async postDepartment(component: PostDepartmentPanel, title: string, imageFile: File | null, bannerFile: File | null) {
         // @ts-ignore
         component.loading = true
 
         let formData = new FormData()
         formData.set("title", title)
         if (imageFile) { formData.set("imageFile", imageFile) }
+        if (bannerFile) { formData.set("bannerFile", bannerFile) }
 
         try {
             await component.axios.post(ConstantTool.BASE_URL + "/api/department", formData, {
@@ -69,13 +71,14 @@ export default class DepartmentService {
 
     }
 
-    static async patchDepartment(component: PatchDepartmentPanel, title: string, imageFile: File | null, id: number) {
+    static async patchDepartment(component: PatchDepartmentPanel, title: string, imageFile: File | null, bannerFile: File | null, id: number) {
         // @ts-ignore
         component.loading = true
 
         let formData = new FormData()
         if (title) formData.set("title", title)
         if (imageFile) formData.set("imageFile", imageFile)
+        if (bannerFile) formData.set("bannerFile", bannerFile)
 
         try {
             await component.axios.patch(ConstantTool.BASE_URL + "/api/department/" + id,
@@ -93,6 +96,55 @@ export default class DepartmentService {
             // @ts-ignore
             component.loading = false
             getModule(SnackbarModule).makeToast("Error al editar el departamento")
+        }
+    }
+
+    static async postDepartmentDocument(component: Vue, title: string, documentFile: File | null, id: number) {
+        // @ts-ignore
+        component.loading = true
+
+        let formData = new FormData()
+        formData.set("title", title)
+        if(documentFile) formData.set("documentFile", documentFile)
+
+        try {
+            await component.axios.post(ConstantTool.BASE_URL + "/api/department/" + id + "/document",
+                formData, {
+                    headers: {Authorization: getModule(SessionModule).session.token}
+            })
+            // @ts-ignore
+            component.loading = false
+            // @ts-ignore
+            component.refresh()
+            // @ts-ignore
+            component.form.reset()
+        } catch (err) {
+            console.log(err)
+            // @ts-ignore
+            component.loading = false
+            getModule(SnackbarModule).makeToast("Error al añadir el documento al departamento")
+        }
+    }
+
+    static async deleteDepartmentDocument(component: InformationSheetsAdminTab, id: number, documentId: number) {
+        // @ts-ignore
+        component.loading = true
+
+        try {
+            await component.axios.delete(ConstantTool.BASE_URL + "/api/department/" + id + "/document/" + documentId,
+                {
+                    headers: {Authorization: getModule(SessionModule).session.token}
+            })
+            // @ts-ignore
+            component.loading = false
+            // @ts-ignore
+            component.refresh()
+            getModule(SnackbarModule).makeToast("Documento eliminado correctamente!")
+        } catch (err) {
+            console.log(err)
+            // @ts-ignore
+            component.loading = false
+            getModule(SnackbarModule).makeToast("Error al eliminar el documento")
         }
     }
 

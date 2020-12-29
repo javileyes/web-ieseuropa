@@ -16,12 +16,18 @@
                                 {{item.title}}
                             </template>
                         </v-select>
-                        <v-text-field v-model="title" label="Nuevo Titulo" filled clearable :rules="titleRules" />
+                        <v-text-field v-model="title" label="Nuevo Titulo" filled clearable />
                         <v-file-input
                             filled v-model="imageFile"
                             placeholder="Suba una imagen"
                             label="image" append-icon="mdi-file-image"
-                            prepend-icon="" :rules="imageRules"
+                            prepend-icon=""
+                        />
+                        <v-file-input
+                            filled v-model="bannerFile"
+                            placeholder="Suba una banner"
+                            label="banner" append-icon="mdi-file-image"
+                            prepend-icon=""
                         />
                         <v-btn width="40%" class="mr-1" :loading="loading" :disabled="loading" color="error" @click="deleteDepartment">
                             Eliminar
@@ -56,6 +62,7 @@ export default class PatchDepartmentPanel extends Vue {
     loading: boolean = false
     title: string = ""
     imageFile: File | null = null
+    bannerFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     imageRules = [(v: File) => v ? true : "Seleccione una Imagen"]
 
@@ -68,7 +75,7 @@ export default class PatchDepartmentPanel extends Vue {
 
     patchDepartment() {
         if (this.form.validate() && this.department.id) {
-            DepartmentService.patchDepartment(this, this.title, this.imageFile, this.department.id)
+            DepartmentService.patchDepartment(this, this.title, this.imageFile, this.bannerFile, this.department.id)
         }
     }
 }

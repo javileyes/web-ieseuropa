@@ -19,7 +19,6 @@
                                 label="Documento"
                                 append-icon="mdi-paperclip"
                                 prepend-icon=""
-                                :rules="documentRules"
                             />
 
                             <v-select :items="categories" v-model="resourceCategory" filled label="Categoria" dense>
@@ -63,7 +62,6 @@ export default class PatchResourceDialogPanel extends Vue {
     resourceFile: File | null = null
     resourceCategory: ResourceCategory = new ResourceCategory()
     titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
-    documentRules = [(v: File) => v ? true : "Seleccione una Documento"]
 
 
     patchResource() {

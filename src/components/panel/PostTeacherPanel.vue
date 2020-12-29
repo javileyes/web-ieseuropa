@@ -51,7 +51,7 @@ export default class PostTeacherPanel extends Vue {
     department: DepartmentContent = new DepartmentContent()
     titleRules = [(v: string) => v && v.length > 0 ? true : "Este campo es requerido"]
     emailRules = [
-        (v: string) => v.length > 0 ? true : "Email requerido",
+        // (v: string) => v.length > 0 ? true : "Email requerido",
         (v: string) => StringTool.validateEmail(v) ? true : "Email no es válido"
     ]
 

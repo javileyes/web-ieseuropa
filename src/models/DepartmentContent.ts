@@ -12,9 +12,11 @@ export default class DepartmentContent {
     title?: string = undefined
     @JsonProperty("image", Document, true)
     image?: Document = undefined
+    @JsonProperty("banner", Document, true)
+    banner?: Document = undefined
     @JsonProperty("teachers", [TeacherContent], true)
     teachers?: TeacherContent[] = undefined
-    @JsonProperty("resources", [Resource], true)
-    resources?: Resource[] = undefined
+    @JsonProperty("documents", [Document], true)
+    documents?: Document[] = undefined
 
 }

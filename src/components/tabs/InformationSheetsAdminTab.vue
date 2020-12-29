@@ -15,12 +15,12 @@
                                 </v-list-item-content>
                             </template>
 
-                            <v-list-item v-for="(resource, index) in department.resources" :key="index" >
+                            <v-list-item v-for="(document, index) in department.documents" :key="index" >
                                 <v-icon class="mr-3">mdi-clipboard-text</v-icon>
                                 <v-list-item-content>
-                                    <v-list-item-title v-text="resource.title"></v-list-item-title>
+                                    <v-list-item-title v-text="document.description"></v-list-item-title>
                                 </v-list-item-content>
-                                <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteResource(resource.id)">
+                                <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteDocument(department.id, document.id)">
                                     <v-icon>mdi-delete</v-icon>
                                 </v-btn>
                             </v-list-item>
@@ -29,7 +29,7 @@
                 </v-card>
             </v-col>
             <v-col cols>
-                <PostResourcePanel :departments="departments" :refresh="refresh"/>
+                <PostDepartmentDocumentPanel :departments="departments" :refresh="refresh"/>
             </v-col>
         </v-row>
     </v-container>
@@ -43,9 +43,9 @@ import {getModule} from "vuex-module-decorators";
 import DialogModule from "@/store/DialogModule";
 import Dialog from "@/models/vue/Dialog";
 import ResourceService from "@/services/ResourceService";
-import PostResourcePanel from "@/components/panel/PostResourcePanel.vue";
+import PostDepartmentDocumentPanel from "@/components/panel/PostDepartmentDocumentPanel.vue";
 
-@Component({components: {PostResourcePanel}})
+@Component({components: {PostDepartmentDocumentPanel}})
 export default class InformationSheetsAdminTab extends Vue {
     loading: boolean = false
     departments: DepartmentContent[] = []
@@ -59,11 +59,11 @@ export default class InformationSheetsAdminTab extends Vue {
         DepartmentService.getDepartments(this, this.departments)
     }
 
-    deleteResource(id: string) {
+    deleteDocument(id: number, documentId: number) {
         getModule(DialogModule).showDialog(new Dialog(
             "Aviso",
             "¿Está seguro de eliminar este documento?",
-            () => ResourceService.deleteResource(this, id)
+            () => DepartmentService.deleteDepartmentDocument(this, id, documentId)
         ))
     }
 }

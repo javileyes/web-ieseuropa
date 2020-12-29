@@ -16,7 +16,7 @@
                             prepend-icon="" :rules="documentRules"
                         />
 
-                        <v-select :items="categories" v-model="category" filled label="Categoria" dense>
+                        <v-select :items="departments" v-model="department" filled label="Departamentos" dense>
                             <template v-slot:item="{item}">
                                 {{item.title}}
                             </template>
@@ -38,21 +38,20 @@
     </v-card>
 </template>
 
+
 <script lang="ts">
 import {Component, Prop, Ref, Vue} from "vue-property-decorator";
-import ResourceCategory from "@/models/ResourceCategory";
-import ResourceService from "@/services/ResourceService";
 import DepartmentContent from "@/models/DepartmentContent";
+import DepartmentService from "@/services/DepartmentService";
 
 @Component
-export default class PostResourcePanel extends Vue {
+export default class PostDepartmentDocumentPanel extends Vue {
     @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
-    @Prop() readonly categories!: ResourceCategory[]
     @Prop() readonly departments!: DepartmentContent[]
     loading: boolean = false
     documentFile: File | null = null
-    category: ResourceCategory = new ResourceCategory()
+    department: DepartmentContent = new DepartmentContent()
     title: string = ""
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     documentRules = [(v: File) => v ? true : "Seleccione un Documento"]
@@ -60,7 +59,7 @@ export default class PostResourcePanel extends Vue {
 
     postResource() {
         if (this.form.validate()) {
-            ResourceService.postResource(this, this.documentFile, this.title, this.category.id!);
+            DepartmentService.postDepartmentDocument(this, this.title, this.documentFile, this.department.id!)
         }
     }
 }

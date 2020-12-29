@@ -9,18 +9,17 @@ import PostResourcePanel from "@/components/panel/PostResourcePanel.vue";
 
 
 export default class ResourceService {
-    static async postResource(component: PostResourcePanel, documentFile: File | null, title: string, categoryId: number | undefined, departmentId: number | undefined) {
+    static async postResource(component: PostResourcePanel, documentFile: File | null, title: string, categoryId: number) {
         // @ts-ignore
         component.loading = true
 
         let formData = new FormData()
         if (documentFile) formData.set("documentFile", documentFile)
-        if (categoryId) formData.set("resourceCategoryId", `${categoryId}`)
-        if (departmentId) formData.set("departmentId", `${departmentId}`)
         formData.set("title", title)
 
         try {
-            await component.axios.post(ConstantTool.BASE_URL + "/api/resource", formData, {
+            await component.axios.post(ConstantTool.BASE_URL + "/api/resource-category/" + categoryId + "/resource",
+                formData, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
             getModule(SnackbarModule).makeToast("Se ha guardado el documento correctamente!")
@@ -46,13 +45,12 @@ export default class ResourceService {
 
         if (resource.title) formData.set("title", resource.title)
         if (documentFile) formData.set("documentFile", documentFile)
-        if (categoryId) formData.set("resourceCategoryId", `${categoryId}`)
 
         try {
-            await component.axios.patch(ConstantTool.BASE_URL + "/api/resource/" + resource.id,
+            await component.axios.patch(ConstantTool.BASE_URL + "/api/resource-category/" + categoryId + "/resource/" + resource.id,
                 formData, {
                     headers: {Authorization: getModule(SessionModule).session.token}
-                });
+            })
             // @ts-ignore
             component.loading = false
             // @ts-ignore

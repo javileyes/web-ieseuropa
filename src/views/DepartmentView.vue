@@ -10,6 +10,28 @@
                     </div>
                 </v-col>
             </v-row>
+            <v-row align="center" justify="center">
+                <v-col cols>
+                    <v-img
+                        :src="department.banner.url"
+                        height="250"
+                        lazy-src="https://picsum.photos/id/11/100/60"
+                    >
+                        <template v-slot:placeholder>
+                            <v-row
+                                class="fill-height ma-0"
+                                align="center"
+                                justify="center"
+                            >
+                                <v-progress-circular
+                                    indeterminate
+                                    color="grey lighten-5"
+                                ></v-progress-circular>
+                            </v-row>
+                        </template>
+                    </v-img>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col cols="8">
                     <v-card class="mb-4">
