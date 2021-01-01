@@ -40,6 +40,10 @@ export default class BlogLabelService {
             getModule(SnackbarModule).makeToast("Se ha creado la etiqueta correctamente!");
             // @ts-ignore
             component.loading = false
+            // @ts-ignore
+            component.refresh()
+            // @ts-ignore
+            component.form.reset()
         } catch (err) {
             // @ts-ignore
             component.loading = false

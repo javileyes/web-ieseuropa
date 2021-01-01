@@ -90,7 +90,7 @@ export default class SecretaryAdminTab extends Vue {
     }
 
     switchPatchResourceDialog(resource: Resource) {
-        this.resourceDialog = resource
+        this.resourceDialog = {...resource}
         this.dialog ? this.dialog = false : this.dialog = true
     }
 }

@@ -121,6 +121,7 @@ export default class DepartmentService {
             component.refresh()
             // @ts-ignore
             component.form.reset()
+            getModule(SnackbarModule).makeToast("Documento añadido correctamente!")
         } catch (err) {
             console.log(err)
             // @ts-ignore

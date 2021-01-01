@@ -37,6 +37,9 @@
                 <v-tab-item>
                    <InformationSheetsAdminTab/>
                 </v-tab-item>
+                <v-tab-item>
+                   <BlogAdminTab/>
+                </v-tab-item>
             </v-tabs-items>
         </v-card>
     </div>
@@ -48,10 +51,16 @@ import LoginService from "@/services/LoginService";
 import SecretaryAdminTab from "@/components/tabs/SecretaryAdminTab.vue";
 import DepartmentAdminTab from "@/components/tabs/DepartmentAdminTab.vue";
 import InformationSheetsAdminTab from "@/components/tabs/InformationSheetsAdminTab.vue";
+import BlogAdminTab from "@/components/tabs/BlogAdminTab.vue";
 
-@Component({components: {SecretaryAdminTab, DepartmentAdminTab, InformationSheetsAdminTab}})
+@Component({components: {
+        SecretaryAdminTab,
+        DepartmentAdminTab,
+        InformationSheetsAdminTab,
+        BlogAdminTab
+}})
 export default class AdminView extends Vue {
-    items = ["Secretaria Virtual", "Departamentos", "Hojas Informativas"]
+    items = ["Secretaria Virtual", "Departamentos", "Hojas Informativas", "Noticias"]
     tab = null
 
     logout() {
