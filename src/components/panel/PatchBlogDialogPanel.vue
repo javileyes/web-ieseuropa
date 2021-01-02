@@ -12,6 +12,22 @@
                 <v-container>
                     <v-row>
                         <v-col>
+                            <v-container>
+                                <v-row>
+                                    <v-col v-for="image in blog.images" :key="image.id" cols="3">
+                                        <v-img :src="image.url" class="grey lighten-2" height="116">
+                                            <template v-slot:default>
+                                                <div class="fill-height d-flex justify-center align-center">
+                                                    <v-btn outlined fab color="error" @click="deleteBlogImage(blog.id, image.id)">
+                                                        <v-icon>mdi-delete</v-icon>
+                                                    </v-btn>
+                                                </div>
+                                            </template>
+                                        </v-img>
+                                    </v-col>
+                                </v-row>
+                            </v-container>
+
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
 
                             <v-textarea filled name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
@@ -66,6 +82,10 @@ export default class PatchBlogDialogPanel extends Vue {
         if (this.form.validate()) {
             BlogService.patchBlog(this, this.blog.title, this.blog.body, this.blog.label!.id!, this.blog.id!)
         }
+    }
+
+    deleteBlogImage(id: number, imageId: number) {
+        BlogService.deleteBlogImage(this, id, imageId)
     }
 
     close() {

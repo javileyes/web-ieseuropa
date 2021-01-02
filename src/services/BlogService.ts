@@ -6,6 +6,7 @@ import SnackbarModule from "@/store/SnackbarModule";
 import Blog from "@/models/Blog";
 import SessionModule from "@/store/SessionModule";
 import InformationSheetsAdminTab from "@/components/tabs/InformationSheetsAdminTab.vue";
+import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
 
 export default class blogService {
 
@@ -105,7 +106,7 @@ export default class blogService {
         }
     }
 
-    static async deleteBlogImage(component: InformationSheetsAdminTab, id: number, imageId: number) {
+    static async deleteBlogImage(component: PatchBlogDialogPanel, id: number, imageId: number) {
         // @ts-ignore
         component.loading = true
 
@@ -118,6 +119,7 @@ export default class blogService {
             component.loading = false
             // @ts-ignore
             component.refresh()
+            component.blog.images = []
             getModule(SnackbarModule).makeToast("Imagen eliminada correctamente!")
         } catch (err) {
             console.log(err)
