@@ -41,6 +41,8 @@
 import {Component, Prop, Ref, Vue} from "vue-property-decorator";
 import Blog from "@/models/Blog";
 import BlogService from "@/services/BlogService";
+import {getModule} from "vuex-module-decorators";
+import SnackbarModule from "@/store/SnackbarModule";
 
 @Component
 export default class PostBlogImagePanel extends Vue {
@@ -54,7 +56,12 @@ export default class PostBlogImagePanel extends Vue {
 
     postBlogImage() {
         if (this.form.validate()) {
-            BlogService.postBlogImage(this, this.imageFile, this.blog.id!)
+            if (this.blog.images!.length < 4) {
+                BlogService.postBlogImage(this, this.imageFile, this.blog.id!)
+            } else {
+                getModule(SnackbarModule).makeToast("No se pueden adjuntar mas de 4 imagenes")
+            }
+
         }
     }
 }

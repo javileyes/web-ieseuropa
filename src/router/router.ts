@@ -33,6 +33,11 @@ const routes: Array<RouteConfig> = [
         path: '/departamento/:id',
         name: 'Department',
         component: () => import('../views/DepartmentView.vue')
+    },
+    {
+        path: '/noticias',
+        name: 'Blogs',
+        component: () => import('../views/BlogsView.vue')
     }
 ]
 

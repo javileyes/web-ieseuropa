@@ -12,6 +12,7 @@
                 <v-container>
                     <v-row>
                         <v-col>
+                            <v-subheader>Banners</v-subheader>
                             <v-container>
                                 <v-row>
                                     <v-col v-for="image in blog.images" :key="image.id" cols="3">
@@ -27,6 +28,8 @@
                                     </v-col>
                                 </v-row>
                             </v-container>
+
+                            <v-divider class="mb-5"/>
 
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
 

@@ -1,21 +1,53 @@
 <template>
     <div class="home">
-        <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item v-for="(slide ,i) in slides" :key="i" :src="slide.url"/>
-        </v-carousel>
+        <CarouselComponent />
+        <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
+        <v-container>
+            <v-row align="center" justify="center">
+                <v-col cols>
+                    <div class="text-center">
+                        <h1 class="mb-6">Ultimas Noticias</h1>
+                        <v-divider class="mx-4"/>
+                    </div>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col v-for="blog in blogs" :key="blog.id" cols="3">
+                    <BlogPreviewComponent :blog="blog" :switch-dialog="switchDialog"/>
+                </v-col>
+            </v-row>
+        </v-container>
+        <BlogDialogComponent :switch-dialog="switchDialog" :blog="blog" :dialog="dialog"/>
     </div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
+import CarouselComponent from "@/components/CarouselComponent.vue";
+import Blog from "@/models/Blog";
+import BlogService from "@/services/BlogService";
+import BlogPreviewComponent from "@/components/BlogPreviewComponent.vue";
+import BlogDialogComponent from "@/components/BlogDialogComponent.vue";
 
-@Component
+@Component({components: {CarouselComponent, BlogPreviewComponent, BlogDialogComponent}})
 export default class HomeView extends Vue {
+    blogs: Blog[] = []
+    dialog: boolean = false
+    blog: Blog = new Blog()
 
-    slides = [
-        { url: require("@/assets/galery/galery-1.jpg"), description: "" },
-        { url: require("@/assets/galery/galery-2.jpg"), description: "" },
-        { url: require("@/assets/galery/galery-3.jpg"), description: "" }
-    ]
+
+    created() {
+        this.refresh()
+    }
+
+    refresh() {
+        BlogService.getBlogs(this, this.blogs)
+    }
+
+    switchDialog(blog: Blog) {
+        this.blog = blog
+        this.dialog ? this.dialog = false : this.dialog = true
+    }
+
 }
 </script>

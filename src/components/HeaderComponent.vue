@@ -36,10 +36,9 @@ export default class HeaderComponent extends Vue {
     value: number = 1
 
     buttons = [
-        { title: "Inicio", icon: "mdi-television-play", url: "/" },
+        { title: "Inicio", url: "/" },
         {
             title: "Departamentos",
-            icon: "mdi-music-note",
             url: "/departamentos",
             submenus: [
                 { title: 'Click Me', url: "#" },
@@ -48,7 +47,6 @@ export default class HeaderComponent extends Vue {
         },
         {
             title: "Equipo Directivo",
-            icon: "mdi-book",
             url: "/directiva",
             submenus: [
                 { title: 'Click Me', url: "#" },
@@ -58,7 +56,6 @@ export default class HeaderComponent extends Vue {
         },
         {
             title: "Secretaria Virtual",
-            icon: "mdi-image",
             url: "/secretaria",
             submenus: [
                 { title: 'Click Me', url: "#" },
@@ -66,7 +63,8 @@ export default class HeaderComponent extends Vue {
                 { title: 'Click Me', url: "#" },
                 { title: 'Click Me 2', url: "#" }
             ]
-        }
+        },
+        { title: "Noticias", url: "/noticias" }
     ]
 
     get color() {

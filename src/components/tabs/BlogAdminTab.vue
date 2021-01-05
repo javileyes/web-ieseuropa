@@ -91,7 +91,7 @@ export default class BlogAdminTab extends Vue {
     headers = [
         { text: "Titulo", value: "title" },
         { text: "Etiqueta", value: "label" },
-        { text: "Fecha de creacion", value: "date" },
+        { text: "Fecha de creacion", value: "createdAt" },
         { text: "Acciones", value: "actions" }
     ]
 

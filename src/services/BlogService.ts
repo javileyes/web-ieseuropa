@@ -119,7 +119,9 @@ export default class blogService {
             component.loading = false
             // @ts-ignore
             component.refresh()
-            component.blog.images = []
+            // @ts-ignore
+            const items = component.blog.images.filter(i => i.id !== imageId)
+            component.blog.images = items
             getModule(SnackbarModule).makeToast("Imagen eliminada correctamente!")
         } catch (err) {
             console.log(err)
