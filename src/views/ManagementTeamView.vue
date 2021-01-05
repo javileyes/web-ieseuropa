@@ -52,7 +52,7 @@
                         <v-card-title>
                             Equipo Directivo
                         </v-card-title>
-                        <v-data-table :headers="headers" :items="team" class="elevation-1"/>
+                        <v-data-table :headers="headers" :items="team" class="elevation-1" hide-default-footer/>
                     </v-card>
                 </v-col>
             </v-row>
