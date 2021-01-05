@@ -47,7 +47,7 @@ export default class HeaderComponent extends Vue {
         },
         {
             title: "Equipo Directivo",
-            url: "/directiva",
+            url: "/equipo-directivo",
             submenus: [
                 { title: 'Click Me', url: "#" },
                 { title: 'Click Me', url: "#" },
