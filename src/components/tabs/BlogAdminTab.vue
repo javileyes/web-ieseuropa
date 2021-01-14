@@ -39,13 +39,14 @@
                             <span>{{ item.label.title }}</span>
                         </template>
                         <template v-slot:item.actions="{item}">
-                            <v-btn x-small outlined color="error" @click="deleteBlog(item.id)">
-                                Eliminar
+                            <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteBlog(item.id)">
+                                <v-icon>mdi-delete</v-icon>
                             </v-btn>
 
-                            <v-btn x-small outlined color="success" @click="switchDialog(item)">
-                                Editar
+                            <v-btn class="ma-1" text icon color="success" @click="switchDialog(item)">
+                                <v-icon>mdi-table-edit</v-icon>
                             </v-btn>
+
                         </template>
                     </v-data-table>
                 </v-card>
