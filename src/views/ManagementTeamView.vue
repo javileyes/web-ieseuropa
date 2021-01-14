@@ -83,29 +83,24 @@ export default class ManagementTeamView extends Vue {
     ]
 
     team = [
-        { cargo: "Directora", nombre: "Diana Carrascosa Sáez", extension: "599", email: "direccion@iessanfernando.edu.es" },
-        { cargo: "Secretaria", nombre: "Mª Mar Martínez Alonso", extension: "557", email: "secretaria@iessanfernando.edu.es" },
-        { cargo: "Jefe de Estudios", nombre: "Aurelio Martín Pérez", extension: "256", email: "aurelio.martin@iessanfernando.edu.es" },
-        { cargo: "J de Estudios 1º y 2º ESO", nombre: "Antonia Monteso Fernández", extension: "522", email: "antonia.monteso@iessanfernando.edu.es" },
-        { cargo: "Jefa de Estudios FP", nombre: "Raquel Martínez Urruela", extension: "292", email: "raquel.martinez@iessanfernando.edu.es" }
+        { cargo: "Director", nombre: "Ismael Lucena Rodríguez", extension: "xxx", email: "@educarm.es" },
+        { cargo: "Secretario", nombre: "Ginés López Marín", extension: "xxx", email: "@educarm.es" },
+        { cargo: "Jefe de Estudios", nombre: "Ángel López Sóler", extension: "xxx", email: "@educarm.es" },
+        { cargo: "Jefe de Estudios", nombre: "María González Pérez", extension: "xxx", email: "@educarm.es" },
+        { cargo: "Jefe de Estudios", nombre: "Luis Férez Peñalver", extension: "xxx", email: "@educarm.es" }
     ]
 
     contactos1 = [
         { title: "Secretaría:", content: "De 9:00 a 12:00" },
-        { title: "Teléfono:", content: "91 734 27 00 - Ext 315" },
-        { title: "Fax:", content: "91 734 0764" },
-        { title: "E-mail:", content: "secretaria@iessanfernando.edu.es" },
-        { title: "E-IES San Fernando:", content: "info@iessanfernando.edu.es" },
-        { title: "Código de Centro:", content: "28019351" },
-        { title: "Móvil del Centro (para viajes):", content: "606 551 632" }
+        { title: "Teléfono:", content: "968 449100" },
+        { title: "Fax:", content: "968 447382" }
+
     ]
 
     contactos2 = [
-        { title: "Teléfono Extensiones:", content: "91 734 27 00" },
-        { title: "Conserjería A1:", content: "315" },
-        { title: "Conserjería ESO:", content: "514" },
-        { title: "Información General:", content: "315" },
-        { title: "Garita control:", content: "511" },
+        { title: "E-mail:", content: "30001230@educarm.es" },
+        { title: "Código de Centro:", content: "30001230" },
+        { title: "Móvil del Centro (para viajes):", content: "xxx xxx xxx" }
     ]
 }
 </script>
