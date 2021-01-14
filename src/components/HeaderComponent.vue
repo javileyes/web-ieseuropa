@@ -8,11 +8,11 @@
             <v-toolbar-title style="font-size: 44px;font-family: 'Abyssinica SIL'">IES Europa</v-toolbar-title>
         </v-app-bar>
 
-        <v-bottom-navigation v-model="value" background-color="primary" dark>
+        <v-bottom-navigation v-model="value" background-color="primary" dark height="63">
             <v-menu open-on-hover offset-y bottom rounded="5" v-for="(button, index) in buttons" :key="index">
 
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn style="height: 100%" v-bind="attrs" v-on="on" @click="$router.replace(button.url)">
+                    <v-btn style="height: 100% ; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click="$router.replace(button.url)">
                         {{ button.title }}
                     </v-btn>
                 </template>
