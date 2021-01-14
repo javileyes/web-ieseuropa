@@ -13,13 +13,13 @@
                         loading-text="Loading... Please wait"
                     >
                         <template v-slot:item.image="{item}">
-                            <v-btn x-small outlined color="success" :href="item.image.url" target="_blank">
-                                Ver banner
+                            <v-btn class="ma-1" text icon color="success" :href="item.image.url" target="_blank">
+                                <v-icon>mdi-eye</v-icon>
                             </v-btn>
                         </template>
                         <template v-slot:item.actions="{item}">
-                            <v-btn x-small outlined color="error" @click="deleteLabel(item.id)">
-                                Eliminar
+                            <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteLabel(item.id)">
+                                <v-icon>mdi-delete</v-icon>
                             </v-btn>
                         </template>
                     </v-data-table>
