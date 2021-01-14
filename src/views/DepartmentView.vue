@@ -14,7 +14,7 @@
                 <v-col cols>
                     <v-img
                         :src="department.banner.url"
-                        height="700"
+                        height="500"
                         lazy-src="https://picsum.photos/id/11/100/60"
                     >
                         <template v-slot:placeholder>
