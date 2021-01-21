@@ -5,11 +5,11 @@
         <v-card-title>{{ blog.title }}</v-card-title>
 
         <v-card-subtitle class="pb-0">
-            {{ blog.label.title }}
+            {{ blog.createdAt }}
         </v-card-subtitle>
 
         <v-card-text class="text--primary" style="height: 60px">
-            <div>{{ blog.body }}</div>
+            <div>{{ blog.body.slice(0, 62) }}...</div>
         </v-card-text>
 
         <v-card-actions>
@@ -28,5 +28,9 @@ import Blog from "@/models/Blog";
 export default class BlogPreviewComponent extends Vue {
     @Prop() readonly blog!: Blog
     @Prop() readonly switchDialog!: any
+
+    created() {
+        console.log(this.blog)
+    }
 }
 </script>

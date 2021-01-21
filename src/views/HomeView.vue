@@ -12,7 +12,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col v-for="blog in blogs" :key="blog.id" cols="3">
+                <v-col v-for="blog in blogs" :key="blog.id" sm="6" md="3">
                     <BlogPreviewComponent :blog="blog" :switch-dialog="switchDialog"/>
                 </v-col>
             </v-row>

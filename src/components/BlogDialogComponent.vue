@@ -24,7 +24,7 @@
                     {{ blog.label.title }}
                 </v-card-subtitle>
 
-                <v-card-text class="text--primary mt-4" style="height: 60px">
+                <v-card-text class="text--primary mt-4">
                     <div>{{ blog.body }}</div>
                 </v-card-text>
 

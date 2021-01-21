@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="5">
+            <v-col sm="12" md="6">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Secretaria Virtual</v-toolbar-title>
@@ -35,11 +35,13 @@
                     </v-list>
                 </v-card>
             </v-col>
-            <v-col cols>
+            <v-col sm="12" md="6">
                 <PostResourceCategoryPanel :refresh="refresh"/>
+            </v-col>
+            <v-col sm="12" md="4">
                 <PatchResourceCategoryPanel :categories="categories" :refresh="refresh" />
             </v-col>
-            <v-col cols>
+            <v-col sm="12" md="8">
                 <PostResourcePanel :categories="categories" :refresh="refresh" />
             </v-col>
             <PatchResourceDialogPanel :dialog="dialog" :resource="resourceDialog" :categories="categories" :refresh="refresh" :switchDialog="switchPatchResourceDialog"/>

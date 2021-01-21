@@ -1,8 +1,14 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="5">
-                <v-card class="mb-6">
+            <v-col sm="12" md="3">
+                <PostBlogLabelPanel :refresh="refresh" />
+            </v-col>
+            <v-col sm="12" md="3">
+                <PostBlogImagePanel :refresh="refresh" :blogs="blogs" />
+            </v-col>
+            <v-col sm="12" md="6">
+                <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Etiquetas</v-toolbar-title>
                     </v-toolbar>
@@ -24,8 +30,12 @@
                         </template>
                     </v-data-table>
                 </v-card>
-
-                <v-card class="mb-6">
+            </v-col>
+            <v-col sm="12" md="4">
+                <PostBlogPanel :refresh="refresh" :labels="labels" />
+            </v-col>
+            <v-col sm="12" md="8">
+                <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Noticias</v-toolbar-title>
                     </v-toolbar>
@@ -50,13 +60,6 @@
                         </template>
                     </v-data-table>
                 </v-card>
-            </v-col>
-            <v-col>
-                <PostBlogPanel :refresh="refresh" :labels="labels" />
-            </v-col>
-            <v-col>
-                <PostBlogLabelPanel :refresh="refresh" />
-                <PostBlogImagePanel :refresh="refresh" :blogs="blogs" />
             </v-col>
             <PatchBlogDialogPanel :refresh="refresh" :blog="blog" :switchDialog="switchDialog" :dialog="dialog" :labels="labels" />
         </v-row>

@@ -11,19 +11,21 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col cols="8">
-                    <v-row>
-                        <v-col v-for="department in departments" :key="department.title" class="d-flex child-flex" cols="4">
-                            <v-card hover @click="$router.replace('/departamento/' + department.id)">
-                                <v-img aspect-ratio="1" class="grey lighten-2" :src="department.image.url" />
-                                <v-card-title class="title">
-                                    {{ department.title }}
-                                </v-card-title>
-                            </v-card>
-                        </v-col>
-                    </v-row>
+                <v-col sm="12" md="8">
+                    <v-container fluid>
+                        <v-row>
+                            <v-col v-for="department in departments" :key="department.title" class="d-flex child-flex" sm="12" md="4">
+                                <v-card hover @click="$router.replace('/departamento/' + department.id)">
+                                    <v-img aspect-ratio="1" class="grey lighten-2" :src="department.image.url" />
+                                    <v-card-title class="title">
+                                        {{ department.title }}
+                                    </v-card-title>
+                                </v-card>
+                            </v-col>
+                        </v-row>
+                    </v-container>
                 </v-col>
-                <v-col cols="4">
+                <v-col sm="12" md="4">
                     <v-card :loading="loading" class="ma-4">
                         <template slot="progress">
                             <v-progress-linear :active="loading" color="warning" indeterminate/>

@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mt-6">
+    <v-card>
         <v-toolbar color="secondary" dark>
             <v-toolbar-title>Editar Categorias</v-toolbar-title>
         </v-toolbar>

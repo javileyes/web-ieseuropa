@@ -1,7 +1,7 @@
 <template>
     <v-card class="mb-6">
         <v-toolbar color="secondary" dark>
-            <v-toolbar-title>Crear Categorias</v-toolbar-title>
+            <v-toolbar-title>Crear Etiquetas</v-toolbar-title>
         </v-toolbar>
         <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
         <v-form ref="form">

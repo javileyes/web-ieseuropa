@@ -8,11 +8,14 @@
             <v-toolbar-title style="font-size: 44px;font-family: 'Abyssinica SIL'">IES Europa</v-toolbar-title>
         </v-app-bar>
 
-        <v-bottom-navigation v-model="value" background-color="primary" dark height="63">
+        <v-bottom-navigation class="button-drawer" v-model="value" background-color="primary" dark height="63">
+            <v-btn class="d-md-none" style="height: 100%; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click.stop="drawer = !drawer">
+                <v-icon>mdi-menu</v-icon>
+            </v-btn>
             <v-menu open-on-hover offset-y bottom rounded="5" v-for="(button, index) in buttons" :key="index">
 
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn style="height: 100% ; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click="$router.replace(button.url)">
+                    <v-btn class="d-none d-md-flex" style="height: 100% ; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click="$router.replace(button.url)">
                         {{ button.title }}
                     </v-btn>
                 </template>
@@ -25,6 +28,17 @@
 
             </v-menu>
         </v-bottom-navigation>
+
+        <v-navigation-drawer v-model="drawer" absolute temporary>
+            <v-list dense>
+                <v-list-item v-for="item in buttons" :key="item.title" link @click="$router.replace(item.url)">
+
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
     </div>
 </template>
 
@@ -67,6 +81,12 @@ export default class HeaderComponent extends Vue {
         { title: "Noticias", url: "/noticias" }
     ]
 
+    drawer = null
+    items = [
+        { title: 'Home', icon: 'mdi-view-dashboard' },
+        { title: 'About', icon: 'mdi-forum' },
+    ]
+
     get color() {
         switch (this.value) {
             case 0:
@@ -91,5 +111,12 @@ export default class HeaderComponent extends Vue {
 
 .tile:hover div {
     color: #ffffff;
+}
+
+@media (max-width: 960px) {
+    .button-drawer {
+        display: flex!important;
+        justify-content: start!important;
+    }
 }
 </style>
