@@ -11,7 +11,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col sm="12" md="8">
+                <v-col cols="12" sm="12" md="8">
                     <v-card class="ma-4" v-for="category in categories" :key="category.title">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title v-text="category.title" />
@@ -26,7 +26,7 @@
                         </v-chip>
                     </v-card>
                 </v-col>
-                <v-col sm="12" md="4">
+                <v-col cols="12" sm="12" md="4">
                     <v-card :loading="loading" class="ma-4">
                         <template slot="progress">
                             <v-progress-linear :active="resourceCategoriesLoading" color="deep-purple" height="10" indeterminate/>

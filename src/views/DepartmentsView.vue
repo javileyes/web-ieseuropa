@@ -12,9 +12,9 @@
             </v-row>
             <v-row>
                 <v-col sm="12" md="8">
-                    <v-container fluid>
+                    <v-container>
                         <v-row>
-                            <v-col v-for="department in departments" :key="department.title" class="d-flex child-flex" sm="12" md="4">
+                            <v-col v-for="department in departments" :key="department.title" class="d-flex child-flex" cols="6" sm="6" md="4">
                                 <v-card hover @click="$router.replace('/departamento/' + department.id)">
                                     <v-img aspect-ratio="1" class="grey lighten-2" :src="department.image.url" />
                                     <v-card-title class="title">

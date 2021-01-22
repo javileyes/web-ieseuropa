@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col sm="12" md="8">
+            <v-col cols="12" sm="12" md="8">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Departamentos</v-toolbar-title>

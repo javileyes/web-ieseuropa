@@ -29,12 +29,12 @@
             </v-menu>
         </v-bottom-navigation>
 
-        <v-navigation-drawer v-model="drawer" absolute temporary>
+        <v-navigation-drawer v-model="drawer" fixed temporary dark color="primary">
             <v-list dense>
                 <v-list-item v-for="item in buttons" :key="item.title" link @click="$router.replace(item.url)">
 
                     <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-title class="navigation-title">{{ item.title }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -105,6 +105,10 @@ export default class HeaderComponent extends Vue {
 </script>
 
 <style>
+.navigation-title {
+    font-size: 18px!important;
+}
+
 .tile:hover {
     background: #B53B3D;
 }
