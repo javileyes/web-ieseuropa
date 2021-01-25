@@ -12,9 +12,9 @@
             <v-row>
                 <v-col>
                     <v-card>
-                        <v-card-title>
-                            Contacto
-                        </v-card-title>
+                        <v-toolbar color="secondary" dark>
+                            <v-toolbar-title>Contacto</v-toolbar-title>
+                        </v-toolbar>
                         <v-card-text>
                             <v-container>
                                 <v-row>
@@ -49,17 +49,20 @@
             <v-row>
                 <v-col>
                     <v-card>
-                        <v-card-title>
-                            Equipo Directivo
-                        </v-card-title>
-                        <v-data-table :headers="headers" :items="team" class="elevation-1" hide-default-footer/>
+                        <v-toolbar color="secondary" dark>
+                            <v-toolbar-title>Equipo Directivo</v-toolbar-title>
+                        </v-toolbar>
+                        <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
+                        <v-data-table :headers="headers" :items="teachers" class="elevation-1" hide-default-footer/>
                     </v-card>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col>
                     <v-card>
-                        <v-card-title>Ubicación</v-card-title>
+                        <v-toolbar color="secondary" dark>
+                            <v-toolbar-title>Ubicación</v-toolbar-title>
+                        </v-toolbar>
                         <div class="pa-4">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12675.856540019335!2d-1.5725403!3d37.4143226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b3a9262358db8f5!2sInstituto%20de%20Educaci%C3%B3n%20Secundaria%20Europa!5e0!3m2!1ses-419!2sve!4v1609864969942!5m2!1ses-419!2sve" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                         </div>
@@ -72,23 +75,19 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import Config from "@/models/Config";
+import ConfigService from "@/services/ConfigService";
 
 @Component
 export default class ManagementTeamView extends Vue {
     headers = [
-        { text: 'Cargo', value: 'cargo' },
-        { text: 'Nombre', value: 'nombre' },
-        { text: 'Extension', value: 'extension' },
+        { text: 'Cargo', value: 'position' },
+        { text: 'Nombre', value: 'name' },
+        // { text: 'Extension', value: 'extension' },
         { text: 'Correo Electronico', value: 'email' },
     ]
 
-    team = [
-        { cargo: "Director", nombre: "Ismael Lucena Rodríguez", extension: "xxx", email: "@educarm.es" },
-        { cargo: "Secretario", nombre: "Ginés López Marín", extension: "xxx", email: "@educarm.es" },
-        { cargo: "Jefe de Estudios", nombre: "Ángel López Sóler", extension: "xxx", email: "@educarm.es" },
-        { cargo: "Jefe de Estudios", nombre: "María González Pérez", extension: "xxx", email: "@educarm.es" },
-        { cargo: "Jefe de Estudios", nombre: "Luis Férez Peñalver", extension: "xxx", email: "@educarm.es" }
-    ]
+    teachers: any = []
 
     contactos1 = [
         { title: "Secretaría:", content: "De 9:00 a 12:00" },
@@ -102,5 +101,23 @@ export default class ManagementTeamView extends Vue {
         { title: "Código de Centro:", content: "30001230" },
         { title: "Móvil del Centro (para viajes):", content: "xxx xxx xxx" }
     ]
+
+    created() {
+        this.refresh()
+    }
+
+    async refresh() {
+        let list: Config[] = []
+        await ConfigService.getConfigTeachers(this, list)
+        list.forEach(v => {
+            const values: any = v.value!.split(",")
+            this.teachers.push({
+                id: v.id,
+                position: values[0],
+                name: values[1],
+                email: values[2]
+            })
+        })
+    }
 }
 </script>

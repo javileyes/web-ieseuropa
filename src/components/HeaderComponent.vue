@@ -4,8 +4,15 @@
             <template v-slot:img="{ props }">
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
+            <v-container>
+                <v-row>
+                    <v-col class="d-flex flex-grow-0 align-center">
+                        <v-img src="@/assets/logo.png" width="80" class="mr-4"/>
+                        <v-toolbar-title class="header-title">IES Europa</v-toolbar-title>
+                    </v-col>
+                </v-row>
+            </v-container>
 
-            <v-toolbar-title style="font-size: 44px;font-family: 'Abyssinica SIL'">IES Europa</v-toolbar-title>
         </v-app-bar>
 
         <v-bottom-navigation class="button-drawer" v-model="value" background-color="primary" dark height="63">
@@ -117,10 +124,19 @@ export default class HeaderComponent extends Vue {
     color: #ffffff;
 }
 
+.header-title {
+    font-size: 54px!important;
+    font-family: 'Abyssinica SIL'
+}
+
 @media (max-width: 960px) {
     .button-drawer {
         display: flex!important;
         justify-content: start!important;
+    }
+
+    .header-title {
+        font-size: 40px!important;
     }
 }
 </style>
