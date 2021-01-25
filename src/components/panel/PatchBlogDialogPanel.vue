@@ -12,7 +12,10 @@
                 <v-container>
                     <v-row>
                         <v-col>
-                            <v-subheader>Banners</v-subheader>
+                            <div class="d-flex justify-space-between">
+                                <v-file-input hide-input small-chips style="margin: 0; padding: 0" v-model="imageFile"/>
+                                <v-btn text color="blue" @click="postBlogImage()" :disabled="!imageFile">Añadir Banners</v-btn>
+                            </div>
                             <v-container>
                                 <v-row>
                                     <v-col v-for="image in blog.images" :key="image.id" cols="3">
@@ -67,6 +70,8 @@ import {Component, Prop, Ref, Vue} from "vue-property-decorator";
 import Blog from "@/models/Blog";
 import BlogService from "@/services/BlogService";
 import BlogLabel from "@/models/BlogLabel";
+import {getModule} from "vuex-module-decorators";
+import SnackbarModule from "@/store/SnackbarModule";
 
 @Component
 export default class PatchBlogDialogPanel extends Vue {
@@ -77,6 +82,7 @@ export default class PatchBlogDialogPanel extends Vue {
     @Prop() readonly switchDialog!: any
     @Prop() dialog!: boolean
     loading: boolean = false
+    imageFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
 
@@ -89,6 +95,14 @@ export default class PatchBlogDialogPanel extends Vue {
 
     deleteBlogImage(id: number, imageId: number) {
         BlogService.deleteBlogImage(this, id, imageId)
+    }
+
+    postBlogImage() {
+        if (this.blog.images!.length < 4) {
+            BlogService.postBlogImage(this, this.imageFile, this.blog.id!)
+        } else {
+            getModule(SnackbarModule).makeToast("No se pueden adjuntar mas de 4 imagenes")
+        }
     }
 
     close() {

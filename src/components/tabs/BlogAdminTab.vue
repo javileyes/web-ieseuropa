@@ -4,10 +4,7 @@
             <v-col cols="12" sm="12" md="3">
                 <PostBlogLabelPanel :refresh="refresh" />
             </v-col>
-            <v-col cols="12" sm="12" md="3">
-                <PostBlogImagePanel :refresh="refresh" :blogs="blogs" />
-            </v-col>
-            <v-col cols="12" sm="12" md="6">
+            <v-col cols="12" sm="12" md="9">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Etiquetas</v-toolbar-title>
@@ -76,13 +73,11 @@ import {getModule} from "vuex-module-decorators";
 import DialogModule from "@/store/DialogModule";
 import Dialog from "@/models/vue/Dialog";
 import PostBlogLabelPanel from "@/components/panel/PostBlogLabelPanel.vue";
-import PostBlogImagePanel from "@/components/panel/PostBlogImagePanel.vue";
 import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
 
 @Component({components: {
         PostBlogPanel,
         PostBlogLabelPanel,
-        PostBlogImagePanel,
         PatchBlogDialogPanel
 }})
 export default class BlogAdminTab extends Vue {

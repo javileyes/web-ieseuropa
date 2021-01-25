@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item v-for="(slide ,i) in slides" :key="i" :src="slide.image.url"/>
+            <v-carousel-item v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" target="_blank" :href="slide.url"/>
         </v-carousel>
     </div>
 </template>

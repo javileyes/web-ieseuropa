@@ -5,7 +5,6 @@ import {getModule} from "vuex-module-decorators";
 import SnackbarModule from "@/store/SnackbarModule";
 import Blog from "@/models/Blog";
 import SessionModule from "@/store/SessionModule";
-import InformationSheetsAdminTab from "@/components/tabs/InformationSheetsAdminTab.vue";
 import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
 
 export default class blogService {
@@ -95,8 +94,6 @@ export default class blogService {
             component.loading = false
             // @ts-ignore
             component.refresh()
-            // @ts-ignore
-            component.form.reset()
             getModule(SnackbarModule).makeToast("Imagen añadida correctamente!")
         } catch (err) {
             console.log(err)
@@ -121,6 +118,7 @@ export default class blogService {
             component.refresh()
             // @ts-ignore
             const items = component.blog.images.filter(i => i.id !== imageId)
+            // @ts-ignore
             component.blog.images = items
             getModule(SnackbarModule).makeToast("Imagen eliminada correctamente!")
         } catch (err) {
