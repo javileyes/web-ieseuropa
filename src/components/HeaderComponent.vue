@@ -16,7 +16,7 @@
         </v-app-bar>
 
         <v-bottom-navigation class="button-drawer" v-model="value" background-color="primary" dark height="63">
-            <v-btn class="d-md-none" style="height: 100%; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click.stop="drawer = !drawer">
+            <v-btn class="d-md-none" style="height: 100%; font-size: medium; margin-right: 5px" @click.stop="drawer = !drawer">
                 <v-icon>mdi-menu</v-icon>
             </v-btn>
             <v-menu open-on-hover offset-y bottom rounded="5" v-for="(button, index) in buttons" :key="index">
@@ -51,62 +51,43 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import BlogLabelService from "@/services/BlogLabelService";
+import BlogLabel from "@/models/BlogLabel";
+
 
 @Component
 export default class HeaderComponent extends Vue {
     value: number = 1
+    drawer = null
+    blogMenuLabels: any = []
+    blogLabels: BlogLabel[] = []
 
     buttons = [
         { title: "Inicio", url: "/" },
-        {
-            title: "Departamentos",
-            url: "/departamentos",
-            submenus: [
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me', url: "#" }
-            ]
-        },
-        {
-            title: "Equipo Directivo",
-            url: "/equipo-directivo",
-            submenus: [
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me 2', url: "#" }
-            ]
-        },
-        {
-            title: "Secretaria Virtual",
-            url: "/secretaria",
-            submenus: [
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me', url: "#" },
-                { title: 'Click Me 2', url: "#" }
-            ]
-        },
-        { title: "Noticias", url: "/noticias" }
+        { title: "Departamentos", url: "/departamentos" },
+        { title: "Equipo Directivo", url: "/equipo-directivo" },
+        { title: "Secretaria Virtual", url: "/secretaria" },
+        { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels }
     ]
 
-    drawer = null
     items = [
         { title: 'Home', icon: 'mdi-view-dashboard' },
         { title: 'About', icon: 'mdi-forum' },
     ]
 
-    get color() {
-        switch (this.value) {
-            case 0:
-                return 'blue-grey'
-            case 1:
-                return 'teal'
-            case 2:
-                return 'brown'
-            case 3:
-                return 'indigo'
-            default:
-                return 'blue-grey'
-        }
+
+    created() {
+        this.getBlogLabels()
+    }
+
+    async getBlogLabels() {
+        await BlogLabelService.getBlogLabels(this, this.blogLabels)
+        this.blogLabels.forEach(v => {
+            this.blogMenuLabels.push({
+                title: v.title,
+                url: `/noticias/?q=${v.title}`
+            })
+        })
     }
 }
 </script>

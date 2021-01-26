@@ -34,13 +34,14 @@ import PostConfigTeacherPanel from "@/components/panel/PostConfigTeacherPanel.vu
 @Component({components:{PostConfigTeacherPanel}})
 export default class TeamAdminTab extends Vue {
     loading: boolean = false
+    teachers: any = []
     headers = [
         { text: "Cargo", value: "position" },
         { text: "Nombre", value: "name" },
         { text: "Correo", value: "email" },
         { text: "Acciones", value: "actions" }
     ]
-    teachers: any = []
+
 
     created() {
         this.refresh()

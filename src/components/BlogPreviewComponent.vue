@@ -29,6 +29,7 @@ export default class BlogPreviewComponent extends Vue {
     @Prop() readonly blog!: Blog
     @Prop() readonly switchDialog!: any
 
+
     created() {
         console.log(this.blog)
     }

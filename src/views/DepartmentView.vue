@@ -87,13 +87,13 @@ import DepartmentService from "@/services/DepartmentService";
 export default class DepartmentView extends Vue {
     loading: boolean = false
     departmentsModule: DepartmentsModule = getModule(DepartmentsModule)
+    department: DepartmentContent | undefined = new DepartmentContent()
     headers = [
         { text: "Profesores", value: "fullName" },
         { text: "Cargo", value: "position" },
         { text: "Contacto", value: "email" },
         { text: "Horario de atencion", value: "schedule" }
     ]
-    department: DepartmentContent | undefined = new DepartmentContent()
 
 
     created() {

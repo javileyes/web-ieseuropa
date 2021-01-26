@@ -80,14 +80,13 @@ import ConfigService from "@/services/ConfigService";
 
 @Component
 export default class ManagementTeamView extends Vue {
+    teachers: any = []
+
     headers = [
         { text: 'Cargo', value: 'position' },
         { text: 'Nombre', value: 'name' },
-        // { text: 'Extension', value: 'extension' },
         { text: 'Correo Electronico', value: 'email' },
     ]
-
-    teachers: any = []
 
     contactos1 = [
         { title: "Secretaría:", content: "De 9:00 a 12:00" },
@@ -101,6 +100,7 @@ export default class ManagementTeamView extends Vue {
         { title: "Código de Centro:", content: "30001230" },
         { title: "Móvil del Centro (para viajes):", content: "xxx xxx xxx" }
     ]
+
 
     created() {
         this.refresh()

@@ -56,6 +56,7 @@ export default class FooterComponent extends Vue {
         "          tempor vel ut orci. Orci varius natoque penatibus et magnis dis\n" +
         "          parturient montes, nascetur ridiculus mus."
 
+
     login() {
         this.count++
         console.log(this.count)

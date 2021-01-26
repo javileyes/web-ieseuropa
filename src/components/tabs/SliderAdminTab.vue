@@ -56,6 +56,7 @@ export default class SliderAdminTab extends Vue {
         { text: "Acciones", value: "actions"}
     ]
 
+
     created() {
         this.refresh()
     }

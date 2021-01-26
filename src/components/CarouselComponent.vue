@@ -15,6 +15,7 @@ import SliderService from "@/services/SliderService";
 export default class CarouselComponent extends Vue {
     slides: Slider[] = []
 
+
     created() {
         SliderService.getSliders(this, this.slides)
     }

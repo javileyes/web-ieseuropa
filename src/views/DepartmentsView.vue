@@ -54,13 +54,11 @@ import DepartmentContent from "@/models/DepartmentContent";
 @Component
 export default class DepartmentsView extends Vue {
     loading: boolean = false
-
     departments: DepartmentContent[] = []
 
     created() {
         DepartmentService.getDepartments(this, this.departments)
     }
-
 }
 </script>
 

@@ -73,6 +73,7 @@ export default class AdminView extends Vue {
     items = ["Secretaria Virtual", "Departamentos", "Hojas Informativas", "Noticias", "Sliders", "Equipo Directivo"]
     tab = null
 
+
     logout() {
         LoginService.logout(this)
     }

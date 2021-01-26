@@ -37,25 +37,29 @@
                         <v-toolbar-title>Noticias</v-toolbar-title>
                     </v-toolbar>
                     <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
-                    <v-data-table
-                        :headers="headers" :items="blogs"
-                        hide-default-footer :loading="loading"
-                        loading-text="Loading... Please wait"
-                    >
-                        <template v-slot:item.label="{item}">
-                            <span>{{ item.label.title }}</span>
-                        </template>
-                        <template v-slot:item.actions="{item}">
-                            <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteBlog(item.id)">
-                                <v-icon>mdi-delete</v-icon>
-                            </v-btn>
+                    <v-card-text>
+                        <v-data-table
+                            :headers="headers" :items="blogs" :loading="loading"
+                            :show-select="false" :page.sync="page" @page-count="pageCount = $event"
+                            :items-per-page="itemsPerPage" :server-items-length="totalItems"
+                            :options.sync="options" loading-text="Cargando..." hide-default-footer
+                        >
+                            <template v-slot:item.label="{item}">
+                                <span>{{ item.label.title }}</span>
+                            </template>
+                            <template v-slot:item.actions="{item}">
+                                <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteBlog(item.id)">
+                                    <v-icon>mdi-delete</v-icon>
+                                </v-btn>
 
-                            <v-btn class="ma-1" text icon color="success" @click="switchDialog(item)">
-                                <v-icon>mdi-table-edit</v-icon>
-                            </v-btn>
-
-                        </template>
-                    </v-data-table>
+                                <v-btn class="ma-1" text icon color="success" @click="switchDialog(item)">
+                                    <v-icon>mdi-table-edit</v-icon>
+                                </v-btn>
+                            </template>
+                        </v-data-table>
+                    </v-card-text>
+                    <v-divider></v-divider>
+                    <v-pagination v-model="page" :length="pageCount" :total-visible="8"/>
                 </v-card>
             </v-col>
             <PatchBlogDialogPanel :refresh="refresh" :blog="blog" :switchDialog="switchDialog" :dialog="dialog" :labels="labels" />
@@ -64,7 +68,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Vue, Watch} from "vue-property-decorator";
 import Blog from "@/models/Blog";
 import BlogService from "@/services/BlogService";
 import BlogLabelService from "@/services/BlogLabelService";
@@ -74,6 +78,7 @@ import DialogModule from "@/store/DialogModule";
 import Dialog from "@/models/vue/Dialog";
 import PostBlogLabelPanel from "@/components/panel/PostBlogLabelPanel.vue";
 import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
+import Options from "@/models/vue/Options";
 
 @Component({components: {
         PostBlogPanel,
@@ -86,6 +91,11 @@ export default class BlogAdminTab extends Vue {
     labels: Blog[] = []
     dialog: boolean = false
     blog: Blog = new Blog()
+    options: Options = new Options()
+    page: number = 1
+    pageCount: number = 0
+    itemsPerPage: number = 10
+    totalItems: number = 0
 
     headers = [
         { text: "Titulo", value: "title" },
@@ -101,12 +111,17 @@ export default class BlogAdminTab extends Vue {
     ]
 
 
+    @Watch("options")
+    watchOptions() {
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
+    }
+
     created() {
         this.refresh()
     }
 
     refresh() {
-        BlogService.getBlogs(this, this.blogs)
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
         BlogLabelService.getBlogLabels(this, this.labels)
     }
 

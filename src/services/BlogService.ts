@@ -9,16 +9,23 @@ import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
 
 export default class blogService {
 
-    static async getBlogs(component: Vue, blogs: Blog[]) {
-        (<any>component).loading = true
+    static async getBlogs(component: Vue, blogs: Blog[], page: number, size: number) {
+        // @ts-ignore
+        component.loading = true
         try {
-            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/blog")
+            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/blog", {
+                params: {page, size}
+            })
             let list = JsonTool.jsonConvert.deserializeArray(response.data, Blog)
             blogs.splice(0, blogs.length)
-            list.forEach(v => blogs.push(v));
-            (<any>component).loading = false
+            list.forEach(v => blogs.push(v))
+            // @ts-ignore
+            component.totalItems = Number(response.headers["x-total-count"]);
+            // @ts-ignore
+            component.loading = false
         } catch (err) {
-            (<any>component).loading = false
+            // @ts-ignore
+            component.loading = false
             console.log(err)
             getModule(SnackbarModule).makeToast("No se ha obtener los blogs");
         }

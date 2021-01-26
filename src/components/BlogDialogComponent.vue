@@ -48,6 +48,7 @@ export default class BlogDialogComponent extends Vue {
     @Prop() readonly dialog!: boolean
     @Prop() readonly switchDialog!: any
 
+
     close() {
         this.switchDialog(this.blog)
     }

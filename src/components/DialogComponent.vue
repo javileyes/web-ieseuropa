@@ -21,8 +21,8 @@ import {getModule} from "vuex-module-decorators";
 
 @Component
 export default class DialogComponent extends Vue {
-
     dialogModule: DialogModule = getModule(DialogModule)
+
 
     get dialog() {
         return this.dialogModule.enabled
