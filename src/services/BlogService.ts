@@ -9,12 +9,12 @@ import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
 
 export default class blogService {
 
-    static async getBlogs(component: Vue, blogs: Blog[], page: number, size: number) {
+    static async getBlogs(component: Vue, blogs: Blog[], page: number, size: number, labelId: number | null | undefined) {
         // @ts-ignore
         component.loading = true
         try {
             const response = await component.axios.get(ConstantTool.BASE_URL + "/public/blog", {
-                params: {page, size}
+                params: { page, size, labelId: labelId }
             })
             let list = JsonTool.jsonConvert.deserializeArray(response.data, Blog)
             blogs.splice(0, blogs.length)

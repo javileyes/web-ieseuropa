@@ -113,7 +113,7 @@ export default class BlogAdminTab extends Vue {
 
     @Watch("options")
     watchOptions() {
-        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage, null)
     }
 
     created() {
@@ -121,7 +121,7 @@ export default class BlogAdminTab extends Vue {
     }
 
     refresh() {
-        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage, null)
         BlogLabelService.getBlogLabels(this, this.labels)
     }
 

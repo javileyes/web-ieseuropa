@@ -72,15 +72,11 @@ export default class HomeView extends Vue {
 
     @Watch("options")
     watchOptions() {
-        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage, null)
     }
 
     created() {
-        this.refresh()
-    }
-
-    refresh() {
-        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage)
+        this.watchOptions()
     }
 
     switchDialog(blog: Blog) {
