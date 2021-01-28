@@ -38,12 +38,27 @@
 
         <v-navigation-drawer v-model="drawer" fixed temporary dark color="primary">
             <v-list dense>
-                <v-list-item v-for="item in buttons" :key="item.title" link @click="$router.replace(item.url)">
+                <v-list-group
+                    v-for="item in buttons" :key="item.title" link
+                    :value="true" no-action color="white"
+                    :append-icon="item.submenus ? '$expand' : ''"
+                >
+                    <template v-slot:activator>
+                        <v-list-item-content>
+                            <v-list-item-title class="navigation-title">{{ item.title }}</v-list-item-title>
+                        </v-list-item-content>
+                    </template>
+                    <v-list-item
+                        v-for="submenu in item.submenus" :key="submenu.title" link
+                        @click="$router.replace(submenu.url)" style="padding-left: 44px;"
+                    >
 
-                    <v-list-item-content>
-                        <v-list-item-title class="navigation-title">{{ item.title }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
+                        <v-list-item-content>
+                            <v-list-item-title>{{ submenu.title }}</v-list-item-title>
+                        </v-list-item-content>
+
+                    </v-list-item>
+                </v-list-group>
             </v-list>
         </v-navigation-drawer>
     </div>
@@ -59,7 +74,7 @@ import BlogLabel from "@/models/BlogLabel";
 export default class HeaderComponent extends Vue {
     value: number = 1
     drawer = null
-    blogMenuLabels: any = []
+    blogMenuLabels: any = [{title: "Todas", url: "/noticias"}]
     blogLabels: BlogLabel[] = []
 
     buttons = [
