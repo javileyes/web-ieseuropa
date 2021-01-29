@@ -42,6 +42,7 @@
                     v-for="item in buttons" :key="item.title" link
                     :value="true" no-action color="white"
                     :append-icon="item.submenus ? '$expand' : ''"
+                    @click="$router.replace(item.url)"
                 >
                     <template v-slot:activator>
                         <v-list-item-content>
