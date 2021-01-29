@@ -1,10 +1,11 @@
 import {JsonObject, JsonProperty} from "json2typescript";
 import BlogLabel from "@/models/BlogLabel";
 import Document from "@/models/Document";
-import Auditing from "@/models/Auditing";
+import DateTimeConverter from "@/models/converters/DateTimeConverter";
+import {DateTime} from "luxon";
 
 @JsonObject("Blog")
-export default class Blog extends Auditing {
+export default class Blog {
 
     @JsonProperty("id", Number, true)
     id?: number = undefined
@@ -16,5 +17,7 @@ export default class Blog extends Auditing {
     label?: BlogLabel = undefined
     @JsonProperty("images", [Document], true)
     images?: Document[] = undefined
+    @JsonProperty("createdAt", DateTimeConverter, true)
+    createdAt?: DateTime = undefined
 
 }

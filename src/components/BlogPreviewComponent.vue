@@ -5,7 +5,7 @@
         <v-card-title>{{ blog.title }}</v-card-title>
 
         <v-card-subtitle class="pb-0">
-            {{ blog.createdAt }}
+            {{ date(blog.createdAt).replace("$", "de") }}
         </v-card-subtitle>
 
         <v-card-text class="text--primary" style="height: 60px">
@@ -23,6 +23,8 @@
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator";
 import Blog from "@/models/Blog";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 
 @Component
 export default class BlogPreviewComponent extends Vue {
@@ -32,6 +34,10 @@ export default class BlogPreviewComponent extends Vue {
 
     created() {
         console.log(this.blog)
+    }
+
+    date(createdAt: string) {
+        return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
     }
 }
 </script>

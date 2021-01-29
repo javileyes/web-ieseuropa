@@ -21,7 +21,7 @@
                 <v-card-title class="mt-4">{{ blog.title }}</v-card-title>
 
                 <v-card-subtitle class="pb-0">
-                    {{ blog.label.title }}
+                    {{ date(blog.createdAt).replace("$", "de") }}
                 </v-card-subtitle>
 
                 <v-card-text class="text--primary mt-4">
@@ -41,6 +41,8 @@
 <script lang="ts">
 import {Component, Prop, Vue} from "vue-property-decorator";
 import Blog from "@/models/Blog";
+import {format} from "date-fns";
+import {es} from "date-fns/locale";
 
 @Component
 export default class BlogDialogComponent extends Vue {
@@ -51,6 +53,10 @@ export default class BlogDialogComponent extends Vue {
 
     close() {
         this.switchDialog(this.blog)
+    }
+
+    date(createdAt: string) {
+        return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
     }
 }
 </script>

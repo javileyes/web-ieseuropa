@@ -13,7 +13,10 @@
                         >
                             <template v-slot:header>
                                 <v-row class="mt-2" align="center" justify="space-between">
-                                    <v-select :items="labels" v-model="label" label="Etiqueta" clearable @change="watchOptions" @click:clear="() => {label.id=null; watchOptions()}">
+                                    <v-select
+                                        :items="labels" v-model="label" label="Etiqueta" clearable
+                                        @change="watchOptions" @click:clear="() => {label.id=null; watchOptions()}"
+                                    >
                                         <template v-slot:label>
                                             Todas
                                         </template>
