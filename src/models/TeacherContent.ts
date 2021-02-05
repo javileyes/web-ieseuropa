@@ -16,5 +16,7 @@ export default class TeacherContent {
     subject?: string = undefined
     @JsonProperty("schedule", String, true)
     schedule?: string = undefined
+    @JsonProperty("location", Number, true)
+    location?: number = undefined
 
 }

@@ -11,6 +11,7 @@
                        <v-text-field v-model="fullName" label="Nombre" filled clearable :rules="titleRules" />
                        <v-text-field v-model="email" label="Email" filled clearable :rules="emailRules" />
                        <v-text-field v-model="position" label="Cargo" filled clearable :rules="titleRules" />
+                       <v-text-field v-model="location" label="Orden" filled clearable />
 
                        <v-btn block :loading="loading" :disabled="loading" color="success" @click="postConfigTeacher">
                            Añadir
@@ -38,7 +39,7 @@ export default class PostConfigTeacherPanel extends Vue {
     fullName: string = ""
     email: string = ""
     position: string = ""
-
+    location: number | undefined
     titleRules = [(v: string) => v && v.length > 0 ? true : "Este campo es requerido"]
     emailRules = [
         (v: string) => v.length > 0 ? true : "Email requerido",
@@ -46,7 +47,7 @@ export default class PostConfigTeacherPanel extends Vue {
     ]
 
     postConfigTeacher() {
-        ConfigService.postConfigTeacher(this, `${this.position},${this.fullName},${this.email}`)
+        ConfigService.postConfigTeacher(this, `${this.position},${this.fullName},${this.email}`, this.location)
     }
 }
 </script>

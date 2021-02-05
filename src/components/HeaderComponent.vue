@@ -42,22 +42,21 @@
                     v-for="item in buttons" :key="item.title" link
                     :value="true" no-action color="white"
                     :append-icon="item.submenus ? '$expand' : ''"
-                    @click="$router.replace(item.url)"
+                    @click="redirect(item.url, item.submenus)"
                 >
                     <template v-slot:activator>
                         <v-list-item-content>
                             <v-list-item-title class="navigation-title">{{ item.title }}</v-list-item-title>
                         </v-list-item-content>
                     </template>
+
                     <v-list-item
                         v-for="submenu in item.submenus" :key="submenu.title" link
                         @click="$router.replace(submenu.url)" style="padding-left: 44px;"
                     >
-
                         <v-list-item-content>
                             <v-list-item-title>{{ submenu.title }}</v-list-item-title>
                         </v-list-item-content>
-
                     </v-list-item>
                 </v-list-group>
             </v-list>
@@ -94,6 +93,16 @@ export default class HeaderComponent extends Vue {
 
     created() {
         this.getBlogLabels()
+    }
+
+    redirect(url: string, submenu: object | undefined) {
+        if (submenu) {
+            console.log("Hola")
+            return
+        } else {
+            console.log("dentro")
+            this.$router.replace(url)
+        }
     }
 
     async getBlogLabels() {

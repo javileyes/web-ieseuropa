@@ -21,6 +21,7 @@
                                 {{item.title}}
                             </template>
                         </v-select>
+                        <v-text-field v-model="teacher.location" label="Orden" filled clearable />
                         <v-btn block :loading="loading" :disabled="loading" color="success" @click="postTeacher">
                             Añadir
                             <template v-slot:loader>

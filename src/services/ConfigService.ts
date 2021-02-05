@@ -8,13 +8,14 @@ import JsonTool from "@/services/tool/JsonTool";
 import Vue from "vue-property-decorator";
 
 export default class ConfigService {
-    static async postConfigTeacher(component: Vue, teacher: string) {
+    static async postConfigTeacher(component: Vue, teacher: string, location: number | undefined) {
         // @ts-ignore
         component.loading = true
 
         let config = new Config()
         config.key = "teacher"
         config.value = teacher
+        config.location = location
 
         try {
             await component.axios.post(

@@ -15,5 +15,7 @@ export default class Config {
     tag?: string = undefined
     @JsonProperty("meta", String, true)
     meta?: string = undefined
+    @JsonProperty("location", Number, true)
+    location?: number = undefined
 
 }
