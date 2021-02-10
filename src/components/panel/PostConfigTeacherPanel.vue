@@ -39,7 +39,7 @@ export default class PostConfigTeacherPanel extends Vue {
     fullName: string = ""
     email: string = ""
     position: string = ""
-    location: number | undefined
+    location!: number | undefined
     titleRules = [(v: string) => v && v.length > 0 ? true : "Este campo es requerido"]
     emailRules = [
         (v: string) => v.length > 0 ? true : "Email requerido",

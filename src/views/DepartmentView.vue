@@ -33,7 +33,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col cols="8">
+                <v-col cols="12" md="8">
                     <v-card class="mb-4">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Profesores</v-toolbar-title>
@@ -55,7 +55,7 @@
                         </v-chip>
                     </v-card>
                 </v-col>
-                <v-col cols="4">
+                <v-col cols="12" md="4">
                     <v-card :loading="loading" class="ma-4">
                         <template slot="progress">
                             <v-progress-linear :active="loading" color="deep-purple" height="10" indeterminate/>
