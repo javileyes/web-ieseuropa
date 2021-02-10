@@ -25,7 +25,7 @@
                 </v-card-subtitle>
 
                 <v-card-text class="text--primary mt-4">
-                    <div>{{ blog.body }}</div>
+                    <div> <span v-html="blog.body"></span></div>
                 </v-card-text>
 
                 <v-card-actions>

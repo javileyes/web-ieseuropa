@@ -9,7 +9,7 @@
         </v-card-subtitle>
 
         <v-card-text class="text--primary" style="height: 60px">
-            <div>{{ blog.body.slice(0, 62) }}...</div>
+            <div><span v-html="blog.body.slice(0, 62)"></span>...</div>
         </v-card-text>
 
         <v-card-actions>
