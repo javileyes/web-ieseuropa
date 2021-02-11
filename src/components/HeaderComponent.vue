@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
+        <v-app-bar @click="$router.push(buttons[0].url)" color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
             <template v-slot:img="{ props }">
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
@@ -22,13 +22,13 @@
             <v-menu open-on-hover offset-y bottom rounded="5" v-for="(button, index) in buttons" :key="index">
 
                 <template v-slot:activator="{ on, attrs }">
-                    <v-btn class="d-none d-md-flex" style="height: 100% ; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click="$router.replace(button.url)">
+                    <v-btn class="d-none d-md-flex" style="height: 100% ; font-size: medium; margin-right: 5px" v-bind="attrs" v-on="on" @click="$router.push(button.url)">
                         {{ button.title }}
                     </v-btn>
                 </template>
 
                 <v-list v-if="button.submenus">
-                    <v-list-item class="tile" link v-for="(item, index) in button.submenus" :key="index" @click="$router.replace(item.url)">
+                    <v-list-item class="tile" link v-for="(item, index) in button.submenus" :key="index" @click="$router.push(item.url)">
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
@@ -52,7 +52,7 @@
 
                     <v-list-item
                         v-for="submenu in item.submenus" :key="submenu.title" link
-                        @click="$router.replace(submenu.url)" style="padding-left: 44px;"
+                        @click="$router.push(submenu.url)" style="padding-left: 44px;"
                     >
                         <v-list-item-content>
                             <v-list-item-title>{{ submenu.title }}</v-list-item-title>

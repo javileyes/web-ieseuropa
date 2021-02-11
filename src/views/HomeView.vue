@@ -30,7 +30,7 @@
                             <template v-slot:footer>
                                 <v-divider/>
                                 <v-row class="mt-2" align="center" justify="space-between">
-                                    <v-btn class="ma-2" outlined tile color="secondary" light @click="$router.replace('/noticias')">
+                                    <v-btn class="ma-2" outlined tile color="secondary" light @click="$router.push('/noticias')">
                                         - MOSTRAR TODOS -
                                     </v-btn>
 
