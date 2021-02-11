@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-carousel class="slider-r" cycle hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" target="_blank" :href="slide.url"/>
+            <v-carousel-item contain v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" target="_blank" :href="slide.url"/>
         </v-carousel>
     </div>
 </template>
@@ -24,16 +24,16 @@ export default class CarouselComponent extends Vue {
 
 <style>
 .slider-r {
-    height: 400px!important;
+    height: 500px!important;
 }
 
 @media (max-width: 1000px) {
     .slider-r {
-        height: 200px!important;
+        height: 250px!important;
     }
 
     .v-carousel__item {
-        height: 200px!important;
+        height: 250px!important;
     }
 }
 </style>
