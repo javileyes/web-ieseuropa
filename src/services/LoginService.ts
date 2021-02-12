@@ -25,13 +25,13 @@ export default class LoginService {
                 sessionModule.session.user = loginResponse.user!
                 sessionModule.session.authorities = loginResponse.authorities!
                 if (component.$route.query.redirect) {
-                    component.$router.push({path: component.$route.query.redirect as string});
+                    component.$router.replace({path: component.$route.query.redirect as string});
                 } else {
-                    component.$router.push({path: "/admin"})
+                    component.$router.replace({path: "/admin"})
                 }
             })
             .catch(error => {
-                snackbarModule.makeToast("Usuario o contraseña no válidos")
+                snackbarModule.makeToast(error + "Usuario o contraseña no válidos")
             })
             .finally(() => {
                 // @ts-ignore
@@ -45,7 +45,7 @@ export default class LoginService {
         let sessionModule: SessionModule = getModule(SessionModule)
         sessionModule.session.token = ""
         sessionModule.saveSession()
-        component.$router.push("/")
+        component.$router.replace("/")
     }
 
 }

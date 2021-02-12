@@ -55,7 +55,7 @@ export default class FooterComponent extends Vue {
         console.log(this.count)
         if (this.count >= 3) {
             this.count = 0
-            this.$router.replace("/login")
+            this.$router.push("/login")
         }
     }
 }

@@ -101,7 +101,7 @@ export default class HeaderComponent extends Vue {
             return
         } else {
             console.log("dentro")
-            this.$router.replace(url)
+            this.$router.push(url)
         }
     }
 

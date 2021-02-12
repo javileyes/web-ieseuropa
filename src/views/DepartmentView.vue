@@ -12,9 +12,8 @@
             </v-row>
             <v-row align="center" justify="center">
                 <v-col cols>
-                    <v-img
+                    <v-img class="dep_banner"
                         :src="department.banner.url"
-                        height="500"
                         lazy-src="https://picsum.photos/id/11/100/60"
                     >
                         <template v-slot:placeholder>
@@ -107,3 +106,16 @@ export default class DepartmentView extends Vue {
     }
 }
 </script>
+
+<style>
+.dep_banner {
+    height: 500px!important;
+}
+
+@media (max-width: 1000px) {
+    .dep_banner {
+        height: 230px!important;
+    }
+
+}
+</style>
