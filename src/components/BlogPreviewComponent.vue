@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" max-width="400">
+    <v-card class="card-noticia mx-auto" max-width="400">
         <v-img v-if="blog.images.length" class="white--text align-end" height="200px" :src="blog.images[0].url"/>
         <v-img v-else class="white--text align-end" height="200px" :src="blog.label.image.url"/>
         <v-card-title>{{ blog.title }}</v-card-title>
@@ -41,3 +41,8 @@ export default class BlogPreviewComponent extends Vue {
     }
 }
 </script>
+
+<style scoped>
+.card-noticia { background: #edf4fc
+}
+</style>

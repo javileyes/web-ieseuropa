@@ -132,7 +132,8 @@ export default class HeaderComponent extends Vue {
 
 .header-title {
     font-size: 54px!important;
-    font-family: 'Abyssinica SIL'
+    color: #0d47a1;
+    font-family: 'Adobe Gothic Std',fantasy
 }
 
 @media (max-width: 960px) {

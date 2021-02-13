@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-dialog class="fill-height" v-model="dialog" persistent max-width="600" @click:outside="close">
-            <v-card class="mx-auto">
+            <v-card class="dialogo-noticia mx-auto">
                 <v-container fluid grid-list-md>
                     <v-layout row wrap v-if="blog.images.length">
                         <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
@@ -60,3 +60,8 @@ export default class BlogDialogComponent extends Vue {
     }
 }
 </script>
+
+<style scoped>
+.dialogo-noticia { background: #fde2c2
+}
+</style>

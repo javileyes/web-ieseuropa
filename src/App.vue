@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <HeaderComponent v-if="showMenu()"/>
-        <v-main>
+        <v-main class="fondo">
             <router-view/>
             <DialogComponent/>
         </v-main>
@@ -32,4 +32,5 @@ export default class App extends Vue {
     margin: 0;
     padding: 0;
 }
+.fondo {background: #ffe3e0}
 </style>
