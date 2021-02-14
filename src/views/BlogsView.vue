@@ -5,6 +5,14 @@
             <v-row>
                 <v-col cols="12">
                     <v-container>
+                        <v-row align="center" justify="center">
+                            <v-col cols>
+                                <div class="text-center">
+                                    <h1 class="mb-6">Noticias</h1>
+<!--                                    <v-divider class="mx-4"/>-->
+                                </div>
+                            </v-col>
+                        </v-row>
                         <v-data-iterator
                             :items="blogs" :loading="loading"
                             :show-select="false" :page.sync="page" @page-count="pageCount = $event"
