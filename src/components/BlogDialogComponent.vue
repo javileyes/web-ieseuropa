@@ -1,29 +1,30 @@
 <template>
     <div>
         <v-dialog class="fill-height" v-model="dialog" persistent max-width="600" @click:outside="close">
-            <v-card class="dialogo-noticia mx-auto">
+            <v-card style="background: #fde2c2" class="dialogo-noticia mx-auto">
                 <v-container fluid grid-list-md>
                     <v-layout row wrap v-if="blog.images.length">
                         <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
                             <v-card elevation="0">
-                                <v-img :src="image.url" height="200px"></v-img>
+                                <v-img :src="image.url"></v-img>
                             </v-card>
                         </v-flex>
                     </v-layout>
                     <v-layout v-else>
                         <v-flex>
                             <v-card elevation="0">
-                                <v-img :src="blog.label.image.url" height="200px"></v-img>
+                                <v-img :src="blog.label.image.url"></v-img>
                             </v-card>
                         </v-flex>
                     </v-layout>
                 </v-container>
-                <v-card-title class="mt-4">{{ blog.title }}</v-card-title>
+                <v-card-subtitle style="text-align: end; color: purple">{{ blog.label.title }}</v-card-subtitle>
+                <v-card-title style="color: blue" class="mt-4">{{ blog.title }}</v-card-title>
 
                 <v-card-subtitle class="pb-0">
                     {{ date(blog.createdAt).replace("$", "de") }}
                 </v-card-subtitle>
-
+                <v-divider class="mx-4"/>
                 <v-card-text class="text--primary mt-4">
                     <div> <span v-html="blog.body"></span></div>
                 </v-card-text>
@@ -61,7 +62,3 @@ export default class BlogDialogComponent extends Vue {
 }
 </script>
 
-<style scoped>
-.dialogo-noticia { background: #fde2c2
-}
-</style>
