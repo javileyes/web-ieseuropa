@@ -1,26 +1,14 @@
 <template>
-    <v-card style="background: #edf4fc" class="mx-auto" max-width="400" height="500">
-        <v-img v-if="blog.images.length" class="white--text align-end" height="300px" :src="blog.images[0].url"/>
-        <v-img v-else class="white--text align-end" height="300px" :src="blog.label.image.url"/>
-<!--        <v-container justify="space-between">-->
-        <v-card-subtitle style="text-align: end; color: purple">{{ blog.label.title }}</v-card-subtitle>
-        <v-card-title style="color: blue">{{ blog.title }}</v-card-title>
-
+    <v-card style="background: #edf4fc" class="mx-auto" max-width="400" height="400" @click="switchDialog(blog)">
+        <v-img v-if="blog.images.length" class="white--text align-end" height="200px" :src="blog.images[0].url"/>
+        <v-img v-else class="white--text align-end" height="200px" :src="blog.label.image.url"/>
+        <v-card-subtitle style="text-align: end; color: purple; margin: -5px">{{ blog.label.title }}</v-card-subtitle>
+        <v-card-title style="color: blue; margin-top: -20px; margin-bottom: -15px">{{ blog.title.slice(0, 62) }}</v-card-title>
+        <v-divider class="mx-4"/>
         <v-card-subtitle class="pb-0">
             {{ date(blog.createdAt).replace("$", "de") }}
         </v-card-subtitle>
-        <v-divider class="mx-4"/>
-<!--        <v-card-text class="text&#45;&#45;primary" style="height: 60px">-->
-<!--            <div><span v-html="blog.body.slice(0, 62)"></span>...</div>-->
-<!--        </v-card-text>-->
 
-<!--        <v-spacer></v-spacer>-->
-        <v-card-actions>
-            <v-btn color="warning" text @click="switchDialog(blog)">
-                Ver mas
-            </v-btn>
-        </v-card-actions>
-<!--        </v-container>-->
     </v-card>
 </template>
 

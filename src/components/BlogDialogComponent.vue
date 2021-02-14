@@ -1,7 +1,10 @@
 <template>
-    <div>
+    <v-container>
         <v-dialog class="fill-height" v-model="dialog" persistent max-width="600" @click:outside="close">
             <v-card style="background: #fde2c2" class="dialogo-noticia mx-auto">
+                <v-btn icon @click="close">
+                    <v-icon>mdi-close</v-icon>
+                </v-btn>
                 <v-container fluid grid-list-md>
                     <v-layout row wrap v-if="blog.images.length">
                         <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
@@ -36,7 +39,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </div>
+    </v-container>
 </template>
 
 <script lang="ts">
