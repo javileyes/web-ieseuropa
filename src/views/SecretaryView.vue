@@ -16,13 +16,11 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title v-text="category.title" />
                         </v-toolbar>
-                        <v-chip v-for="resource in category.resources" :key="resource.title" class="ma-2 pa-2" color="success" label>
-                            <v-btn :href="resource.document.url" icon link target="_blank" dark class="ma-1">
-                                <v-icon left>
-                                    mdi-clipboard-text
-                                </v-icon>
-                            </v-btn>
-                            {{ resource.title }}
+                        <v-chip v-for="resource in category.resources" :key="resource.title" :href="resource.document.url" target="_blank" class="ma-2 pa-2" color="info" label>
+                            <v-icon color="secondary" left>
+                                mdi-clipboard-text
+                            </v-icon>
+                            <span style="color:black; font-weight: bold">{{ resource.title }}</span>
                         </v-chip>
                     </v-card>
                 </v-col>
