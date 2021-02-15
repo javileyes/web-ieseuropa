@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-carousel class="slider-r" cycle hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item contain v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" target="_blank" :href="slide.url"/>
+            <v-carousel-item contain v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" @click="goingTo(slide.url)" />
         </v-carousel>
     </div>
 </template>
@@ -18,6 +18,11 @@ export default class CarouselComponent extends Vue {
 
     created() {
         SliderService.getSliders(this, this.slides)
+    }
+
+    goingTo(dir : string) {
+        if (dir.includes("http",0)) window.open(dir, "_blank")
+        else this.$router.push(dir)
     }
 }
 </script>
