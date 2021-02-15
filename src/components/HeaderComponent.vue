@@ -5,7 +5,7 @@
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
             <v-container>
-                <v-row class="d-flex" justify="space-between">
+                <v-row class="mt-7 d-flex" justify="space-between">
                     <v-col class="d-flex flex-grow-0 align-center">
                         <v-img src="@/assets/logo.png" width="60" class="mr-4"/>
                         <v-toolbar-title class="header-title">IES Europa</v-toolbar-title>
@@ -14,7 +14,7 @@
                         <v-img src="@/assets/LogosTransparentes.png" width="200" class="hidden-xs-only"/>
                     </v-col>
                 </v-row>
-                <v-row class="flex-grow-0 flex-row hidden-lg-and-up">
+                <v-row class="mt-7">
                     <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
                 </v-row>
             </v-container>
@@ -139,7 +139,7 @@ export default class HeaderComponent extends Vue {
 .header-title {
     font-size: 54px!important;
     font-weight: bold;
-    color: #0d47a1;
+    color: #062d6e;
     font-family: 'Trebuchet MS',Tahoma,serif
 }
 
