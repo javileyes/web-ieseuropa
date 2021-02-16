@@ -12,11 +12,11 @@
             </v-row>
             <v-row>
                 <v-col cols="12" sm="12" md="8">
-                    <v-card class="ma-4" v-for="category in categories" :key="category.title">
+                    <v-card style="background: #edf4fc" class="ma-4" v-for="category in categories" :key="category.title">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title v-text="category.title" />
                         </v-toolbar>
-                        <v-chip v-for="resource in category.resources" :key="resource.title" :href="resource.document.url" target="_blank" class="ma-2 pa-2" color="#edf4fc" label>
+                        <v-chip v-for="resource in category.resources" :key="resource.title" :href="resource.document.url" target="_blank" class="ma-2 pa-2" color="#d1daf8" label>
                             <v-icon color="secondary" left>
                                 mdi-clipboard-text
                             </v-icon>

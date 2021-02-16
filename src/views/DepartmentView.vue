@@ -37,20 +37,18 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Profesores</v-toolbar-title>
                         </v-toolbar>
-                        <v-data-table disable-sort :headers="headers" :items="department.teachers" hide-default-footer :loading="loading" loading-text="Loading... Please wait"/>
+                        <v-data-table style="background: #edf4fc" disable-sort :headers="headers" :items="department.teachers" hide-default-footer :loading="loading" loading-text="Loading... Please wait"/>
                     </v-card>
                     <v-divider class="mx-4"/>
-                    <v-card class="mt-4">
+                    <v-card style="background: #edf4fc" class="mt-4">
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Hojas informativas</v-toolbar-title>
                         </v-toolbar>
-                        <v-chip v-for="resource in department.documents" :key="resource" class="ma-2 pa-2" color="success" label>
-                            <v-btn icon :href="resource.url" link target="_blank" dark class="ma-1">
-                                <v-icon left>
-                                    mdi-clipboard-text
-                                </v-icon>
-                            </v-btn>
-                            {{ resource.description }}
+                        <v-chip v-for="resource in department.documents" :key="resource" class="ma-2 pa-2" color="#d1daf8" label>
+                            <v-icon color="secondary" left>
+                                mdi-clipboard-text
+                            </v-icon>
+                            <span style="color:black; font-weight: bold">{{ resource.description }}</span>
                         </v-chip>
                     </v-card>
                 </v-col>

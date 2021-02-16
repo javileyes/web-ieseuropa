@@ -15,11 +15,11 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Contacto</v-toolbar-title>
                         </v-toolbar>
-                        <v-card-text>
+                        <v-card-text style="background: #edf4fc">
                             <v-container>
                                 <v-row>
                                     <v-col>
-                                        <v-list>
+                                        <v-list style="background: #edf4fc">
                                             <v-list-item v-for="item in contactos1" :key="item.title">
                                                 <v-list-item-content>
                                                     <div>
@@ -30,7 +30,7 @@
                                         </v-list>
                                     </v-col>
                                     <v-col class="d-flex flex-column align-start">
-                                        <v-list>
+                                        <v-list style="background: #edf4fc">
                                             <v-list-item v-for="item in contactos2" :key="item.title">
                                                 <v-list-item-content>
                                                     <div>
@@ -53,7 +53,7 @@
                             <v-toolbar-title>Equipo Directivo</v-toolbar-title>
                         </v-toolbar>
                         <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
-                        <v-data-table disable-sort :headers="headers" :items="teachers" mobile-breakpoint="400" class="elevation-1" hide-default-footer/>
+                        <v-data-table style="background: #edf4fc" disable-sort :headers="headers" :items="teachers" mobile-breakpoint="400" class="elevation-1" hide-default-footer/>
                     </v-card>
                 </v-col>
             </v-row>
@@ -63,7 +63,7 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Ubicación</v-toolbar-title>
                         </v-toolbar>
-                        <div class="pa-4">
+                        <div class="pa-4" style="background: #edf4fc">
                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12675.856540019335!2d-1.5725403!3d37.4143226!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x3b3a9262358db8f5!2sInstituto%20de%20Educaci%C3%B3n%20Secundaria%20Europa!5e0!3m2!1ses-419!2sve!4v1609864969942!5m2!1ses-419!2sve" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                         </div>
                     </v-card>
