@@ -85,7 +85,7 @@ export default class ManagementTeamView extends Vue {
     headers = [
         { text: 'Cargo', value: 'position' },
         { text: 'Nombre', value: 'name' },
-        { text: 'Correo Electronico', value: 'email' },
+        { text: 'Correo Electrónico', value: 'email' },
     ]
 
     contactos1 = [
