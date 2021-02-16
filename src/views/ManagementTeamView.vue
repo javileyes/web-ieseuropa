@@ -53,7 +53,7 @@
                             <v-toolbar-title>Equipo Directivo</v-toolbar-title>
                         </v-toolbar>
                         <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
-                        <v-data-table :headers="headers" :items="teachers" class="elevation-1" hide-default-footer/>
+                        <v-data-table :headers="headers" :items="teachers" mobile-breakpoint="0" class="elevation-1" hide-default-footer/>
                     </v-card>
                 </v-col>
             </v-row>
