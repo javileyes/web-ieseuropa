@@ -23,7 +23,7 @@
                             <template v-slot:default="{items}">
                                 <v-row>
                                     <v-col v-for="blog in items" :key="blog.id" cols="12" sm="6" md="3">
-                                        <BlogPreviewComponent :blog="blog" :switch-dialog="switchDialog"/>
+                                        <BlogPreviewComponent :blog="blog"/>
                                     </v-col>
                                 </v-row>
                             </template>
@@ -44,7 +44,6 @@
                 </v-col>
             </v-row>
         </v-container>
-        <BlogDialogComponent :switch-dialog="switchDialog" :blog="blog" :dialog="dialog"/>
     </div>
 </template>
 

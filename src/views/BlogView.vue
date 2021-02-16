@@ -10,52 +10,29 @@
                     </div>
                 </v-col>
             </v-row>
-            <v-row align="center" justify="center" v-if="blog.images.length">
-                <v-col cols>
-                    <v-img class="dep_banner"
-                           :src="blog.images[0].url"
-                           lazy-src="https://picsum.photos/id/11/100/60"
-                           max-height="300"
-                    >
-                        <template v-slot:placeholder>
-                            <v-row
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center"
-                            >
-                                <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                ></v-progress-circular>
-                            </v-row>
-                        </template>
-                    </v-img>
-                </v-col>
-            </v-row>
-            <v-row align="center" justify="center" v-else>
-                <v-col cols>
-                    <v-img class="dep_banner"
-                           position="center"
-                           :src="blog.label.image.url"
-                           lazy-src="https://picsum.photos/id/11/100/60"
-                           max-height="300"
-                    >
-                        <template v-slot:placeholder>
-                            <v-row
-                                class="fill-height ma-0"
-                                align="center"
-                                justify="center"
-                            >
-                                <v-progress-circular
-                                    indeterminate
-                                    color="grey lighten-5"
-                                ></v-progress-circular>
-                            </v-row>
-                        </template>
-                    </v-img>
-                </v-col>
-            </v-row>
-
+            <v-container fluid grid-list-md>
+                <v-layout row wrap v-if="blog.images.length">
+                    <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
+                        <v-card elevation="0">
+                            <v-img style="background: #ffe3e0" contain
+                                   max-height="300"
+                                   lazy-src="https://picsum.photos/id/11/100/60"
+                                   :src="image.url"
+                                   @click="goingTo(image.url)"></v-img>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+                <v-layout v-else>
+                    <v-flex>
+                        <v-card elevation="0">
+                            <v-img style="background: #ffe3e0" contain
+                                   max-height="300"
+                                   lazy-src="https://picsum.photos/id/11/100/60"
+                                   :src="blog.label.image.url"></v-img>
+                        </v-card>
+                    </v-flex>
+                </v-layout>
+            </v-container>
             <v-row>
                 <v-col cols="12">
                     <v-card style="background: #fde2c2" class="dialogo-noticia mx-auto">
@@ -67,7 +44,7 @@
                         </v-card-subtitle>
                         <v-divider class="mx-4"/>
                         <v-card-text class="text--primary mt-4">
-                            <div> <span v-html="blog.body"></span></div>
+                            <div> <span style="text-align: justify" v-html="blog.body"></span></div>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -96,5 +73,10 @@ export default class BlogView extends Vue {
     date(createdAt: string) {
         return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
     }
+
+    goingTo(dir : string) {
+        window.open(dir, "_blank")
+    }
+
 }
 </script>

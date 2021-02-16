@@ -9,14 +9,20 @@
                     <v-layout row wrap v-if="blog.images.length">
                         <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
                             <v-card elevation="0">
-                                <v-img :src="image.url"></v-img>
+                                <v-img contain
+                                       max-height="300"
+                                       lazy-src="https://picsum.photos/id/11/100/60"
+                                       :src="image.url"></v-img>
                             </v-card>
                         </v-flex>
                     </v-layout>
                     <v-layout v-else>
                         <v-flex>
                             <v-card elevation="0">
-                                <v-img :src="blog.label.image.url"></v-img>
+                                <v-img contain
+                                       max-height="300"
+                                       lazy-src="https://picsum.photos/id/11/100/60"
+                                       :src="blog.label.image.url"></v-img>
                             </v-card>
                         </v-flex>
                     </v-layout>
@@ -36,7 +42,7 @@
                     <v-btn color="warning" text @click="close">
                         Cerrar
                     </v-btn>
-                    <v-btn color="warning" text @click="$router.replace('/noticia/' + blog.id)">
+                    <v-btn color="warning" text @click="$router.push('/noticia/' + blog.id)">
                         Expandir
                     </v-btn>
                 </v-card-actions>

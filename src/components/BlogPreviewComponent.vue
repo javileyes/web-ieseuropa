@@ -1,5 +1,5 @@
 <template>
-    <v-card style="background: #edf4fc" class="mx-auto" max-width="400" height="400" @click="switchDialog(blog)">
+    <v-card style="background: #edf4fc" class="mx-auto" max-width="400" height="400" @click="$router.push('/noticia/' + blog.id)">
         <v-img v-if="blog.images.length" class="white--text align-end" height="200px" :src="blog.images[0].url"/>
         <v-img v-else class="white--text align-end" height="200px" :src="blog.label.image.url"/>
         <v-card-subtitle style="text-align: end; color: purple; margin: -5px">{{ blog.label.title }}</v-card-subtitle>
@@ -21,7 +21,7 @@ import { es } from "date-fns/locale";
 @Component
 export default class BlogPreviewComponent extends Vue {
     @Prop() readonly blog!: Blog
-    @Prop() readonly switchDialog!: any
+
 
 
     created() {
