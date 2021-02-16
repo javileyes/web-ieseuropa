@@ -29,7 +29,7 @@
                 </v-card-subtitle>
                 <v-divider class="mx-4"/>
                 <v-card-text class="text--primary mt-4">
-                    <div> <span v-html="blog.body"></span></div>
+                    <div> <span style="text-align: justify" v-html="blog.body"></span></div>
                 </v-card-text>
 
                 <v-card-actions>

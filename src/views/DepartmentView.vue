@@ -37,7 +37,7 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Profesores</v-toolbar-title>
                         </v-toolbar>
-                        <v-data-table mobile-breakpoint="0" :headers="headers" :items="department.teachers" hide-default-footer :loading="loading" loading-text="Loading... Please wait"/>
+                        <v-data-table disable-sort :headers="headers" :items="department.teachers" hide-default-footer :loading="loading" loading-text="Loading... Please wait"/>
                     </v-card>
                     <v-divider class="mx-4"/>
                     <v-card class="mt-4">
