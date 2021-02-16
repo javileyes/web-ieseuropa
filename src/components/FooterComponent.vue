@@ -32,11 +32,11 @@ export default class FooterComponent extends Vue {
     icons = [
         {
             icon: "mdi-facebook",
-            url: "1"
+            url: "https://www.facebook.com/IES-EUROPA-203673183555320/"
         },
         {
             icon: "mdi-twitter",
-            url: "2"
+            url: "https://twitter.com/europa_aguilas?lang=es"
         },
         {
             icon: "mdi-telegram",
@@ -48,6 +48,10 @@ export default class FooterComponent extends Vue {
         }
     ]
     footerContent = ""
+
+    redirect(dir : string) {
+        if (dir.length>1) window.open(dir, "_blank")
+    }
 
 
     login() {
