@@ -4,7 +4,7 @@
             <v-col cols="12" sm="12" md="6">
                 <v-card>
                     <v-toolbar color="secondary" dark>
-                        <v-toolbar-title>Secretaria Virtual</v-toolbar-title>
+                        <v-toolbar-title>Secretaría Virtual</v-toolbar-title>
                     </v-toolbar>
                     <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
                     <v-list>

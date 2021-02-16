@@ -70,7 +70,7 @@ import TeamAdminTab from "@/components/tabs/TeamAdminTab.vue";
         TeamAdminTab
 }})
 export default class AdminView extends Vue {
-    items = ["Secretaria Virtual", "Departamentos", "Hojas Informativas", "Noticias", "Sliders", "Equipo Directivo"]
+    items = ["Secretaría Virtual", "Departamentos", "Hojas Informativas", "Noticias", "Sliders", "Equipo Directivo"]
     tab = null
 
 

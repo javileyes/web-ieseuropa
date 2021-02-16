@@ -6,7 +6,7 @@
             <v-row align="center" justify="center">
                 <v-col cols>
                     <div class="text-center">
-                        <h1 class="mb-6">Ultimas Noticias</h1>
+                        <h1 class="mb-6">Últimas Noticias</h1>
                         <v-divider class="mx-4"/>
                     </div>
                 </v-col>

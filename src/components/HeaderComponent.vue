@@ -87,7 +87,7 @@ export default class HeaderComponent extends Vue {
         { title: "Inicio", url: "/" },
         { title: "Departamentos", url: "/departamentos" },
         { title: "Equipo Directivo", url: "/equipo-directivo" },
-        { title: "Secretaria Virtual", url: "/secretaria" },
+        { title: "Secretaría Virtual", url: "/secretaria" },
         { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels }
     ]
 

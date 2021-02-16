@@ -5,7 +5,7 @@
             <v-row align="center" justify="center">
                 <v-col cols>
                     <div class="text-center">
-                        <h1 class="mb-6">Secretaria Virtual</h1>
+                        <h1 class="mb-6">Secretaría Virtual</h1>
                         <v-divider class="mx-4"/>
                     </div>
                 </v-col>
@@ -30,7 +30,7 @@
                             <v-progress-linear :active="resourceCategoriesLoading" color="deep-purple" height="10" indeterminate/>
                         </template>
                         <v-img height="250" src="@/assets/secretaria-banner.jpg"/>
-                        <v-card-title>Secretaria virtual</v-card-title>
+                        <v-card-title>Secretaría virtual</v-card-title>
                         <v-card-text>
                             <div>Descárgate tus documentos y agiliza tus gestiones</div>
                         </v-card-text>
