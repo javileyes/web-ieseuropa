@@ -40,6 +40,11 @@ const routes: Array<RouteConfig> = [
         component: () => import('../views/BlogsView.vue')
     },
     {
+        path: '/noticia/:id',
+        name: 'Blog',
+        component: () => import('../views/BlogView.vue')
+    },
+    {
         path: '/equipo-directivo',
         name: 'Team',
         component: () => import('../views/ManagementTeamView.vue')

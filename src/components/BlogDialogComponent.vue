@@ -36,6 +36,9 @@
                     <v-btn color="warning" text @click="close">
                         Cerrar
                     </v-btn>
+                    <v-btn color="warning" text @click="$router.replace('/noticia/' + blog.id)">
+                        Expandir
+                    </v-btn>
                 </v-card-actions>
             </v-card>
         </v-dialog>

@@ -6,6 +6,7 @@ import SnackbarModule from "@/store/SnackbarModule";
 import Blog from "@/models/Blog";
 import SessionModule from "@/store/SessionModule";
 import PatchBlogDialogPanel from "@/components/panel/PatchBlogDialogPanel.vue";
+import BlogView from "@/views/BlogView.vue";
 
 export default class blogService {
 
@@ -27,7 +28,20 @@ export default class blogService {
             // @ts-ignore
             component.loading = false
             console.log(err)
-            getModule(SnackbarModule).makeToast("No se ha obtener los blogs");
+            getModule(SnackbarModule).makeToast("No se ha podido obtener los blogs");
+        }
+    }
+
+    static async getBlog(component: BlogView, id: number) {
+        component.loading = true
+        try {
+            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/blog/" + id)
+            component.blog = JsonTool.jsonConvert.deserializeObject(response.data, Blog);
+            component.loading = false
+        } catch (err) {
+            component.loading = false
+            console.log(err)
+            getModule(SnackbarModule).makeToast("No se ha podido obtener la noticia");
         }
     }
 
@@ -111,7 +125,6 @@ export default class blogService {
     }
 
     static async deleteBlogImage(component: PatchBlogDialogPanel, id: number, imageId: number) {
-        // @ts-ignore
         component.loading = true
 
         try {
@@ -119,18 +132,14 @@ export default class blogService {
                 {
                     headers: {Authorization: getModule(SessionModule).session.token}
                 })
-            // @ts-ignore
             component.loading = false
-            // @ts-ignore
             component.refresh()
             // @ts-ignore
             const items = component.blog.images.filter(i => i.id !== imageId)
-            // @ts-ignore
             component.blog.images = items
             getModule(SnackbarModule).makeToast("Imagen eliminada correctamente!")
         } catch (err) {
             console.log(err)
-            // @ts-ignore
             component.loading = false
             getModule(SnackbarModule).makeToast("Error al eliminar la imagen")
         }
