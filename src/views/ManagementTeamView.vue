@@ -23,7 +23,7 @@
                                             <v-list-item v-for="item in contactos1" :key="item.title">
                                                 <v-list-item-content>
                                                     <div>
-                                                        <b>{{ item.title }}</b> <span>{{ item.content }}</span>
+                                                        <b class="contacto">{{ item.title }}</b> <span class="contacto">{{ item.content }}</span>
                                                     </div>
                                                 </v-list-item-content>
                                             </v-list-item>
@@ -34,7 +34,7 @@
                                             <v-list-item v-for="item in contactos2" :key="item.title">
                                                 <v-list-item-content>
                                                     <div>
-                                                        <b>{{ item.title }}</b> <span>{{ item.content }}</span>
+                                                        <b class="contacto">{{ item.title }}</b> <span class="contacto">{{ item.content }}</span>
                                                     </div>
                                                 </v-list-item-content>
                                             </v-list-item>
@@ -121,3 +121,21 @@ export default class ManagementTeamView extends Vue {
     }
 }
 </script>
+
+
+<style scoped>
+.contacto {
+    font-size: large !important;
+}
+@media (max-width: 1000px) {
+    .contacto {
+        font-size: medium !important;
+    }
+}
+@media (max-width: 500px) {
+    .contacto {
+        font-size: small !important;
+    }
+}
+
+</style>

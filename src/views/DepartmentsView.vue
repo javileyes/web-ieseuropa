@@ -17,7 +17,7 @@
                             <v-col v-for="department in departments" :key="department.title" class="d-flex child-flex" cols="6" sm="6" md="4">
                                 <v-card hover @click="$router.push('/departamento/' + department.id)">
                                     <v-img aspect-ratio="1" class="grey lighten-2" :src="department.image.url" />
-                                    <v-card-title class="title">
+                                    <v-card-title style="background:#edf4fc" class="title">
                                         {{ department.title }}
                                     </v-card-title>
                                 </v-card>

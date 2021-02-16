@@ -1,0 +1,28 @@
+
+/*css para v-data-table según tamaños*/
+
+.v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+    font-size: 14px !important;
+}
+
+@media (min-width: 800px) {
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+        font-size: 18px !important;
+
+    }
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+        font-size: 16px !important;
+    }
+
+}
+
+@media (min-width: 1400px) {
+    .v-data-table > .v-data-table__wrapper > table > thead > tr > th {
+        font-size: 20px !important;
+
+    }
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td {
+        font-size: 18px !important;
+    }
+
+}
