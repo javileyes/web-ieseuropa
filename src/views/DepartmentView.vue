@@ -44,7 +44,7 @@
                         <v-toolbar color="secondary" dark>
                             <v-toolbar-title>Hojas informativas</v-toolbar-title>
                         </v-toolbar>
-                        <v-chip v-for="resource in department.documents" :key="resource" class="ma-2 pa-2" color="#d1daf8" label>
+                        <v-chip v-for="resource in department.documents" :key="resource" :href="resource.url" class="ma-2 pa-2" color="#d1daf8" label>
                             <v-icon color="secondary" left>
                                 mdi-clipboard-text
                             </v-icon>
@@ -53,7 +53,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" md="4">
-                    <v-card :loading="loading" class="ma-4">
+                    <v-card style="background: #edf4fc" :loading="loading" class="ma-4">
                         <template slot="progress">
                             <v-progress-linear :active="loading" color="deep-purple" height="10" indeterminate/>
                         </template>
