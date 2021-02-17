@@ -17,7 +17,26 @@ import FooterComponent from "@/components/FooterComponent.vue";
 import SnackbarComponent from "@/components/SnackbarComponent.vue";
 import DialogComponent from "@/components/DialogComponent.vue";
 
-@Component({components: {HeaderComponent, FooterComponent, SnackbarComponent, DialogComponent}})
+@Component({
+    metaInfo: {
+        title: "IES Europa, Águilas",
+        htmlAttrs: {
+            lang: 'es'
+        },
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'keyword', content: 'home,page' },
+            { name: 'description', content: 'IES Europa es un Centro Educativo de la localidad de Águilas donde se imparte ESO, Bachiller y Formación Profesional' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { property: 'og:title', content: "IES Europa, Águilas"},
+            { property: 'og:site_name', content: 'IES Europa'},
+            {property: 'og:type', content: 'website'},
+            {name: 'robots', content: 'index,follow'}
+        ]
+    },
+    components: {
+        HeaderComponent, FooterComponent, SnackbarComponent, DialogComponent}
+})
 export default class App extends Vue {
 
     showMenu() {
