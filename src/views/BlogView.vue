@@ -37,7 +37,7 @@
                 <v-col cols="12">
                     <v-card style="background: #fde2c2" class="dialogo-noticia mx-auto">
                         <v-card-subtitle style="text-align: end; color: purple">{{ blog.label.title }}</v-card-subtitle>
-                        <v-card-title style="color: blue" class="mt-4">{{ blog.title }}</v-card-title>
+                        <v-card-title style="word-break:keep-all; color: blue" class="mt-4">{{ blog.title }}</v-card-title>
 
                         <v-card-subtitle class="pb-0">
                             {{ date(blog.createdAt).replace("$", "de") }}
