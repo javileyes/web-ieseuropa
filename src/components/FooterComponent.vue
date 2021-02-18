@@ -25,8 +25,30 @@
 
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator";
+import MetaInfo from "vue-meta"
 
-@Component
+@Component({
+    metaInfo(): MetaInfo {
+        return {
+            title: "Redes Sociales - IES Europa",
+            htmlAttrs: {
+                lang: 'es'
+            },
+            meta: [
+                {charset: 'utf-8'},
+                {
+                    name: 'description',
+                    content: 'Las Redes Sociales de IES Europa están siempre informando'
+                },
+                {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+                {property: 'og:title', content: "Redes Sociales - IES Europa"},
+                {property: 'og:site_name', content: 'IES Europa'},
+                {property: 'og:type', content: 'section'},
+                {name: 'robots', content: 'index,follow'}
+            ]
+        };
+    }
+})
 export default class FooterComponent extends Vue {
     count: number = 0
     icons = [
@@ -40,11 +62,11 @@ export default class FooterComponent extends Vue {
         },
         {
             icon: "mdi-telegram",
-            url: "3"
+            url: ""
         },
         {
             icon: "mdi-instagram",
-            url: "4"
+            url: "https://www.instagram.com/ieseuropa/?hl=es"
         }
     ]
     footerContent = ""
