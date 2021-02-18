@@ -11,7 +11,7 @@
                             <v-card elevation="0">
                                 <v-img contain
                                        max-height="300"
-                                       lazy-src="https://picsum.photos/id/11/100/60"
+                                       lazy-src="/cargando-min.png"
                                        :src="image.url"></v-img>
                             </v-card>
                         </v-flex>
@@ -21,7 +21,7 @@
                             <v-card elevation="0">
                                 <v-img contain
                                        max-height="300"
-                                       lazy-src="https://picsum.photos/id/11/100/60"
+                                       lazy-src="/cargando-min.png"
                                        :src="blog.label.image.url"></v-img>
                             </v-card>
                         </v-flex>

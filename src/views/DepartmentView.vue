@@ -14,7 +14,7 @@
                 <v-col cols>
                     <v-img class="dep_banner"
                         :src="department.banner.url"
-                        lazy-src="https://picsum.photos/id/11/100/60"
+                        lazy-src="/cargando-min.png"
                     >
                         <template v-slot:placeholder>
                             <v-row

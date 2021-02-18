@@ -1,19 +1,22 @@
 <template>
     <div>
-        <v-app-bar @click="$router.push(buttons[0].url)" color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
+        <v-app-bar class="pointer" @click="$router.push(buttons[0].url)" color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
             <template v-slot:img="{ props }">
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
             <v-container>
                 <v-row class="mt-7 d-flex" justify="space-between">
                     <v-col class="d-flex flex-grow-0 align-center">
-                        <v-img src="@/assets/logo.png" width="60" class="mr-4"/>
-                        <v-toolbar-title class="header-title">IES Europa</v-toolbar-title>
+                        <v-img src="@/assets/logo.png" width="70" class="mr-4"/>
+                        <v-toolbar-title class="header-title">IES Europa<span class="hidden-sm-and-down">, Águilas</span></v-toolbar-title>
                     </v-col>
                     <v-col class="flex-grow-0 hidden-xs-only">
                         <v-img src="@/assets/LogosTransparentes.png" width="200" class="hidden-xs-only"/>
                     </v-col>
                 </v-row>
+<!--                <v-row class="mb-7">-->
+<!--                    <v-textarea class="header-subtitle hidden-sm-and-down">ESO, Bachiller, Formación Profesional</v-textarea>-->
+<!--                </v-row>-->
                 <v-row class="mt-7">
                     <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
                 </v-row>
@@ -142,6 +145,14 @@ export default class HeaderComponent extends Vue {
     color: #062d6e;
     font-family: 'Trebuchet MS',Tahoma,serif
 }
+/*.header-subtitle {*/
+/*    font-size: 34px!important;*/
+/*    font-weight: normal;*/
+/*    color: #062d6e;*/
+/*    font-family: 'Trebuchet MS',Tahoma,serif*/
+/*}*/
+
+.pointer {cursor: pointer;}
 
 @media (max-width: 960px) {
     .button-drawer {

@@ -11,23 +11,13 @@
                 </v-col>
             </v-row>
             <v-container fluid grid-list-md>
-                <v-layout row wrap v-if="blog.images.length">
-                    <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
-                        <v-card elevation="0">
-                            <v-img style="background: #ffe3e0" contain
-                                   max-height="300"
-                                   lazy-src="https://picsum.photos/id/11/100/60"
-                                   :src="image.url"
-                                   @click="goingTo(image.url)"></v-img>
-                        </v-card>
-                    </v-flex>
-                </v-layout>
-                <v-layout v-else>
+
+                <v-layout>
                     <v-flex>
                         <v-card elevation="0">
                             <v-img style="background: #ffe3e0" contain
-                                   max-height="300"
-                                   lazy-src="https://picsum.photos/id/11/100/60"
+                                   max-height="200"
+                                   lazy-src="/cargando-min.png"
                                    :src="blog.label.image.url"></v-img>
                         </v-card>
                     </v-flex>
@@ -49,6 +39,18 @@
                     </v-card>
                 </v-col>
             </v-row>
+
+            <v-layout row wrap v-if="blog.images.length">
+                <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
+                    <v-card class="ma-3" elevation="0">
+                        <v-img class="pointer" style="background: #ffe3e0"
+                               height="300"
+                               lazy-src="/cargando-min.png"
+                               :src="image.url"
+                               @click="goingTo(image.url)"></v-img>
+                    </v-card>
+                </v-flex>
+            </v-layout>
         </v-container>
     </div>
 </template>
@@ -80,3 +82,7 @@ export default class BlogView extends Vue {
 
 }
 </script>
+
+<style>
+.pointer {cursor: pointer;}
+</style>
