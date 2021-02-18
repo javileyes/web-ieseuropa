@@ -77,8 +77,30 @@
 import {Component, Vue} from "vue-property-decorator";
 import Config from "@/models/Config";
 import ConfigService from "@/services/ConfigService";
+import MetaInfo from "vue-meta"
 
-@Component
+@Component({
+    metaInfo(): MetaInfo {
+        return {
+            title: "Equipo Directivo - IES Europa",
+            htmlAttrs: {
+                lang: 'es'
+            },
+            meta: [
+                {charset: 'utf-8'},
+                {name: 'keyword', content: 'page'},
+                {
+                    name: 'description',
+                    content: 'El equipo directivo está siempre a disposición del profesorado, del alumnado, padres y de toda la comunidad educativa.'
+                },
+                {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+                {property: 'og:title', content: "Equipo Directivo - IES Europa"},
+                {property: 'og:site_name', content: 'IES Europa'},
+                {property: 'og:type', content: 'page'}
+            ]
+        };
+    }
+})
 export default class ManagementTeamView extends Vue {
     teachers: any = []
 
