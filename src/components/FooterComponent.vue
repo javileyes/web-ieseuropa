@@ -30,7 +30,7 @@ import MetaInfo from "vue-meta"
 @Component({
     metaInfo(): MetaInfo {
         return {
-            title: "Redes Sociales - IES Europa",
+            title: "IES Europa",
             htmlAttrs: {
                 lang: 'es'
             },
@@ -38,13 +38,12 @@ import MetaInfo from "vue-meta"
                 {charset: 'utf-8'},
                 {
                     name: 'description',
-                    content: 'Las Redes Sociales de IES Europa están siempre informando'
+                    content: 'Las Redes Sociales y la Web de IES Europa están siempre informando'
                 },
                 {name: 'viewport', content: 'width=device-width, initial-scale=1'},
                 {property: 'og:title', content: "Redes Sociales - IES Europa"},
                 {property: 'og:site_name', content: 'IES Europa'},
-                {property: 'og:type', content: 'section'},
-                {name: 'robots', content: 'index,follow'}
+                {property: 'og:type', content: 'section'}
             ]
         };
     }

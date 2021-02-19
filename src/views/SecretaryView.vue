@@ -25,7 +25,7 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" sm="12" md="4">
-                    <v-card :loading="loading" class="ma-4">
+                    <v-card style="background: #edf4fc" :loading="loading" class="ma-4">
                         <template slot="progress">
                             <v-progress-linear :active="resourceCategoriesLoading" color="deep-purple" height="10" indeterminate/>
                         </template>

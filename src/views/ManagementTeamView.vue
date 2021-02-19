@@ -88,7 +88,6 @@ import MetaInfo from "vue-meta"
             },
             meta: [
                 {charset: 'utf-8'},
-                {name: 'keyword', content: 'page'},
                 {
                     name: 'description',
                     content: 'El equipo directivo está siempre a disposición del profesorado, del alumnado, padres y de toda la comunidad educativa.'
