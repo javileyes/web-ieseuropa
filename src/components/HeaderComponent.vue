@@ -5,20 +5,25 @@
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
             <v-container>
-                <v-row class="mt-7 d-flex" justify="space-between">
-                    <v-col class="d-flex flex-grow-0 align-center">
-                        <v-img src="@/assets/logo.png" width="70" class="mr-4"/>
-                        <v-toolbar-title class="header-title">IES Europa<span class="hidden-sm-and-down">, Águilas</span></v-toolbar-title>
+                <v-row no-gutters>
+                    <v-col align-self="center" cols="2" md="1" class="mb-0">
+                        <v-img class="logo" src="@/assets/logo.png"/>
                     </v-col>
-                    <v-col class="flex-grow-0 hidden-xs-only">
-                        <v-img src="@/assets/LogosTransparentes.png" width="200" class="hidden-xs-only"/>
+                    <v-col align-self="center" cols="10" md="8" class="mt-5">
+                            <v-row>
+                                <v-toolbar-title class="header-title">IES Europa<span class="hidden-xs-only">, Águilas</span></v-toolbar-title>
+                            </v-row>
+                            <v-row class="hidden-xs-only">
+                                <v-toolbar-title class="header-subtitle">Centro Público de Enseñanza</v-toolbar-title>
+                            </v-row>
+
+                            <v-row class="mt-7 logo-line">
+                                <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
+                            </v-row>
                     </v-col>
-                </v-row>
-<!--                <v-row class="mb-7">-->
-<!--                    <v-textarea class="header-subtitle hidden-sm-and-down">ESO, Bachiller, Formación Profesional</v-textarea>-->
-<!--                </v-row>-->
-                <v-row class="mt-7">
-                    <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
+                    <v-col class="hidden-xs-only"  cols="0" md="3">
+                        <v-img src="@/assets/LogosTransparentes.png" width="180" class="hidden-sm-and-down"/>
+                    </v-col>
                 </v-row>
             </v-container>
 
@@ -140,17 +145,23 @@ export default class HeaderComponent extends Vue {
 }
 
 .header-title {
+    padding-left: 20px;
     font-size: 54px!important;
     font-weight: bold;
     color: #062d6e;
     font-family: 'Trebuchet MS',Tahoma,serif
 }
-/*.header-subtitle {*/
-/*    font-size: 34px!important;*/
-/*    font-weight: normal;*/
-/*    color: #062d6e;*/
-/*    font-family: 'Trebuchet MS',Tahoma,serif*/
-/*}*/
+.header-subtitle {
+    padding-left: 20px;
+    font-size: 30px!important;
+    font-weight: normal;
+    color: #062d6e;
+    font-family: 'Trebuchet MS',Tahoma,serif
+}
+.logo {
+    width: 80px;
+}
+
 
 .pointer {cursor: pointer;}
 
@@ -161,7 +172,48 @@ export default class HeaderComponent extends Vue {
     }
 
     .header-title {
+        margin-top: 20px;
         font-size: 40px!important;
+        padding-left: 0;
+        /*padding-right: 20px;*/
+        /*margin-right: 20px;*/
+    }
+    .header-subtitle {
+        padding-left: 0;
+    }
+    
+    .logo {
+        width: 70px;
+        margin-top: 10px;
+        margin-left: 30px;
+    }
+
+}
+
+@media (max-width: 820px) {
+    .logo {
+        margin-left: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-title {
+        margin-top: 50px;
+        padding-left: 20px;
+
+    }
+    .logo {
+        width: 60px;
+    }
+    .logo-line {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 450px) {
+    .header-title {
+        padding-left: 30px;
+
     }
 }
 </style>
