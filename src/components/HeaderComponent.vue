@@ -9,19 +9,19 @@
                     <v-col align-self="center" cols="2" md="1" class="mb-0">
                         <v-img class="logo" src="@/assets/logo.png"/>
                     </v-col>
-                    <v-col align-self="center" cols="10" md="8" class="mt-5">
+                    <v-col align-self="center" cols="10" md="9" class="mt-5">
                             <v-row>
-                                <v-toolbar-title class="header-title">IES Europa<span class="hidden-xs-only">, Águilas</span></v-toolbar-title>
+                                <v-toolbar-title class="header-title">IES Europa<span class="aguilas">, Águilas</span></v-toolbar-title>
                             </v-row>
-                            <v-row class="hidden-xs-only">
-                                <v-toolbar-title class="header-subtitle">Centro Público de Enseñanza</v-toolbar-title>
+                            <v-row>
+                                <v-toolbar-title class="header-subtitle">Centro Público de ESO, Bachiller y FP <span class="hidden-md-and-down">(Región de Murcia)</span></v-toolbar-title>
                             </v-row>
 
                             <v-row class="mt-7 logo-line">
                                 <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
                             </v-row>
                     </v-col>
-                    <v-col class="hidden-xs-only"  cols="0" md="3">
+                    <v-col class="hidden-xs-only"  cols="0" md="2">
                         <v-img src="@/assets/LogosTransparentes.png" width="180" class="hidden-sm-and-down"/>
                     </v-col>
                 </v-row>
@@ -159,7 +159,7 @@ export default class HeaderComponent extends Vue {
     font-family: 'Trebuchet MS',Tahoma,serif
 }
 .logo {
-    width: 80px;
+    width: 90px;
 }
 
 
@@ -180,10 +180,11 @@ export default class HeaderComponent extends Vue {
     }
     .header-subtitle {
         padding-left: 0;
+        font-size: 25px!important;
     }
     
     .logo {
-        width: 70px;
+        width: 80px;
         margin-top: 10px;
         margin-left: 30px;
     }
@@ -198,21 +199,35 @@ export default class HeaderComponent extends Vue {
 
 @media (max-width: 600px) {
     .header-title {
+        font-size: 35px!important;
         margin-top: 50px;
         padding-left: 20px;
 
     }
+    .header-subtitle {
+        padding-left: 20px;
+        font-size: 18px!important;
+    }
     .logo {
         width: 60px;
+        margin-bottom: 20px;
     }
     .logo-line {
-        margin-top: 50px;
+        margin-bottom: 19px;
     }
 }
 
 @media (max-width: 450px) {
     .header-title {
+        font-size: 30px!important;
         padding-left: 30px;
+
+    }
+    .header-subtitle {
+        font-size: 15px!important;
+        padding-left: 30px;
+    }
+    .aguilas {
 
     }
 }
