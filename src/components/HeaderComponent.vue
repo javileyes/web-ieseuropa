@@ -165,7 +165,7 @@ export default class HeaderComponent extends Vue {
 
 .pointer {cursor: pointer;}
 
-@media (max-width: 960px) {
+@media (max-width: 1260px) {
     .button-drawer {
         display: flex!important;
         justify-content: start!important;
@@ -186,18 +186,29 @@ export default class HeaderComponent extends Vue {
     .logo {
         width: 80px;
         margin-top: 10px;
-        margin-left: 30px;
+        margin-left: -20px;
     }
 
 }
 
-@media (max-width: 820px) {
+@media (max-width: 960px) {
     .logo {
-        margin-left: -5px;
+        margin-left: 20px;
+    }
+}
+@media (max-width: 800px) {
+    .logo {
+        margin-left: 0px;
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+    .logo {
+        margin-left: -10px;
+    }
+}
+
+@media (max-width: 599px) {
     .header-title {
         font-size: 35px!important;
         margin-top: 50px;
