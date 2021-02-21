@@ -14,7 +14,7 @@
                                 <v-toolbar-title class="header-title">IES Europa<span class="aguilas">, Águilas</span></v-toolbar-title>
                             </v-row>
                             <v-row>
-                                <v-toolbar-title class="header-subtitle">Centro Público de ESO, Bachiller y FP <span class="hidden-md-and-down">(Región de Murcia)</span></v-toolbar-title>
+                                <v-toolbar-title class="header-subtitle">Centro Público de ESO, Bachiller y FP <span class="hidden-sm-and-down hidden-lg-and-up">(CARM)</span><span class="hidden-md-and-down">(Región de Murcia)</span></v-toolbar-title>
                             </v-row>
 
                             <v-row class="mt-7 logo-line">
