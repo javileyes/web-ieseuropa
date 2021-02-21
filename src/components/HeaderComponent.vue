@@ -191,7 +191,7 @@ export default class HeaderComponent extends Vue {
 
 }
 
-@media (max-width: 960px) {
+@media (max-width: 959px) {
     .logo {
         margin-left: 20px;
     }
