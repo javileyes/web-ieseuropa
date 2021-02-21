@@ -12,16 +12,16 @@
             </v-row>
             <v-container fluid grid-list-md>
 
-                <v-layout>
-                    <v-flex>
+                <v-row>
+                    <v-col>
                         <v-card elevation="0">
                             <v-img style="background: #ffe3e0" contain
                                    max-height="200"
                                    lazy-src="/cargando-min.png"
                                    :src="blog.label.image.url"></v-img>
                         </v-card>
-                    </v-flex>
-                </v-layout>
+                    </v-col>
+                </v-row>
             </v-container>
             <v-row>
                 <v-col cols="12">
