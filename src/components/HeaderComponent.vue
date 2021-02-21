@@ -193,7 +193,7 @@ export default class HeaderComponent extends Vue {
 
 @media (max-width: 820px) {
     .logo {
-        margin-left: 10px;
+        margin-left: -5px;
     }
 }
 
@@ -210,6 +210,7 @@ export default class HeaderComponent extends Vue {
     }
     .logo {
         width: 60px;
+        margin-left: 5px;
         margin-bottom: 20px;
     }
     .logo-line {
@@ -219,6 +220,7 @@ export default class HeaderComponent extends Vue {
 
 @media (max-width: 450px) {
     .header-title {
+        margin-top: 45px;
         font-size: 30px!important;
         padding-left: 30px;
 
@@ -226,9 +228,6 @@ export default class HeaderComponent extends Vue {
     .header-subtitle {
         font-size: 15px!important;
         padding-left: 30px;
-    }
-    .aguilas {
-
     }
 }
 </style>
