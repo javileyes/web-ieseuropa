@@ -210,35 +210,53 @@ export default class HeaderComponent extends Vue {
 
 @media (max-width: 599px) {
     .header-title {
-        font-size: 35px!important;
-        margin-top: 50px;
-        padding-left: 20px;
+        font-size: 45px!important;
+        margin-top: 40px;
+        padding-left: 30px;
 
     }
     .header-subtitle {
-        padding-left: 20px;
+        padding-left: 30px;
         font-size: 18px!important;
     }
     .logo {
-        width: 60px;
+        width: 80px;
         margin-left: 5px;
         margin-bottom: 20px;
     }
     .logo-line {
         margin-bottom: 19px;
+        padding-right: 50px;
     }
 }
 
 @media (max-width: 450px) {
     .header-title {
         margin-top: 45px;
-        font-size: 30px!important;
-        padding-left: 30px;
+        font-size: 38px!important;
+        padding-left: 20px;
 
     }
     .header-subtitle {
-        font-size: 15px!important;
-        padding-left: 30px;
+        /*font-size: 15px!important;*/
+        padding-left: 20px;
+    }
+    .logo {
+        /*width: 85px;*/
+        margin-left: -5px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 355px) {
+    .header-title {
+        font-size: 30px !important;
+        padding-left: 20px;
+
+    }
+
+    .header-subtitle {
+        font-size: 15px !important;
     }
 }
 </style>
