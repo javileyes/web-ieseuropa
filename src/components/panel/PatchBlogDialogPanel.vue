@@ -1,5 +1,5 @@
 <template>
-    <v-dialog class="fill-height" v-model="dialog" persistent max-width="600">
+    <v-dialog class="fill-height" v-model="dialog" persistent width="100%">
         <v-card v-if="blog">
             <v-toolbar flat dark color="secondary">
                 <v-btn icon dark @click="close">
@@ -35,8 +35,8 @@
                             <v-divider class="mb-5"/>
 
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
-
-                            <v-textarea filled name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
+                            <p hidden ref="markedId">{{blog.body}}</p>
+                            <v-textarea @click="inicio" filled name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
 
                             <v-select
                                 :items="labels" filled
@@ -66,12 +66,13 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Ref, Vue} from "vue-property-decorator";
+import {Component, Prop, Ref, Vue, Watch} from "vue-property-decorator"
 import Blog from "@/models/Blog";
 import BlogService from "@/services/BlogService";
 import BlogLabel from "@/models/BlogLabel";
 import {getModule} from "vuex-module-decorators";
 import SnackbarModule from "@/store/SnackbarModule";
+import Marked from "marked"
 
 @Component
 export default class PatchBlogDialogPanel extends Vue {
@@ -81,11 +82,21 @@ export default class PatchBlogDialogPanel extends Vue {
     @Prop() readonly refresh!: any
     @Prop() readonly switchDialog!: any
     @Prop() dialog!: boolean
+    @Ref() readonly markedId!: HTMLParagraphElement
     loading: boolean = false
     imageFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
 
+    inicio() {
+        this.markedId.removeAttribute("hidden")
+        this.markedId.innerHTML = Marked(this.blog.body!)
+    }
+
+    @Watch('blog.body')
+    onBody() {
+        this.markedId.innerHTML = Marked(this.blog.body!)
+    }
 
     patchBlog() {
         if (this.form.validate()) {
