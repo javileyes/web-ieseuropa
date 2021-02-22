@@ -173,18 +173,18 @@ export default class HeaderComponent extends Vue {
 
     .header-title {
         margin-top: 20px;
-        font-size: 40px!important;
+        font-size: 45px!important;
         padding-left: 0;
         /*padding-right: 20px;*/
         /*margin-right: 20px;*/
     }
     .header-subtitle {
         padding-left: 0;
-        font-size: 25px!important;
+        font-size: 30px!important;
     }
     
     .logo {
-        width: 80px;
+        /*width: 90px;*/
         margin-top: 10px;
         margin-left: -20px;
     }
@@ -196,7 +196,7 @@ export default class HeaderComponent extends Vue {
         margin-left: 20px;
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 820px) {
     .logo {
         margin-left: 0px;
     }
@@ -204,7 +204,7 @@ export default class HeaderComponent extends Vue {
 
 @media (max-width: 700px) {
     .logo {
-        margin-left: -10px;
+        margin-left: -15px;
     }
 }
 
