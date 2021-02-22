@@ -34,7 +34,8 @@
                         </v-card-subtitle>
                         <v-divider class="mx-4"/>
                         <v-card-text class="text--primary mt-4">
-                            <div> <span style="text-align: justify" v-html="blog.body"></span></div>
+                            <div ref="markedId" style="text-align: justify"> {{blog.body}} </div>
+<!--                            <p style="text-align: justify" ref="markedId">{{blog.body}}</p>-->
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -56,21 +57,31 @@
 </template>
 
 <script lang="ts">
-import {Component, Vue} from "vue-property-decorator";
+import {Component, Ref, Vue} from "vue-property-decorator"
 import Blog from "@/models/Blog";
 import BlogService from "@/services/BlogService"
 import {format} from "date-fns";
 import {es} from "date-fns/locale";
+import Marked from 'marked'
 
 @Component
 export default class BlogView extends Vue {
     loading: boolean = false
     blog: Blog = new Blog()
+    @Ref() readonly markedId!: HTMLParagraphElement
 
 
     created() {
         BlogService.getBlog(this, parseInt(this.$route.params.id))
+            .then(() => {
+            this.markedId.innerHTML = Marked(this.blog.body!)
+        })
+
     }
+
+    // mounted() {
+    //     this.markedId.innerHTML = Marked(this.blog.body!) + "prueba"
+    // }
 
     date(createdAt: string) {
         return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
