@@ -14,7 +14,7 @@
                     <v-row>
                         <v-col>
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
-
+                            <p ref="markedId">{{body}}</p>
                             <v-textarea filled name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
 
                             <v-select :items="labels" filled label="Etiqueta" v-model="label">
@@ -41,16 +41,21 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Ref, Vue} from "vue-property-decorator";
+import {Component, Prop, Ref, Watch, Vue} from "vue-property-decorator";
 import BlogLabel from "@/models/BlogLabel";
 import BlogService from "@/services/BlogService";
-import Fullscreen from "vue-fullscreen/src/component"
+import Fullscreen from "vue-fullscreen/src/component";
+import Marked from 'marked'
 
 @Component({components:{Fullscreen}})
 export default class PostBlogPanel extends Vue {
     @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
     @Prop() readonly labels!: BlogLabel[]
+    @Ref() readonly markedId!: HTMLParagraphElement
+    // body = "**Hola Mundo** que tal ```mola el markdown```"
+
+
     label: BlogLabel = new BlogLabel()
     loading: boolean = false
     title: string = ""
@@ -59,6 +64,14 @@ export default class PostBlogPanel extends Vue {
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
     fullscreen: boolean = true
 
+    mounted() {
+        this.markedId.innerHTML = Marked(this.body)
+    }
+
+    @Watch('body')
+    onBody() {
+      this.markedId.innerHTML = Marked(this.body)
+    }
 
     fullscreenChange(fullscreen: boolean) {
         this.fullscreen = fullscreen
