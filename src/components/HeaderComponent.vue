@@ -166,10 +166,6 @@ export default class HeaderComponent extends Vue {
 .pointer {cursor: pointer;}
 
 @media (max-width: 1265px) {
-    .button-drawer {
-        display: flex!important;
-        justify-content: start!important;
-    }
 
     .header-title {
         margin-top: 10px;
