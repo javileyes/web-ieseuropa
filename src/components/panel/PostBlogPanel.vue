@@ -15,7 +15,7 @@
                         <v-col>
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
                             <p ref="markedId">{{body}}</p>
-                            <v-textarea filled name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
 
                             <v-select :items="labels" filled label="Etiqueta" v-model="label">
                                 <template v-slot:item="{item}">

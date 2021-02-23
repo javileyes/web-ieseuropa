@@ -154,7 +154,7 @@ export default class HeaderComponent extends Vue {
 .header-subtitle {
     padding-left: 20px;
     font-size: 30px!important;
-    font-weight: normal;
+    font-weight: bold;
     color: #062d6e;
     font-family: 'Trebuchet MS',Tahoma,serif
 }
@@ -165,98 +165,103 @@ export default class HeaderComponent extends Vue {
 
 .pointer {cursor: pointer;}
 
-@media (max-width: 1260px) {
+@media (max-width: 1265px) {
     .button-drawer {
         display: flex!important;
         justify-content: start!important;
     }
 
     .header-title {
-        margin-top: 20px;
-        font-size: 45px!important;
+        margin-top: 10px;
+        font-size: 40px!important;
+        padding-left: 20px;
+        /*padding-right: 20px;*/
+        /*margin-right: 20px;*/
+    }
+    .header-subtitle {
+        padding-left: 20px;
+        font-size: 25px!important;
+    }
+
+    .logo {
+        width: 80px;
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+
+}
+
+
+
+@media (max-width: 959px) {
+    .button-drawer {
+        display: flex!important;
+        justify-content: start!important;
+    }
+
+    .header-title {
+        margin-top: 10px;
+        font-size: 40px!important;
         padding-left: 0;
         /*padding-right: 20px;*/
         /*margin-right: 20px;*/
     }
     .header-subtitle {
         padding-left: 0;
-        font-size: 30px!important;
+        font-size: 25px!important;
     }
-    
+
     .logo {
-        /*width: 90px;*/
+        width: 80px;
         margin-top: 10px;
-        margin-left: -20px;
+        margin-left: 30px;
     }
 
 }
 
-@media (max-width: 959px) {
-    .logo {
-        margin-left: 20px;
-    }
-}
 @media (max-width: 820px) {
     .logo {
-        margin-left: 0px;
-    }
-}
-
-@media (max-width: 700px) {
-    .logo {
-        margin-left: -15px;
+        margin-left: -5px;
     }
 }
 
 @media (max-width: 599px) {
     .header-title {
-        font-size: 45px!important;
-        margin-top: 40px;
-        padding-left: 30px;
+        font-size: 35px!important;
+        margin-top: 30px;
+        padding-left: 20px;
 
     }
     .header-subtitle {
-        padding-left: 30px;
+        padding-left: 20px;
         font-size: 18px!important;
     }
     .logo {
-        width: 80px;
+        width: 60px;
         margin-left: 5px;
         margin-bottom: 20px;
     }
     .logo-line {
-        margin-bottom: 19px;
-        padding-right: 50px;
+        margin-bottom: 0px;
+        padding-right: 55px;
+    }
+}
+@media (max-width: 540px) {
+    .header-title {
+        margin-top: 20px;
     }
 }
 
 @media (max-width: 450px) {
     .header-title {
-        margin-top: 45px;
-        font-size: 38px!important;
-        padding-left: 20px;
+        margin-top: 20px;
+        font-size: 33px!important;
+        padding-left: 30px;
 
     }
     .header-subtitle {
-        /*font-size: 15px!important;*/
-        padding-left: 20px;
-    }
-    .logo {
-        /*width: 85px;*/
-        margin-left: -5px;
-        margin-bottom: 10px;
-    }
-}
-
-@media (max-width: 355px) {
-    .header-title {
-        font-size: 30px !important;
-        padding-left: 20px;
-
-    }
-
-    .header-subtitle {
-        font-size: 15px !important;
+        font-size: 17px!important;
+        padding-left: 30px;
     }
 }
 </style>
