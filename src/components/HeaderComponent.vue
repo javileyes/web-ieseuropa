@@ -18,7 +18,7 @@
                             </v-row>
 
                             <v-row class="mt-7 logo-line">
-                                <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-sm-and-up"/>
+                                <v-img src="@/assets/logosTransparentesLinea.png"  class="hidden-md-and-up"/>
                             </v-row>
                     </v-col>
                     <v-col class="hidden-xs-only"  cols="0" md="2">
@@ -200,11 +200,9 @@ export default class HeaderComponent extends Vue {
     }
 
     .header-title {
-        margin-top: 10px;
+        margin-top: 25px;
         font-size: 40px!important;
         padding-left: 0;
-        /*padding-right: 20px;*/
-        /*margin-right: 20px;*/
     }
     .header-subtitle {
         padding-left: 0;
@@ -213,22 +211,37 @@ export default class HeaderComponent extends Vue {
 
     .logo {
         width: 80px;
-        margin-top: 10px;
+        margin-top: -10px;
         margin-left: 30px;
+    }
+
+    .logo-line {
+        width: 400px;
+        align-self: center;
     }
 
 }
 
 @media (max-width: 820px) {
+    .header-title {
+        margin-top: 30px;
+    }
+
     .logo {
         margin-left: -5px;
+    }
+
+    .logo-line {
+        width: 350px;
+        padding-bottom: 10px;
+        padding-left: 20px;
     }
 }
 
 @media (max-width: 599px) {
     .header-title {
         font-size: 35px!important;
-        margin-top: 30px;
+        margin-top: 45px;
         padding-left: 20px;
 
     }
@@ -239,22 +252,26 @@ export default class HeaderComponent extends Vue {
     .logo {
         width: 60px;
         margin-left: 5px;
-        margin-bottom: 20px;
+        margin-bottom: -5px;
     }
     .logo-line {
+        width: auto;
         margin-bottom: 0px;
         padding-right: 55px;
     }
 }
 @media (max-width: 540px) {
     .header-title {
-        margin-top: 20px;
+        margin-top: 50px;
+    }
+    .logo {
+        margin-bottom: 0px;
+        margin-top: 7px;
     }
 }
 
 @media (max-width: 450px) {
     .header-title {
-        margin-top: 20px;
         font-size: 33px!important;
         padding-left: 30px;
 
@@ -262,6 +279,9 @@ export default class HeaderComponent extends Vue {
     .header-subtitle {
         font-size: 17px!important;
         padding-left: 30px;
+    }
+    .logo {
+        margin-top: 10px;
     }
 }
 </style>
