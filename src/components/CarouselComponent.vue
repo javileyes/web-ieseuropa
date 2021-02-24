@@ -49,6 +49,16 @@ export default class CarouselComponent extends Vue {
 
 @media (max-width: 750px) {
     .slider-r {
+        height: 350px!important;
+    }
+
+    .v-carousel__item {
+        height: 350px!important;
+    }
+}
+
+@media (max-width: 650px) {
+    .slider-r {
         height: 250px!important;
     }
 
