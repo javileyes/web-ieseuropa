@@ -30,11 +30,24 @@ export default class CarouselComponent extends Vue {
 </script>
 
 <style>
+
+.pointer {cursor: pointer;}
+
 .slider-r {
     height: 500px!important;
 }
 
 @media (max-width: 1000px) {
+    .slider-r {
+        height: 400px!important;
+    }
+
+    .v-carousel__item {
+        height: 400px!important;
+    }
+}
+
+@media (max-width: 750px) {
     .slider-r {
         height: 250px!important;
     }
@@ -44,5 +57,5 @@ export default class CarouselComponent extends Vue {
     }
 }
 
-.pointer {cursor: pointer;}
+
 </style>
