@@ -31,6 +31,10 @@ import {Component, Vue} from "vue-property-decorator";
 import Image from "@/models/Image";
 import ImageService from "@/services/ImageService";
 import PostImagePanel from "@/components/panel/PostImagePanel.vue";
+import {getModule} from "vuex-module-decorators";
+import DialogModule from "@/store/DialogModule";
+import Dialog from "@/models/vue/Dialog";
+import ProjectService from "@/services/ProjectService";
 @Component({
     components: {PostImagePanel}
 })
@@ -52,7 +56,11 @@ export default class ImageAdminTab extends Vue {
     }
 
     deleteImage(id: number) {
-        ImageService.deleteImage(this, id)
+        getModule(DialogModule).showDialog(new Dialog(
+            "Aviso",
+            "¿Está seguro de eliminar esta imagen?",
+            () => ImageService.deleteImage(this, id)
+        ))
     }
 }
 </script>

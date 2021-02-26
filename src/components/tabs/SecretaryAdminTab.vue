@@ -70,6 +70,7 @@ import PostResourcePanel from "@/components/panel/PostResourcePanel.vue";
         PostResourcePanel
 }})
 export default class SecretaryAdminTab extends Vue {
+    loading: boolean = false
     categories: ResourceCategory[] = []
     dialog: boolean = false
     resourceDialog: Resource = new Resource()

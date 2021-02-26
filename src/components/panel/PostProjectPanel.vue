@@ -2,7 +2,7 @@
     <Fullscreen ref="fullscreen" @change="fullscreenChange">
         <v-card height="100%">
             <v-toolbar color="secondary" dark>
-                <v-toolbar-title>Crear Noticia</v-toolbar-title>
+                <v-toolbar-title>Crear Proyecto</v-toolbar-title>
                 <v-spacer/>
                 <v-btn icon @click="$refs['fullscreen'].toggle()">
                     <v-icon>{{ fullscreen ? "mdi-arrow-collapse" : "mdi-arrow-expand" }}</v-icon>
@@ -16,17 +16,13 @@
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
                             <p ref="markedId">{{body}}</p>
                             <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
-
-                            <v-select :items="labels" filled label="Etiqueta" v-model="label">
-                                <template v-slot:item="{item}">
-                                    {{item.title}}
-                                </template>
-                                <template v-slot:selection="{item}">
-                                    {{item.title}}
-                                </template>
-                            </v-select>
-
-                            <v-btn block :loading="loading" :disabled="loading" color="success" @click="postBlog">
+                            <v-file-input
+                                filled v-model="bannerFile"
+                                placeholder="Suba una banner"
+                                label="image" append-icon="mdi-file-image"
+                                prepend-icon="" :rules="bannerRules"
+                            />
+                            <v-btn block :loading="loading" :disabled="loading" color="success" @click="postProject">
                                 Crear
                                 <template v-slot:loader>
                                     <span>Loading...</span>
@@ -42,26 +38,24 @@
 
 <script lang="ts">
 import {Component, Prop, Ref, Watch, Vue} from "vue-property-decorator";
-import BlogLabel from "@/models/BlogLabel";
-import BlogService from "@/services/BlogService";
 import Fullscreen from "vue-fullscreen/src/component";
 import Marked from 'marked'
+import ProjectService from "@/services/ProjectService";
 
 @Component({components:{Fullscreen}})
-export default class PostBlogPanel extends Vue {
+export default class PostProjectPanel extends Vue {
     @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
-    @Prop() readonly labels!: BlogLabel[]
     @Ref() readonly markedId!: HTMLParagraphElement
-    // body = "**Hola Mundo** que tal ```mola el markdown```"
 
 
-    label: BlogLabel = new BlogLabel()
     loading: boolean = false
     title: string = ""
     body: string = ""
+    bannerFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
+    bannerRules = [(v: File) => v ? true : "Seleccione una Banner"]
     fullscreen: boolean = true
 
     mounted() {
@@ -70,16 +64,16 @@ export default class PostBlogPanel extends Vue {
 
     @Watch('body')
     onBody() {
-      this.markedId.innerHTML = Marked(this.body)
+        this.markedId.innerHTML = Marked(this.body)
     }
 
     fullscreenChange(fullscreen: boolean) {
         this.fullscreen = fullscreen
     }
 
-    postBlog() {
+    postProject() {
         if (this.form.validate()) {
-            BlogService.postBlog(this, this.title, this.body, this.label.id!)
+            ProjectService.postProject(this, this.title, this.body, this.bannerFile)
         }
     }
 }

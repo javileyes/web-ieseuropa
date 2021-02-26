@@ -8,7 +8,7 @@ import Image from "@/models/Image";
 import Blog from "@/models/Blog";
 
 export default class ImageService {
-    static async postImage(component: Vue, title: string, key: string, imageFile: File | undefined) {
+    static async postImage(component: Vue, title: string, key: string, imageFile: File | null) {
         // @ts-ignore
         component.loading = true
 
