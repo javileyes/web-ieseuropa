@@ -45,7 +45,7 @@ import {Component, Prop, Ref, Watch, Vue} from "vue-property-decorator";
 import BlogLabel from "@/models/BlogLabel";
 import BlogService from "@/services/BlogService";
 import Fullscreen from "vue-fullscreen/src/component";
-import Marked from 'marked'
+// import Marked from 'marked'
 
 @Component({components:{Fullscreen}})
 export default class PostBlogPanel extends Vue {
@@ -65,12 +65,12 @@ export default class PostBlogPanel extends Vue {
     fullscreen: boolean = true
 
     mounted() {
-        this.markedId.innerHTML = Marked(this.body)
+        // this.markedId.innerHTML = Marked(this.body)
     }
 
     @Watch('body')
     onBody() {
-      this.markedId.innerHTML = Marked(this.body)
+      // this.markedId.innerHTML = Marked(this.body)
     }
 
     fullscreenChange(fullscreen: boolean) {

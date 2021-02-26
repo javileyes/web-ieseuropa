@@ -4,3 +4,4 @@ declare module '*.vue' {
 }
 
 declare module "vue-fullscreen/src/component";
+declare module "marked";

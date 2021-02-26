@@ -59,10 +59,9 @@
 <script lang="ts">
 import {Component, Ref, Vue} from "vue-property-decorator"
 import Blog from "@/models/Blog";
-import BlogService from "@/services/BlogService"
 import {format} from "date-fns";
 import {es} from "date-fns/locale";
-import Marked from 'marked'
+// import Marked from 'marked'
 
 @Component
 export default class BlogView extends Vue {
@@ -72,10 +71,10 @@ export default class BlogView extends Vue {
 
 
     created() {
-        BlogService.getBlog(this, parseInt(this.$route.params.id))
-            .then(() => {
-            this.markedId.innerHTML = Marked(this.blog.body!)
-        })
+        // BlogService.getBlog(this, parseInt(this.$route.params.id))
+        //     .then(() => {
+        //     this.markedId.innerHTML = Marked(this.blog.body!)
+        // })
 
     }
 

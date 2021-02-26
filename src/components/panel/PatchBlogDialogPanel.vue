@@ -72,7 +72,7 @@ import BlogService from "@/services/BlogService";
 import BlogLabel from "@/models/BlogLabel";
 import {getModule} from "vuex-module-decorators";
 import SnackbarModule from "@/store/SnackbarModule";
-import Marked from "marked"
+// import Marked from "marked"
 
 @Component
 export default class PatchBlogDialogPanel extends Vue {
@@ -90,12 +90,12 @@ export default class PatchBlogDialogPanel extends Vue {
 
     inicio() {
         this.markedId.removeAttribute("hidden")
-        this.markedId.innerHTML = Marked(this.blog.body!)
+        // this.markedId.innerHTML = Marked(this.blog.body!)
     }
 
     @Watch('blog.body')
     onBody() {
-        this.markedId.innerHTML = Marked(this.blog.body!)
+        // this.markedId.innerHTML = Marked(this.blog.body!)
     }
 
     patchBlog() {

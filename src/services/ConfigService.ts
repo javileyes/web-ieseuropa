@@ -1,4 +1,3 @@
-import PostSliderPanel from "@/components/panel/PostSliderPanel.vue";
 import ConstantTool from "@/services/tool/ConstantTool";
 import {getModule} from "vuex-module-decorators";
 import SessionModule from "@/store/SessionModule";
