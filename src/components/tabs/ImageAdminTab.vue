@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col>
+            <v-col cols="12" sm="12" md="6">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Imagenes</v-toolbar-title>
