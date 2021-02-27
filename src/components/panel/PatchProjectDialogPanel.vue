@@ -87,7 +87,7 @@ export default class PatchProjectDialogPanel extends Vue {
         this.markedId.innerHTML = Marked(this.project.body!)
     }
 
-    @Watch('blog.body')
+    @Watch('project.body')
     onBody() {
         this.markedId.innerHTML = Marked(this.project.body!)
     }
