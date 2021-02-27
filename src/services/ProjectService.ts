@@ -5,6 +5,7 @@ import SessionModule from "@/store/SessionModule";
 import SnackbarModule from "@/store/SnackbarModule";
 import Project from "@/models/Project";
 import JsonTool from "@/services/tool/JsonTool";
+import PatchProjectDialogPanel from "@/components/panel/PatchProjectDialogPanel.vue";
 
 export default class ProjectService {
     static async postProject(component: Vue, title: string, body: string, bannerFile: File | null) {
@@ -108,7 +109,7 @@ export default class ProjectService {
         }
     }
 
-    static async deleteProjectDocument(component: Vue, id: number, documentId: number) {
+    static async deleteProjectDocument(component: PatchProjectDialogPanel, id: number, documentId: number) {
         // @ts-ignore
         component.loading = true
 
@@ -119,6 +120,10 @@ export default class ProjectService {
                 })
             // @ts-ignore
             component.loading = false
+            // @ts-ignore
+            const items = component.project.documents.filter(i => i.id !== documentId)
+            // @ts-ignore
+            component.project.documents = items
             // @ts-ignore
             component.refresh()
             getModule(SnackbarModule).makeToast("Documento eliminado correctamente!")

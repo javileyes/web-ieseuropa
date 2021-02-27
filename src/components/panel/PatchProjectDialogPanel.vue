@@ -29,7 +29,7 @@
                                         <v-icon color="secondary" left>
                                             mdi-clipboard-text
                                         </v-icon>
-                                        <span style="color:black; font-weight: bold">{{ document.title }}</span>
+                                        <span style="color:black; font-weight: bold">{{ document.description }}</span>
                                     </v-chip>
                                 </v-row>
                             </v-container>
