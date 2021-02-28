@@ -72,7 +72,7 @@ export default class ConfigService {
             component.loading = false
             // @ts-ignore
             component.refresh();
-            getModule(SnackbarModule).makeToast("Error al eliminar una elemento")
+            getModule(SnackbarModule).makeToast("Error al eliminar un elemento")
         }
     }
 }

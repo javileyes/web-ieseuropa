@@ -128,7 +128,7 @@ export default class FamilyService {
             // @ts-ignore
             component.loading = false
             console.log(err)
-            getModule(SnackbarModule).makeToast("No se ha podido obtener los proyectos");
+            getModule(SnackbarModule).makeToast("No se ha podido obtener las familias");
         }
     }
 

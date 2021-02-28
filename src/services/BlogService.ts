@@ -69,7 +69,7 @@ export default class blogService {
             // @ts-ignore
             component.loading = false
             console.log(err)
-            getModule(SnackbarModule).makeToast("No se ha podido el blog")
+            getModule(SnackbarModule).makeToast("No se ha podido crear el blog")
         }
     }
 
@@ -86,7 +86,7 @@ export default class blogService {
                 formData, {
                 headers: {Authorization: getModule(SessionModule).session.token}
             })
-            getModule(SnackbarModule).makeToast("Se ha creado el blog correctamente!")
+            getModule(SnackbarModule).makeToast("Se ha editado el blog correctamente!")
             // @ts-ignore
             component.loading = false
             // @ts-ignore
@@ -95,7 +95,7 @@ export default class blogService {
             // @ts-ignore
             component.loading = false
             console.log(err)
-            getModule(SnackbarModule).makeToast("No se ha podido el blog")
+            getModule(SnackbarModule).makeToast("No se ha podido editar el blog")
         }
     }
 

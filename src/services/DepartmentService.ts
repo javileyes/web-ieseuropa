@@ -169,7 +169,7 @@ export default class DepartmentService {
             console.log(err)
             // @ts-ignore
             component.loading = false
-            getModule(SnackbarModule).makeToast("Error al eliminar una departamento")
+            getModule(SnackbarModule).makeToast("Error al eliminar un departamento")
         }
     }
 
