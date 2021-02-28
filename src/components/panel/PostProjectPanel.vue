@@ -1,6 +1,6 @@
 <template>
     <Fullscreen ref="fullscreen" @change="fullscreenChange">
-        <v-card height="100%">
+        <v-card height="100%" style="overflow: scroll">
             <v-toolbar color="secondary" dark>
                 <v-toolbar-title>Crear Proyecto</v-toolbar-title>
                 <v-spacer/>

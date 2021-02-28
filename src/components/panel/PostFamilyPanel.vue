@@ -1,6 +1,6 @@
 <template>
     <Fullscreen ref="fullscreen" @change="fullscreenChange">
-        <v-card height="100%">
+        <v-card height="100%" style="overflow: scroll">
             <v-toolbar color="secondary" dark>
                 <v-toolbar-title>Crear Familia</v-toolbar-title>
                 <v-spacer/>
@@ -14,16 +14,16 @@
                     <v-row>
                         <v-col>
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
-                            <v-text-field v-model="url" label="Url" filled clearable :disabled="!internal" />
+                            <v-text-field v-model="url" label="Url" filled clearable :disabled="internal" />
                             <v-checkbox v-model="internal" label="Interno"/>
                             <p ref="markedId">{{body}}</p>
                             <v-textarea
-                                :disabled="internal" filled auto-grow
+                                :disabled="!internal" filled auto-grow
                                 clearable clear-icon="mdi-close-circle"
                                 name="input-7-4" label="Cuerpo" v-model="body"
                             />
                             <v-file-input
-                                :disabled="internal"
+                                :disabled="!internal"
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
                                 label="image" append-icon="mdi-file-image"
