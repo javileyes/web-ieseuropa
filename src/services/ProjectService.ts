@@ -6,6 +6,9 @@ import SnackbarModule from "@/store/SnackbarModule";
 import Project from "@/models/Project";
 import JsonTool from "@/services/tool/JsonTool";
 import PatchProjectDialogPanel from "@/components/panel/PatchProjectDialogPanel.vue";
+import BlogView from "@/views/BlogView.vue";
+import Blog from "@/models/Blog";
+import ProjectView from "@/views/ProjectView.vue";
 
 export default class ProjectService {
     static async postProject(component: Vue, title: string, body: string, bannerFile: File | null) {
@@ -78,6 +81,23 @@ export default class ProjectService {
             component.loading = false
             console.log(err)
             getModule(SnackbarModule).makeToast("No se ha podido obtener los proyectos");
+        }
+    }
+
+    static async getProject(component: ProjectView, id: number) {
+        // @ts-ignore
+        component.loading = true
+        try {
+            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/project/" + id)
+            // @ts-ignore
+            component.project = JsonTool.jsonConvert.deserializeObject(response.data, Project);
+            // @ts-ignore
+            component.loading = false
+        } catch (err) {
+            // @ts-ignore
+            component.loading = false
+            console.log(err)
+            getModule(SnackbarModule).makeToast("No se ha podido obtener el proyecto");
         }
     }
 

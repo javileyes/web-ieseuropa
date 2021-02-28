@@ -6,6 +6,9 @@ import SnackbarModule from "@/store/SnackbarModule";
 import JsonTool from "@/services/tool/JsonTool";
 import Family from "@/models/Family";
 import PatchFamilyDialogPanel from "@/components/panel/PatchFamilyDialogPanel.vue";
+import ProjectView from "@/views/ProjectView.vue";
+import Project from "@/models/Project";
+import FamilyView from "@/views/FamilyView.vue";
 
 export default class FamilyService {
     static async postFamily(component: Vue, title: string, url: string | undefined , body: string | undefined, bannerFile: File | null) {
@@ -126,6 +129,23 @@ export default class FamilyService {
             component.loading = false
             console.log(err)
             getModule(SnackbarModule).makeToast("No se ha podido obtener los proyectos");
+        }
+    }
+
+    static async getFamily(component: FamilyView, id: number) {
+        // @ts-ignore
+        component.loading = true
+        try {
+            const response = await component.axios.get(ConstantTool.BASE_URL + "/public/family/" + id)
+            // @ts-ignore
+            component.family = JsonTool.jsonConvert.deserializeObject(response.data, Family);
+            // @ts-ignore
+            component.loading = false
+        } catch (err) {
+            // @ts-ignore
+            component.loading = false
+            console.log(err)
+            getModule(SnackbarModule).makeToast("No se ha podido obtener la familia");
         }
     }
 

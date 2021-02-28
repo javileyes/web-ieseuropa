@@ -5,7 +5,7 @@
             <v-row align="center" justify="center">
                 <v-col cols>
                     <div class="text-center">
-                        <h1 class="mb-6">{{ blog.title }}</h1>
+                        <h1 class="mb-6">{{ family.title }}</h1>
                         <v-divider class="mx-4"/>
                     </div>
                 </v-col>
@@ -18,7 +18,7 @@
                             <v-img style="background: #ffe3e0" contain
                                    max-height="200"
                                    lazy-src="/cargando-min.png"
-                                   :src="blog.label.image.url"></v-img>
+                                   :src="family.banner.url"></v-img>
                         </v-card>
                     </v-col>
                 </v-row>
@@ -26,23 +26,19 @@
             <v-row>
                 <v-col cols="12">
                     <v-card style="background: #fde2c2" class="dialogo-noticia mx-auto">
-                        <v-card-subtitle style="text-align: end; color: purple">{{ blog.label.title }}</v-card-subtitle>
-                        <v-card-title style="word-break:keep-all; color: blue" class="mt-4">{{ blog.title }}</v-card-title>
+                        <v-card-title style="word-break:keep-all; color: blue" class="mt-4">{{ family.title }}</v-card-title>
 
-                        <v-card-subtitle class="pb-0">
-                            {{ date(blog.createdAt).replace("$", "de") }}
-                        </v-card-subtitle>
                         <v-divider class="mx-4"/>
                         <v-card-text class="text--primary mt-4">
-                            <div ref="markedId" style="text-align: justify"> {{blog.body}} </div>
-<!--                            <p style="text-align: justify" ref="markedId">{{blog.body}}</p>-->
+                            <div ref="markedId" style="text-align: justify"> {{family.body}} </div>
+                            <!--                            <p style="text-align: justify" ref="markedId">{{family.body}}</p>-->
                         </v-card-text>
                     </v-card>
                 </v-col>
             </v-row>
 
-            <v-layout row wrap v-if="blog.images.length">
-                <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
+            <v-layout row wrap v-if="family.images.length">
+                <v-flex xs12 md6 v-for="image in family.images" :key="image.id">
                     <v-card class="ma-3" elevation="0">
                         <v-img class="pointer" style="background: #ffe3e0"
                                height="300"
@@ -58,34 +54,32 @@
 
 <script lang="ts">
 import {Component, Ref, Vue} from "vue-property-decorator"
-import Blog from "@/models/Blog";
-import BlogService from "@/services/BlogService";
-import {format} from "date-fns";
-import {es} from "date-fns/locale";
 import Marked from 'marked'
+import Family from "@/models/Family";
+import FamilyService from "@/services/FamilyService";
 
 @Component
-export default class BlogView extends Vue {
+export default class FamilyView extends Vue {
     loading: boolean = false
-    blog: Blog = new Blog()
+    family: Family = new Family()
     @Ref() readonly markedId!: HTMLParagraphElement
 
 
     created() {
-        BlogService.getBlog(this, parseInt(this.$route.params.id))
+        FamilyService.getFamily(this, parseInt(this.$route.params.id))
             .then(() => {
-            this.markedId.innerHTML = Marked(this.blog.body!)
-        })
+                this.markedId.innerHTML = Marked(this.family.body!)
+            })
 
     }
 
     mounted() {
-        this.markedId.innerHTML = Marked(this.blog.body!) + "prueba"
+        this.markedId.innerHTML = Marked(this.family.body!) + "prueba"
     }
 
-    date(createdAt: string) {
-        return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
-    }
+    // date(createdAt: string) {
+    //     return format(new Date(createdAt), "dd $ MMMM, YYY", {locale: es})
+    // }
 
     goingTo(dir : string) {
         window.open(dir, "_blank")

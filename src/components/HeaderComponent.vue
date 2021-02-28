@@ -42,7 +42,7 @@
                 </template>
 
                 <v-list v-if="button.submenus">
-                    <v-list-item class="tile" link v-for="(item, index) in button.submenus" :key="index" @click="$router.push(item.url)">
+                    <v-list-item class="tile" link v-for="(item, index) in button.submenus" :key="index" @click="redirectSubmenu(item.url, item.external)">
                         <v-list-item-title>{{ item.title }}</v-list-item-title>
                     </v-list-item>
                 </v-list>
@@ -66,7 +66,7 @@
 
                     <v-list-item
                         v-for="submenu in item.submenus" :key="submenu.title" link
-                        @click="$router.push(submenu.url)" style="padding-left: 44px;"
+                        @click="redirectSubmenu(submenu.url, submenu.external)" style="padding-left: 44px;"
                     >
                         <v-list-item-content>
                             <v-list-item-title>{{ submenu.title }}</v-list-item-title>
@@ -82,6 +82,8 @@
 import {Component, Vue} from "vue-property-decorator";
 import BlogLabelService from "@/services/BlogLabelService";
 import BlogLabel from "@/models/BlogLabel";
+import Family from "@/models/Family";
+import FamilyService from "@/services/FamilyService";
 
 
 @Component
@@ -90,13 +92,17 @@ export default class HeaderComponent extends Vue {
     drawer = null
     blogMenuLabels: any = [{title: "Todas", url: "/noticias"}]
     blogLabels: BlogLabel[] = []
+    families: Family[] = []
+    familiesMenu: any = []
 
     buttons = [
         { title: "Inicio", url: "/" },
         { title: "Departamentos", url: "/departamentos" },
         { title: "Equipo Directivo", url: "/equipo-directivo" },
         { title: "Secretaría Virtual", url: "/secretaria" },
-        { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels }
+        { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels },
+        { title: "Proyectos", url: "/proyectos" },
+        { title: "Familias", submenus: this.familiesMenu}
     ]
 
     items = [
@@ -107,16 +113,34 @@ export default class HeaderComponent extends Vue {
 
     created() {
         this.getBlogLabels()
+        this.getFamilies()
+    }
+
+    redirectSubmenu(url: string, externalUrl: string | null) {
+        if (externalUrl) {
+            window.open(externalUrl, "_blank")
+        } else {
+            this.$router.push(url)
+        }
     }
 
     redirect(url: string, submenu: object | undefined) {
         if (submenu) {
-            console.log("Hola")
             return
         } else {
-            console.log("dentro")
             this.$router.push(url)
         }
+    }
+
+    async getFamilies() {
+        await FamilyService.getFamilies(this, this.families)
+        this.families.forEach(v => {
+            this.familiesMenu.push({
+                title: v.title,
+                url: "/familia/" + v.id,
+                external: v.url
+            })
+        })
     }
 
     async getBlogLabels() {

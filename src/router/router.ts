@@ -48,6 +48,21 @@ const routes: Array<RouteConfig> = [
         path: '/equipo-directivo',
         name: 'Team',
         component: () => import('../views/ManagementTeamView.vue')
+    },
+    {
+        path: '/proyectos',
+        name: 'Projects',
+        component: () => import('../views/ProjectsView.vue')
+    },
+    {
+        path: '/proyecto/:id',
+        name: 'Project',
+        component: () => import('../views/ProjectView.vue')
+    },
+    {
+        path: '/familia/:id',
+        name: 'Family',
+        component: () => import('../views/FamilyView.vue')
     }
 ]
 
