@@ -20,6 +20,16 @@ const routes: Array<RouteConfig> = [
         component: () => import('../views/AdminView.vue')
     },
     {
+        path: '/centro',
+        name: 'Centro',
+        component: () => import('../views/CenterView.vue')
+    },
+    {
+        path: '/documentos-institucionales',
+        name: 'Documentos Institucionales',
+        component: () => import('../views/InstitutionalDocumentsView.vue')
+    },
+    {
         path: '/secretaria',
         name: 'Secretary',
         component: () => import('../views/SecretaryView.vue')

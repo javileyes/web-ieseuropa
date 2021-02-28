@@ -5,7 +5,7 @@
                 <v-btn icon dark @click="close">
                     <v-icon>mdi-close</v-icon>
                 </v-btn>
-                <v-toolbar-title>Editar Noticia</v-toolbar-title>
+                <v-toolbar-title>Editar Proyecto</v-toolbar-title>
             </v-toolbar>
             <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
             <v-form ref="form">
@@ -78,9 +78,9 @@ export default class PatchProjectDialogPanel extends Vue {
     documentFile: File | null = null
     bannerFile: File | null = null
     documentTitle: string = ""
-    titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
-    bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
-    bannerRules = [(v: File) => v ? true : "Seleccione una Banner"]
+    // titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
+    // bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
+    // bannerRules = [(v: File) => v ? true : "Seleccione una Banner"]
 
     inicio() {
         this.markedId.removeAttribute("hidden")

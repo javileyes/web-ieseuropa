@@ -63,8 +63,8 @@ export default class PatchDepartmentPanel extends Vue {
     title: string = ""
     imageFile: File | null = null
     bannerFile: File | null = null
-    titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
-    imageRules = [(v: File) => v ? true : "Seleccione una Imagen"]
+    // titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
+    // imageRules = [(v: File) => v ? true : "Seleccione una Imagen"]
 
 
     deleteDepartment() {

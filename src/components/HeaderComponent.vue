@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-app-bar class="pointer" @click="$router.push(buttons[0].url)" color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
+        <v-app-bar class="pointer" @click="$router.push('/')" color="#fcb69f" dark height="200px" src="@/assets/navbar-banner.jpg">
             <template v-slot:img="{ props }">
                 <v-img v-bind="props" gradient="to top right, rgba(19,84,122,.5), rgb(255 245 226 / 80%)"/>
             </template>
@@ -96,9 +96,9 @@ export default class HeaderComponent extends Vue {
     familiesMenu: any = []
 
     buttons = [
-        { title: "Inicio", url: "/" },
+        { title: "Centro", url: "", submenus: [{title: "Mi Centro", url:"/centro"}, {title: "Equipo Directivo", url: "/equipo-directivo"}, {title: "Documentos Institucionales", url:"/documentos-institucionales"}] },
         { title: "Departamentos", url: "/departamentos" },
-        { title: "Equipo Directivo", url: "/equipo-directivo" },
+        // { title: "Ciclos Formativos", url: "" },
         { title: "Secretaría Virtual", url: "/secretaria" },
         { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels },
         { title: "Proyectos", url: "/proyectos" },

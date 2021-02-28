@@ -35,19 +35,19 @@
                             <v-divider class="mb-5"/>
 
                             <v-text-field v-model="family.title" :rules="titleRules" label="Titulo" filled clearable />
-                            <v-text-field v-model="family.url" label="Url" filled clearable :disabled="!internal" />
+                            <v-text-field v-model="family.url" label="Url" filled clearable :disabled="internal" />
                             <v-checkbox v-model="internal" label="Interno"/>
                             <p hidden ref="markedId">{{family.body}}</p>
                             <v-textarea
                                 @click="inicio" filled auto-grow clearable
                                 clear-icon="mdi-close-circle" name="input-7-4"
-                                label="Cuerpo" v-model="family.body" :disabled="internal"
+                                label="Cuerpo" v-model="family.body" :disabled="!internal"
                             />
                             <v-file-input
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
                                 label="image" append-icon="mdi-file-image"
-                                prepend-icon="" :disabled="internal"
+                                prepend-icon="" :disabled="!internal"
                             />
                             <v-btn block :loading="loading" :disabled="loading" color="success" @click="patchFamily">
                                 Guardar
