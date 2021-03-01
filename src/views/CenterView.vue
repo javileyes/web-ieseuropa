@@ -18,8 +18,8 @@
                                 <v-img height="250" src="@/assets/center/centro-interior.jpg"/>
                             </v-col>
                         </v-row>
-                        <v-row class="mt-6">
-                            <div >
+                        <v-row class="ma-5 mt-6">
+                            <div style="font-family: 'Source Sans Pro', 'Helvetica', 'sans-serif';">
                                 <h3> El I.E.S. Europa es un centro de titularidad pública, dependiente de la Consejería de Educación, Formación y Empleo de la Región de Murcia,
                                     que educa a alumnos y alumnas de Educación Secundaria, Bachillerato y Ciclos Formativos.
                                 </h3>

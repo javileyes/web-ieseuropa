@@ -29,7 +29,7 @@
                                             </v-list-item>
                                         </v-list>
                                     </v-col>
-                                    <v-col class="d-flex flex-column align-start">
+                                    <v-col>
                                         <v-list style="background: #edf4fc">
                                             <v-list-item v-for="item in contactos2" :key="item.title">
                                                 <v-list-item-content>
@@ -110,16 +110,17 @@ export default class ManagementTeamView extends Vue {
     ]
 
     contactos1 = [
-        { title: "Secretaría:", content: "De 9:00 a 12:00" },
-        { title: "Teléfono:", content: "968 449100" },
-        { title: "Fax:", content: "968 447382" }
-
+        { title: "Horario del centro:", content: "De 8:30 a 14:40" },
+        { title: "Horario de Secretaría:", content: "De 9:00 a 14:00" },
+        { title: "Email centro:", content: "30001230@educarm.es" }
     ]
 
     contactos2 = [
-        { title: "E-mail:", content: "30001230@educarm.es" },
-        { title: "Código de Centro:", content: "30001230" },
-        { title: "Móvil del Centro (para viajes):", content: "xxx xxx xxx" }
+
+        { title: "Cita previa:", content: "citapreviaieseuropa@gmail.com"},
+        { title: "Teléfono:", content: "968 449100" },
+        { title: "Fax:", content: "968 447382" }
+
     ]
 
 
