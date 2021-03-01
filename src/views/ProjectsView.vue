@@ -15,9 +15,9 @@
                     <v-container>
                         <v-row>
                             <v-col v-for="project in projects" :key="project.title" class="d-flex child-flex" cols="6" sm="6" md="4">
-                                <v-card hover @click="$router.push('/proyecto/' + project.id)">
+                                <v-card hover style="background:#edf4fc" @click="$router.push('/proyecto/' + project.id)">
                                     <v-img aspect-ratio="1" class="grey lighten-2" :src="project.banner.url" />
-                                    <v-card-title style="background:#edf4fc" class="title">
+                                    <v-card-title style="word-break:keep-all; background:#edf4fc" class="title">
                                         {{ project.title }}
                                     </v-card-title>
                                 </v-card>
