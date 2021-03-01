@@ -107,10 +107,24 @@ export default class DepartmentView extends Vue {
 
 <style>
 .dep_banner {
-    height: 500px!important;
+    height: 650px!important;
+}
+
+@media (max-width: 1700px) {
+    .dep_banner {
+        height: 500px!important;
+    }
+
 }
 
 @media (max-width: 1000px) {
+    .dep_banner {
+        height: 350px!important;
+    }
+
+}
+
+@media (max-width: 600px) {
     .dep_banner {
         height: 230px!important;
     }
