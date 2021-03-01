@@ -96,13 +96,13 @@ export default class HeaderComponent extends Vue {
     familiesMenu: any = []
 
     buttons = [
-        { title: "Centro", url: "", submenus: [{title: "Mi Centro", url:"/centro"}, {title: "Equipo Directivo", url: "/equipo-directivo"}, {title: "Documentos Institucionales", url:"/documentos-institucionales"}] },
+        { title: "Centro", url: "", submenus: [{title: "El Centro", url:"/centro"}, {title: "Equipo Directivo", url: "/equipo-directivo"}, {title: "Documentos Institucionales", url:"/documentos-institucionales"}] },
         { title: "Departamentos", url: "/departamentos" },
         // { title: "Ciclos Formativos", url: "" },
         { title: "Secretaría Virtual", url: "/secretaria" },
-        { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels },
         { title: "Proyectos", url: "/proyectos" },
-        { title: "Familias", submenus: this.familiesMenu}
+        { title: "Familias", submenus: this.familiesMenu},
+        { title: "Noticias", url: "/noticias", submenus: this.blogMenuLabels }
     ]
 
     items = [
