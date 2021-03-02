@@ -299,6 +299,7 @@ export default class HeaderComponent extends Vue {
     .header-subtitle {
         font-size: 17px!important;
         padding-left: 30px;
+        margin-bottom: 5px;
     }
     .logo {
         margin-top: 10px;
