@@ -92,11 +92,6 @@ export default class BlogsView extends Vue {
     totalItems: number = 0
 
 
-    @Watch("options")
-    watchOptions() {
-        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage, this.label.id)
-    }
-
     async created() {
         await this.refresh()
         this.watchQuery()
@@ -110,8 +105,15 @@ export default class BlogsView extends Vue {
                     this.label = v
                 }
             })
+        } else {
+            this.label = new BlogLabel()
         }
         this.watchOptions()
+    }
+
+    @Watch("options")
+    watchOptions() {
+        BlogService.getBlogs(this, this.blogs, this.page - 1, this.itemsPerPage, this.label.id)
     }
 
     refresh() {

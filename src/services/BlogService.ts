@@ -11,6 +11,7 @@ import BlogView from "@/views/BlogView.vue";
 export default class blogService {
 
     static async getBlogs(component: Vue, blogs: Blog[], page: number, size: number, labelId: number | null | undefined) {
+        console.log(labelId)
         // @ts-ignore
         component.loading = true
         try {
