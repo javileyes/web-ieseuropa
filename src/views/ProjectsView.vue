@@ -33,7 +33,7 @@
                         <v-img height="250" src="@/assets/departments-banner.jpg"/>
                         <v-card-title>Proyectos</v-card-title>
                         <v-card-text>
-                            <div>Encuentra información sobre los distintos departamentos</div>
+                            <div>Encuentra información sobre los distintos proyectos</div>
                         </v-card-text>
 
                         <v-divider class="mx-4"/>
