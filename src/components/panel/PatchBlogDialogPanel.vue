@@ -31,12 +31,21 @@
                                     </v-col>
                                 </v-row>
                             </v-container>
-
                             <v-divider class="mb-5"/>
-
+                            <v-row justify="start">
+                                <v-col cols="2" md="3" sm="4">
+                                    <v-checkbox color="secondary" v-model="marking" label="Interactivo"/>
+                                </v-col>
+                                <v-col class="mt-3">
+                                    <v-btn icon color="secondary" @click="checkmarkdown">
+                                        COMPROBAR
+                                        <v-icon>mdi-crosshairs-gps</v-icon>
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
                             <p hidden ref="markedId">{{blog.body}}</p>
-                            <v-textarea @click="inicio" filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
 
                             <v-select
                                 :items="labels" filled
@@ -83,19 +92,25 @@ export default class PatchBlogDialogPanel extends Vue {
     @Prop() readonly switchDialog!: any
     @Prop() dialog!: boolean
     @Ref() readonly markedId!: HTMLParagraphElement
+    marking: boolean = true
     loading: boolean = false
     imageFile: File | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
 
-    inicio() {
+    checkmarkdown() {
         this.markedId.removeAttribute("hidden")
         this.markedId.innerHTML = Marked(this.blog.body!)
     }
 
     @Watch('blog.body')
     onBody() {
-        this.markedId.innerHTML = Marked(this.blog.body!)
+        if (this.marking) this.markedId.innerHTML = Marked(this.blog.body!)
+    }
+
+    cleartext() {
+        this.blog.body = ""
+        this.checkmarkdown()
     }
 
     patchBlog() {
@@ -109,10 +124,10 @@ export default class PatchBlogDialogPanel extends Vue {
     }
 
     postBlogImage() {
-        if (this.blog.images!.length < 4) {
+        if (this.blog.images!.length < 10) {
             BlogService.postBlogImage(this, this.imageFile, this.blog.id!)
         } else {
-            getModule(SnackbarModule).makeToast("No se pueden adjuntar mas de 4 imagenes")
+            getModule(SnackbarModule).makeToast("No se pueden adjuntar mas de 10 imagenes")
         }
     }
 

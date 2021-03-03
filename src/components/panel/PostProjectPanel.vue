@@ -11,11 +11,22 @@
             <v-progress-linear :indeterminate="true" :active="loading" color="warning"/>
             <v-form ref="form">
                 <v-container>
+                    <v-row justify="space-between">
+                        <v-col cols="6">
+                            <v-checkbox color="secondary" v-model="marking" label="Interactivo"/>
+                        </v-col>
+                        <v-col cols="6" class="mt-3">
+                            <v-btn icon color="secondary" @click="checkmarkdown">
+                                COMPROBAR
+                                <v-icon>mdi-crosshairs-gps</v-icon>
+                            </v-btn>
+                        </v-col>
+                    </v-row>
                     <v-row>
                         <v-col>
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
                             <p ref="markedId">{{body}}</p>
-                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
                             <v-file-input
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
@@ -47,7 +58,7 @@ export default class PostProjectPanel extends Vue {
     @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
     @Ref() readonly markedId!: HTMLParagraphElement
-
+    marking: boolean = true
 
     loading: boolean = false
     title: string = ""
@@ -62,9 +73,18 @@ export default class PostProjectPanel extends Vue {
         this.markedId.innerHTML = Marked(this.body)
     }
 
+    checkmarkdown() {
+        this.markedId.innerHTML = Marked(this.body!)
+    }
+
     @Watch('body')
     onBody() {
-        this.markedId.innerHTML = Marked(this.body)
+        if (this.marking) this.markedId.innerHTML = Marked(this.body)
+    }
+
+    cleartext() {
+        this.body = ""
+        this.checkmarkdown()
     }
 
     fullscreenChange(fullscreen: boolean) {

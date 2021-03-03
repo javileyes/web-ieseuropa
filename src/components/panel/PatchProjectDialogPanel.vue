@@ -35,10 +35,20 @@
                             </v-container>
 
                             <v-divider class="mb-5"/>
-
+                            <v-row justify="space-between">
+                                <v-col cols="6">
+                                    <v-checkbox color="secondary" v-model="marking" label="Interactivo"/>
+                                </v-col>
+                                <v-col cols="6" class="mt-3">
+                                    <v-btn icon color="secondary" @click="checkmarkdown">
+                                        COMPROBAR
+                                        <v-icon>mdi-crosshairs-gps</v-icon>
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
                             <v-text-field v-model="project.title" :rules="titleRules" label="Titulo" filled clearable />
                             <p hidden ref="markedId">{{project.body}}</p>
-                            <v-textarea @click="inicio" filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="project.body" :rules="bodyRules"/>
+                            <v-textarea @click="checkmarkdown" filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="project.body" :rules="bodyRules"/>
                             <v-file-input
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
@@ -61,7 +71,6 @@
 
 <script lang="ts">
 import {Component, Prop, Ref, Vue, Watch} from "vue-property-decorator"
-import BlogService from "@/services/BlogService";
 import Marked from "marked"
 import Project from "@/models/Project";
 import ProjectService from "@/services/ProjectService";
@@ -74,6 +83,7 @@ export default class PatchProjectDialogPanel extends Vue {
     @Prop() readonly switchDialog!: any
     @Prop() dialog!: boolean
     @Ref() readonly markedId!: HTMLParagraphElement
+    marking: boolean = true
     loading: boolean = false
     documentFile: File | null = null
     bannerFile: File | null = null
@@ -82,14 +92,19 @@ export default class PatchProjectDialogPanel extends Vue {
     // bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
     // bannerRules = [(v: File) => v ? true : "Seleccione una Banner"]
 
-    inicio() {
+    checkmarkdown() {
         this.markedId.removeAttribute("hidden")
         this.markedId.innerHTML = Marked(this.project.body!)
     }
 
     @Watch('project.body')
     onBody() {
-        this.markedId.innerHTML = Marked(this.project.body!)
+        if (this.marking) this.markedId.innerHTML = Marked(this.project.body!)
+    }
+
+    cleartext() {
+        this.project.body = ""
+        this.checkmarkdown()
     }
 
     patchBlog() {
