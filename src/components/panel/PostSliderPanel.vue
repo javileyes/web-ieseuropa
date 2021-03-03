@@ -10,6 +10,7 @@
                     <v-col>
                         <v-text-field v-model="title" label="Title" :rules="titleRules" filled clearable />
                         <v-text-field v-model="url" label="Enlace" filled clearable />
+                        <v-text-field v-model="location" label="Orden" filled clearable />
                         <v-file-input
                             filled v-model="imageFile"
                             placeholder="Suba un banner"
@@ -42,13 +43,14 @@ export default class PostSliderPanel extends Vue {
     imageFile: File | null = null
     title: string = ""
     url: string = ""
+    location: number | null = null
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     imageRules = [(v: File) => v ? true : "Seleccione un Imagen"]
 
 
     postSlider() {
         if (this.form.validate()) {
-            SliderService.postSlider(this, this.title, this.url, this.imageFile)
+            SliderService.postSlider(this, this.title, this.url, this.imageFile, this.location)
         }
     }
 }

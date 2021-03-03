@@ -9,7 +9,7 @@ import PostSliderPanel from "@/components/panel/PostSliderPanel.vue";
 
 export default class SliderService {
 
-    static async postSlider(component: PostSliderPanel, title: string, url: string, imageFile: File | null) {
+    static async postSlider(component: PostSliderPanel, title: string, url: string, imageFile: File | null, location: number | null) {
         // @ts-ignore
         component.loading = true
 
@@ -18,6 +18,7 @@ export default class SliderService {
         formData.set("title", title)
         formData.set("url", url)
         if(imageFile) formData.set("imageFile", imageFile)
+        if(location) formData.set("location", location.toString())
 
         try {
             await component.axios.post(

@@ -10,6 +10,8 @@ export default class Slider {
     title?: string = undefined
     @JsonProperty("url", String, true)
     url?: string = undefined
+    @JsonProperty("location", Number, true)
+    location?: number = undefined
     @JsonProperty("image", Document, true)
     image?: Document = undefined
 
