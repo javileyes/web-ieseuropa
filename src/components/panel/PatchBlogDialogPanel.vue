@@ -37,7 +37,7 @@
                                     <v-checkbox color="secondary" v-model="marking" label="Interactivo"/>
                                 </v-col>
                                 <v-col class="mt-3">
-                                    <v-btn icon color="secondary" @click="inicio">
+                                    <v-btn icon color="secondary" @click="checkmarkdown">
                                         COMPROBAR
                                         <v-icon>mdi-crosshairs-gps</v-icon>
                                     </v-btn>
@@ -45,7 +45,7 @@
                             </v-row>
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
                             <p hidden ref="markedId">{{blog.body}}</p>
-                            <v-textarea @click="inicio" filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
 
                             <v-select
                                 :items="labels" filled
@@ -98,7 +98,7 @@ export default class PatchBlogDialogPanel extends Vue {
     titleRules = [(v: string) => v && v.length > 0 ? true : "Nombre requerido"]
     bodyRules = [(v: string) => v && v.length > 0 ? true : "Cuerpo requerido"]
 
-    inicio() {
+    checkmarkdown() {
         this.markedId.removeAttribute("hidden")
         this.markedId.innerHTML = Marked(this.blog.body!)
     }
