@@ -12,7 +12,7 @@
             </v-row>
             <v-row align="center" justify="center">
                 <v-col cols>
-                    <v-img class="dep_banner"
+                    <v-img contain class="dep_banner"
                         :src="department.banner.url"
                         lazy-src="/cargando-min.png"
                     >
@@ -107,19 +107,19 @@ export default class DepartmentView extends Vue {
 
 <style>
 .dep_banner {
-    max-height: 900px!important;
+    max-height: 500px!important;
 }
 
 @media (max-width: 1700px) {
     .dep_banner {
-        max-height: 650px!important;
+        max-height: 450px!important;
     }
 
 }
 
 @media (max-width: 1000px) {
     .dep_banner {
-        max-height: 500px!important;
+        max-height: 400px!important;
     }
 
 }
