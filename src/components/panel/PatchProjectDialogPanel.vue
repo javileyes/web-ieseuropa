@@ -48,7 +48,7 @@
                             </v-row>
                             <v-text-field v-model="project.title" :rules="titleRules" label="Titulo" filled clearable />
                             <p hidden ref="markedId">{{project.body}}</p>
-                            <v-textarea @click="checkmarkdown" filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="project.body" :rules="bodyRules"/>
+                            <v-textarea @click="checkmarkdown" filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="project.body" :rules="bodyRules"/>
                             <v-file-input
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
@@ -71,7 +71,6 @@
 
 <script lang="ts">
 import {Component, Prop, Ref, Vue, Watch} from "vue-property-decorator"
-import BlogService from "@/services/BlogService";
 import Marked from "marked"
 import Project from "@/models/Project";
 import ProjectService from "@/services/ProjectService";
@@ -101,6 +100,11 @@ export default class PatchProjectDialogPanel extends Vue {
     @Watch('project.body')
     onBody() {
         if (this.marking) this.markedId.innerHTML = Marked(this.project.body!)
+    }
+
+    cleartext() {
+        this.project.body = ""
+        this.checkmarkdown()
     }
 
     patchBlog() {

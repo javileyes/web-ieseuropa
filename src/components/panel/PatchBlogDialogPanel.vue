@@ -45,7 +45,7 @@
                             </v-row>
                             <v-text-field v-model="blog.title" :rules="titleRules" label="Titulo" filled clearable />
                             <p hidden ref="markedId">{{blog.body}}</p>
-                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="blog.body" :rules="bodyRules"/>
 
                             <v-select
                                 :items="labels" filled
@@ -106,6 +106,11 @@ export default class PatchBlogDialogPanel extends Vue {
     @Watch('blog.body')
     onBody() {
         if (this.marking) this.markedId.innerHTML = Marked(this.blog.body!)
+    }
+
+    cleartext() {
+        this.blog.body = ""
+        this.checkmarkdown()
     }
 
     patchBlog() {

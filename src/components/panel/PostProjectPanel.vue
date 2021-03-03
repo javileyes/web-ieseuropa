@@ -26,7 +26,7 @@
                         <v-col>
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
                             <p ref="markedId">{{body}}</p>
-                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
+                            <v-textarea filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()" name="input-7-4" label="Cuerpo" v-model="body" :rules="bodyRules"/>
                             <v-file-input
                                 filled v-model="bannerFile"
                                 placeholder="Suba una banner"
@@ -80,6 +80,11 @@ export default class PostProjectPanel extends Vue {
     @Watch('body')
     onBody() {
         if (this.marking) this.markedId.innerHTML = Marked(this.body)
+    }
+
+    cleartext() {
+        this.body = ""
+        this.checkmarkdown()
     }
 
     fullscreenChange(fullscreen: boolean) {

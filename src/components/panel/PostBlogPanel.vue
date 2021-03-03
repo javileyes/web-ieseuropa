@@ -27,7 +27,7 @@
                             <v-text-field v-model="title" label="Titulo" :rules="titleRules" filled clearable />
                             <p ref="markedId">{{body}}</p>
                             <v-textarea
-                                filled auto-grow clearable clear-icon="mdi-close-circle"
+                                filled auto-grow clearable clear-icon="mdi-close-circle" @click:clear="cleartext()"
                                 name="input-7-4" label="Cuerpo" v-model="body"
                                 :rules="bodyRules"
                             />
@@ -90,6 +90,11 @@ export default class PostBlogPanel extends Vue {
     @Watch('body')
     onBody() {
         if (this.marking) this.markedId.innerHTML = Marked(this.body)
+    }
+
+    cleartext() {
+        this.body = ""
+        this.checkmarkdown()
     }
 
     fullscreenChange(fullscreen: boolean) {
