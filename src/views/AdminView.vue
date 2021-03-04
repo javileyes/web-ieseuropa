@@ -55,6 +55,9 @@
                 <v-tab-item>
                     <FamilyAdminTab/>
                 </v-tab-item>
+                <v-tab-item>
+                    <InstitutionalDocumentTab />
+                </v-tab-item>
             </v-tabs-items>
         </v-card>
     </div>
@@ -72,8 +75,10 @@ import TeamAdminTab from "@/components/tabs/TeamAdminTab.vue";
 import ImageAdminTab from "@/components/tabs/ImageAdminTab.vue";
 import ProjectAdminTab from "@/components/tabs/ProjectAdminTab.vue";
 import FamilyAdminTab from "@/components/tabs/FamilyAdminTab.vue";
+import InstitutionalDocumentTab from "@/components/tabs/InstitutionalDocumentTab.vue";
 
 @Component({components: {
+        InstitutionalDocumentTab,
         FamilyAdminTab,
         ProjectAdminTab,
         ImageAdminTab,
@@ -88,7 +93,7 @@ export default class AdminView extends Vue {
     items = [
         "Secretaría Virtual", "Departamentos", "Hojas Informativas",
         "Noticias", "Sliders", "Equipo Directivo", "Imagenes",
-        "Proyectos", "Familias"
+        "Proyectos", "Familias", "Documentos Institucionales"
     ]
     tab = null
 

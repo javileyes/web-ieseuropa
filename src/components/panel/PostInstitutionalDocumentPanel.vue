@@ -40,17 +40,17 @@
 
 <script lang="ts">
 import {Component, Prop, Ref, Vue} from "vue-property-decorator";
-import ResourceCategory from "@/models/ResourceCategory";
-import ResourceService from "@/services/ResourceService";
+import InstitutionalDocumentCategory from "@/models/InstitutionalDocumentCategory";
+import InstitutionalDocumentService from "@/services/InstitutionalDocumentService";
 
 @Component
-export default class PostResourcePanel extends Vue {
+export default class PostInstitutionalDocumentPanel extends Vue {
     @Ref() readonly form!: HTMLFormElement
     @Prop() readonly refresh!: any
-    @Prop() readonly categories!: ResourceCategory[]
+    @Prop() readonly categories!: InstitutionalDocumentCategory[]
     loading: boolean = false
     documentFile: File | null = null
-    category: ResourceCategory = new ResourceCategory()
+    category: InstitutionalDocumentCategory = new InstitutionalDocumentCategory()
     title: string = ""
     titleRules = [(v: string) => v && v.length > 0 ? true : "Titulo requerido"]
     documentRules = [(v: File) => v ? true : "Seleccione un Documento"]
@@ -58,7 +58,7 @@ export default class PostResourcePanel extends Vue {
 
     postResource() {
         if (this.form.validate()) {
-            ResourceService.postResource(this, this.documentFile, this.title, this.category.id!);
+            InstitutionalDocumentService.postInstitutionalDocument(this, this.documentFile, this.title, this.category.id!)
         }
     }
 }
