@@ -1,7 +1,8 @@
 <template>
     <div>
         <v-carousel class="slider-r" cycle hide-delimiter-background show-arrows-on-hover>
-            <v-carousel-item class="pointer" contain v-for="(slide ,i) in slides" :key="i" :src="slide.image.url" @click="goingTo(slide.url)" />
+          <v-carousel-item class="pointer" contain v-for="(slide ,i) in slides" :key="i" eager>
+            <v-img contain height="100%" :src="slide.image.url" @click="goingTo(slide.url)" eager/> </v-carousel-item>
         </v-carousel>
     </div>
 </template>
