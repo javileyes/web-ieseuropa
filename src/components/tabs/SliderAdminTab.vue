@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="7">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Sliders</v-toolbar-title>
@@ -29,7 +29,7 @@
                   </v-card-text>
                 </v-card>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="5">
                 <PostSliderPanel :refresh="refresh"/>
             </v-col>
         </v-row>
@@ -52,6 +52,7 @@ export default class SliderAdminTab extends Vue {
     headers = [
         { text: "Title", value: "title"},
         { text: "Image", value: "image"},
+        { text: "Orden", value: "location"},
         { text: "Enlace", value: "url"},
         { text: "Acciones", value: "actions"}
     ]

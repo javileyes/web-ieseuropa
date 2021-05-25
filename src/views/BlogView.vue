@@ -44,7 +44,7 @@
             <v-layout row wrap v-if="blog.images.length">
                 <v-flex xs12 md6 v-for="image in blog.images" :key="image.id">
                     <v-card class="ma-3" elevation="0">
-                        <v-img class="pointer" style="background: #ffe3e0"
+                        <v-img eager class="pointer" style="background: #ffe3e0"
                                height="300"
                                lazy-src="/cargando-min.png"
                                :src="image.url"

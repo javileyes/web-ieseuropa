@@ -12,10 +12,10 @@
                         </v-row>
                         <v-row align="center">
                             <v-col cols="12"  md="6">
-                                <v-img height="250" src="@/assets/center/centro-exterior.jpg"/>
+                                <v-img height="250" lazy-src="/cargando-min.png" src="@/assets/center/centro-exterior.jpg"/>
                             </v-col>
                             <v-col cols="12"  md="6">
-                                <v-img height="250" src="@/assets/center/centro-interior.jpg"/>
+                                <v-img height="250" lazy-src="/cargando-min.png" src="@/assets/center/centro-interior.jpg"/>
                             </v-col>
                         </v-row>
                         <v-row class="ma-5 mt-6">
