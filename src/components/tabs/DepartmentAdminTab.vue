@@ -1,7 +1,7 @@
 <template>
     <v-container>
         <v-row>
-            <v-col cols="12" sm="12" md="5">
+            <v-col cols="12" sm="12" md="6">
                 <v-card>
                     <v-toolbar color="secondary" dark>
                         <v-toolbar-title>Departamentos</v-toolbar-title>
@@ -19,6 +19,9 @@
                                 <v-icon class="mr-3">mdi-account</v-icon>
                                 <v-list-item-content>
                                     <v-list-item-title v-text="teacher.fullName"></v-list-item-title>
+                                </v-list-item-content>
+                                <v-list-item-content align="right">
+                                    <v-list-item-title v-text="teacher.location"></v-list-item-title>
                                 </v-list-item-content>
                                 <v-btn class="ma-1" text icon color="red lighten-2" @click="deleteTeacher(teacher.id)">
                                     <v-icon>mdi-delete</v-icon>

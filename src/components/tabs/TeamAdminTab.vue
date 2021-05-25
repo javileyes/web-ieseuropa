@@ -39,6 +39,7 @@ export default class TeamAdminTab extends Vue {
         { text: "Cargo", value: "position" },
         { text: "Nombre", value: "name" },
         { text: "Correo", value: "email" },
+        { text: "Orden", value: "location" },
         { text: "Acciones", value: "actions" }
     ]
 
@@ -54,11 +55,13 @@ export default class TeamAdminTab extends Vue {
         await ConfigService.getConfigTeachers(this, list)
         list.forEach(v => {
             const values: any = v.value!.split(",")
+            const orden: any = v.location
             this.teachers.push({
                 id: v.id,
                 position: values[0],
                 name: values[1],
-                email: values[2]
+                email: values[2],
+                location: orden
             })
         })
     }
